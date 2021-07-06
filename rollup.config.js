@@ -2,6 +2,7 @@ import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
+import typescript from "@rollup/plugin-typescript";
 
 export default [
   {
@@ -18,6 +19,7 @@ export default [
       },
     ],
     plugins: [
+      typescript({ lib: ["es5", "es6", "dom"], target: "es5" }),
       postcss({
         plugins: [],
         minimize: true,
