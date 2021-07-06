@@ -1,3 +1,3 @@
 export * from "./components/Requirements";
 
-console.log("io-component-library");
+// console.log("io-component-library");

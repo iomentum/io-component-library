@@ -1,5 +1,7 @@
 import React from "react";
 
-export const Requirements = () => {
+const Requirements = () => {
   return <>Hello World</>;
 };
+
+export default Requirements;
