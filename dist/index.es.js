@@ -1,7 +1,1 @@
-import React from 'react';
-
-var Requirements = function () {
-    return React.createElement(React.Fragment, null, "Hello World");
-};
-
-export { Requirements };
+import r from"react";var e=function(){return r.createElement(r.Fragment,null,"Hello World")};export{e as Requirements};
