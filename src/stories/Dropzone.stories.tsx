@@ -16,4 +16,5 @@ DropArea.args = {
   setImageToUpload: () => console.log("setImageToUpload"),
   setUploadError: () => console.log("setUploadError"),
   label: "Importez votre image",
+  style: { color: "dodgerblue", fontSize: 12 },
 };

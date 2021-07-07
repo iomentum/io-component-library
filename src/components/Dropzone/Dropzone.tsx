@@ -32,6 +32,7 @@ const Dropzone: FC<DropzoneProps> = (props) => {
     setUploadError,
     maxUploadSize = 1_000_000,
     label = "Glissez-déposez votre image ici, ou cliquez pour rechercher un fichier",
+    ...otherProps
   }: DropzoneProps = props;
 
   const {
@@ -56,7 +57,10 @@ const Dropzone: FC<DropzoneProps> = (props) => {
   }, [allFiles, setImageToUpload, setUploadError]);
 
   return (
-    <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
+    <Container
+      {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
+      {...otherProps}
+    >
       <input {...getInputProps()} />
       <p>{label}</p>
     </Container>
