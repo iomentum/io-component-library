@@ -4,13 +4,14 @@
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "types": "./src/types.ts",
+  "types": "./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "start": "npm run storybook",
     "build-storybook": "build-storybook",
-    "build-lib": "rollup -c"
+    "build-lib": "rollup -c",
+    "generate-types-declarations": "tsc src/index.ts --declaration --esModuleInterop --jsx \"react\""
   },
   "author": "IOMenTeam",
   "license": "ISC",

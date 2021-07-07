@@ -1,5 +1,7 @@
 `npm run sb`
 
 `npm install --save iomentum/io-component-library#main`
+`import {} from 'io-component-library'`
 
-`tsc src/index.ts --declaration --esModuleInterop --jsx "react"`
+`npm run build-lib`
+`npm run generate-types-declarations`
