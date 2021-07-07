@@ -8,8 +8,8 @@ import {
 const copyIcon = require("./copy-icon.png");
 
 type FileInfo = {
-  name: String;
-  url: String;
+  name: string;
+  url: string;
 };
 
 interface ThumbnailsMosaicProps {
@@ -38,9 +38,9 @@ const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
     <Container>
       {fileList.map((image, index) => (
         <ThumbnailBox key={index} onClick={() => copyToClipboard(image)}>
-          <Image src={`${assetsURL}/${image.url}`} alt="Image" />
-          <MiddleBox>
-            <Image src={copyIcon} alt="copy-icon" />
+          <Image src={image.url} alt="Image" className="image" />
+          <MiddleBox className="middle">
+            <Image src={copyIcon} alt="copy-icon" className="copy-icon" />
           </MiddleBox>
         </ThumbnailBox>
       ))}

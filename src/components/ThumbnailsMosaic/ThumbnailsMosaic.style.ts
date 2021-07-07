@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const ThumbnailBox = styled.div`
   position: relative;
   height: 140px;
+  cursor: pointer;
   padding: 10px;
   &:hover .middle {
     opacity: 1;
