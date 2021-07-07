@@ -28,7 +28,7 @@ export default [
         minimize: true,
       }),
       babel({
-        exlude: "node_modules/**",
+        exclude: "node_modules/**",
         presets: ["@babel/preset-react"],
       }),
       external(), // automatically externalize peerDependencies in a rollup bundle
