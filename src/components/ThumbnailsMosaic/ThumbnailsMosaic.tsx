@@ -19,15 +19,11 @@ interface ThumbnailsMosaicProps {
   fileList: FileInfo[];
 }
 
-const assetsURL = process.env.REACT_APP_PUBLIC_ASSETS_ROOT_URL;
-//   || window.env.PUBLIC_ASSETS_ROOT_URL;
-
 const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
   const { fileList } = props;
 
   const copyToClipboard = (image: FileInfo) => {
-    const imageAbsoluteURL = `${assetsURL}/${image.url}`;
-    navigator.clipboard.writeText(imageAbsoluteURL);
+    navigator.clipboard.writeText(image.url);
     // displayAlert({
     //   severity: "success",
     //   message: `${fileNameInToaster} copié dans le press-papier`,
