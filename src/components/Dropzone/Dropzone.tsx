@@ -26,7 +26,9 @@ interface DropzoneProps {
   label?: string;
 }
 
-const Dropzone: FC<DropzoneProps> = (props) => {
+const Dropzone: FC<DropzoneProps & React.HTMLProps<HTMLButtonElement>> = (
+  props
+) => {
   const {
     setImageToUpload,
     setUploadError,
