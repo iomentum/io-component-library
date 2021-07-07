@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { color } from '../../theme';
 
 const getColor = (props: any) => {
   if (props.isDragAccept) {
@@ -13,10 +12,6 @@ const getColor = (props: any) => {
   }
   return "#eeeeee";
 };
-
-// interface ContainerProps {
-//   borderColor: "isDragAccept" | "isDragReject" | "isDragActive";
-// }
 
 export const Container = styled.div`
   flex: 1;

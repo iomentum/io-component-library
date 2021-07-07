@@ -6,14 +6,33 @@ import { Container } from "./Dropzone.style";
 import { resize } from "./image-utils";
 
 interface DropzoneProps {
+  /**
+   * SetState in which the images are stored onDrop
+   */
   setImageToUpload: (files: File[]) => void;
+  /**
+   * SetState by the error Value
+   */
   setUploadError: (error: Error) => void;
+  /**
+   * Max file size in bytes
+   * 1_000_000 by default
+   */
+  maxUploadSize?: number;
+  /**
+   * Placefolder in the middle of the area
+   * "Glissez-déposez votre image ici, ou cliquez pour rechercher un fichier" by default
+   */
+  label?: string;
 }
 
-const MAX_UPLOAD_SIZE = 1_000_000; // in bytes
-
 const Dropzone: FC<DropzoneProps> = (props) => {
-  const { setImageToUpload, setUploadError }: DropzoneProps = props;
+  const {
+    setImageToUpload,
+    setUploadError,
+    maxUploadSize = 1_000_000,
+    label = "Glissez-déposez votre image ici, ou cliquez pour rechercher un fichier",
+  }: DropzoneProps = props;
 
   const {
     getRootProps,
@@ -26,7 +45,7 @@ const Dropzone: FC<DropzoneProps> = (props) => {
 
   useEffect(() => {
     if (allFiles.length > 0) {
-      Promise.all(allFiles.map((file) => resize(file, MAX_UPLOAD_SIZE)))
+      Promise.all(allFiles.map((file) => resize(file, maxUploadSize)))
         .then((files) => {
           setImageToUpload(files);
         })
@@ -37,16 +56,10 @@ const Dropzone: FC<DropzoneProps> = (props) => {
   }, [allFiles, setImageToUpload, setUploadError]);
 
   return (
-    <div className="container">
-      <Container
-        {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
-      >
-        <input {...getInputProps()} />
-        <p>
-          Glissez-déposez votre image ici, ou cliquez pour rechercher un fichier
-        </p>
-      </Container>
-    </div>
+    <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
+      <input {...getInputProps()} />
+      <p>{label}</p>
+    </Container>
   );
 };
 
