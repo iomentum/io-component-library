@@ -2,4 +2,4 @@
 
 `npm install --save iomentum/io-component-library#main`
 
-`tsc src/components/Button/Button.tsx --declaration --esModuleInterop --jsx "react"`
+`tsc src/index.ts --declaration --esModuleInterop --jsx "react"`
