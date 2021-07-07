@@ -26,7 +26,7 @@ const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
     navigator.clipboard.writeText(image.url);
     // displayAlert({
     //   severity: "success",
-    //   message: `${fileNameInToaster} copié dans le press-papier`,
+    //   message: `${image.name} copié dans le press-papier`,
     // });
   };
 
