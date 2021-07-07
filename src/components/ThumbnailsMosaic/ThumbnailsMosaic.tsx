@@ -7,7 +7,7 @@ import {
 } from "./ThumbnailsMosaic.style";
 const copyIcon = require("./copy-icon.png");
 
-type FileInfo = {
+export type FileInfo = {
   name: string;
   url: string;
 };
@@ -19,7 +19,7 @@ interface ThumbnailsMosaicProps {
   fileList: FileInfo[];
 }
 
-const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
+export const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
   const { fileList } = props;
 
   const copyToClipboard = (image: FileInfo) => {
@@ -43,5 +43,3 @@ const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
     </Container>
   );
 };
-
-export default ThumbnailsMosaic;

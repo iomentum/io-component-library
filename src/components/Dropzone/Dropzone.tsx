@@ -9,7 +9,7 @@ interface DropzoneProps {
   /**
    * SetState in which the images are stored onDrop
    */
-  setImageToUpload: (files: File[]) => void;
+  setImagesToUpload: (files: File[]) => void;
   /**
    * SetState by the error Value
    */
@@ -30,7 +30,7 @@ const Dropzone: FC<DropzoneProps & React.HTMLProps<HTMLButtonElement>> = (
   props
 ) => {
   const {
-    setImageToUpload,
+    setImagesToUpload,
     setUploadError,
     maxUploadSize = 1_000_000,
     label = "Glissez-déposez votre image ici, ou cliquez pour rechercher un fichier",
@@ -50,13 +50,13 @@ const Dropzone: FC<DropzoneProps & React.HTMLProps<HTMLButtonElement>> = (
     if (allFiles.length > 0) {
       Promise.all(allFiles.map((file) => resize(file, maxUploadSize)))
         .then((files) => {
-          setImageToUpload(files);
+          setImagesToUpload(files);
         })
         .catch((e) => {
           setUploadError(e);
         });
     }
-  }, [allFiles, setImageToUpload, setUploadError]);
+  }, [allFiles, setImagesToUpload, setUploadError]);
 
   return (
     <Container
