@@ -11,15 +11,15 @@ Import de library into your React file
 ## Utilisation
 
 `npm i`
+then
 `npm start`
 
 ## Developpement
 
-Generate types for you components
+To generate types for you components run
 `npm run generate-types-declarations`
 
-Be careful, don't commit .js files
+_Be careful, don't commit .js files_
 
-Complile & pubslish your components
-
+Complile & pubslish your components by running
 `npm run build-lib`
