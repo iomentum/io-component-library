@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ThumbnailsMosaic from "../components/ThumbnailsMosaic/ThumbnailsMosaic";
+import { ThumbnailsMosaic } from "../components/ThumbnailsMosaic/ThumbnailsMosaic";
 
 export default {
   title: "C&C/ThumbnailsMosaic",
@@ -27,4 +27,5 @@ BasicList.args = {
       url: "https://www.iomentum.com/static/media/leopold.0ae3e142.jpg",
     },
   ],
+  style: { backgroundColor: "pink" },
 };

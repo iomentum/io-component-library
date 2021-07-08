@@ -19,8 +19,10 @@ interface ThumbnailsMosaicProps {
   fileList: FileInfo[];
 }
 
-export const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
-  const { fileList } = props;
+export const ThumbnailsMosaic: FC<
+  ThumbnailsMosaicProps & React.HTMLProps<HTMLDivElement>
+> = (props) => {
+  const { fileList, ...otherProps } = props;
 
   const copyToClipboard = (image: FileInfo) => {
     navigator.clipboard.writeText(image.url);
@@ -31,7 +33,7 @@ export const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
   };
 
   return (
-    <Container>
+    <Container {...otherProps}>
       {fileList.map((image, index) => (
         <ThumbnailBox key={index} onClick={() => copyToClipboard(image)}>
           <Image src={image.url} alt="Image" className="image" />
@@ -40,6 +42,7 @@ export const ThumbnailsMosaic: FC<ThumbnailsMosaicProps> = (props) => {
           </MiddleBox>
         </ThumbnailBox>
       ))}
+      <div />
     </Container>
   );
 };
