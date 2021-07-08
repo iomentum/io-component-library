@@ -26,7 +26,5 @@ export const Container = styled.div`
   background-color: #fafafa;
   color: #bdbdbd;
   outline: none;
-  width: 50%;
   transition: border 0.24s ease-in-out;
-  margin: auto;
 `;

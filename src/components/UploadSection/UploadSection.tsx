@@ -17,14 +17,16 @@ interface UploadSectionProps {
   filesToDisplay: FileInfo[];
 }
 
-export const UploadSection: FC<UploadSectionProps> = (props) => {
-  const { setImagesReadyForUpload, filesToDisplay } = props;
+export const UploadSection: FC<
+  UploadSectionProps & React.HTMLProps<HTMLDivElement>
+> = (props) => {
+  const { setImagesReadyForUpload, filesToDisplay, ...otherProps } = props;
 
   const [, setUploadError] = useState<Error | null>(null);
   const uploadError = "Le fichier n'est pas bon"; // FIXME: tmps
 
   return (
-    <div>
+    <div {...otherProps}>
       <Dropzone
         setImagesToUpload={setImagesReadyForUpload}
         setUploadError={setUploadError}

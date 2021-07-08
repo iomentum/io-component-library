@@ -14,5 +14,19 @@ const Template: ComponentStory<typeof UploadSection> = (args) => (
 export const DefautUsage = Template.bind({});
 DefautUsage.args = {
   setImagesReadyForUpload: () => console.log("oui"),
-  filesToDisplay: [],
+  filesToDisplay: [
+    {
+      name: "Jérémy",
+      url: "https://www.iomentum.com/static/media/jeremy.44e055de.jpg",
+    },
+    {
+      name: "Rabire",
+      url: "https://www.iomentum.com/static/media/rabire.01c6c5ba.jpg",
+    },
+    {
+      name: "Léo",
+      url: "https://www.iomentum.com/static/media/leopold.0ae3e142.jpg",
+    },
+  ],
+  style: { backgroundColor: "pink" },
 };

@@ -26,7 +26,7 @@ interface DropzoneProps {
   label?: string;
 }
 
-const Dropzone: FC<DropzoneProps & React.HTMLProps<HTMLButtonElement>> = (
+const Dropzone: FC<DropzoneProps & React.HTMLProps<HTMLDivElement>> = (
   props
 ) => {
   const {
