@@ -33,7 +33,9 @@ export const ThumbnailsMosaic: FC<
   };
 
   return (
-    <Container {...otherProps}>
+    <Container
+    // {...otherProps} // TODO: Fix this props
+    >
       {fileList.map((image, index) => (
         <ThumbnailBox key={index} onClick={() => copyToClipboard(image)}>
           <Image src={image.url} alt="Image" className="image" />

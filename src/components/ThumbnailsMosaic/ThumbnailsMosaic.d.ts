@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 export declare type FileInfo = {
     name: string;
     url: string;
@@ -9,5 +9,5 @@ interface ThumbnailsMosaicProps {
      */
     fileList: FileInfo[];
 }
-export declare const ThumbnailsMosaic: FC<ThumbnailsMosaicProps>;
+export declare const ThumbnailsMosaic: FC<ThumbnailsMosaicProps & React.HTMLProps<HTMLDivElement>>;
 export {};
