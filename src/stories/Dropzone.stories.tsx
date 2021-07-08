@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Dropzone> = (args) => (
 
 export const DropArea = Template.bind({});
 DropArea.args = {
-  setImageToUpload: () => console.log("setImageToUpload"),
+  setImagesToUpload: () => console.log("setImageToUpload"),
   setUploadError: () => console.log("setUploadError"),
   label: "Importez votre image",
   style: { color: "dodgerblue", fontSize: 12 },
