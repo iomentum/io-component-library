@@ -7,23 +7,21 @@ import {
 import { ErrorBox } from "./UploadSection.style";
 
 interface UploadSectionProps {
-  imagesReadyForUploadState: [File[], (newVal: File[]) => void];
+  /**
+   * setState in which we store the files before uploading with the API
+   */
+  setImagesReadyForUpload: (newVal: File[]) => void;
+  /**
+   * Files to display
+   */
   filesToDisplay: FileInfo[];
 }
 
 export const UploadSection: FC<UploadSectionProps> = (props) => {
-  const { imagesReadyForUploadState, filesToDisplay } = props;
-
-  const [
-    imagesReadyForUpload,
-    setImagesReadyForUpload,
-  ] = imagesReadyForUploadState;
+  const { setImagesReadyForUpload, filesToDisplay } = props;
 
   const [, setUploadError] = useState<Error | null>(null);
   const uploadError = "Le fichier n'est pas bon"; // FIXME: tmps
-
-  //   console.log({ imagesReadyForUpload });
-  console.log({ filesToDisplay });
 
   return (
     <div>

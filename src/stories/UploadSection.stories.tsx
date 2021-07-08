@@ -12,4 +12,7 @@ const Template: ComponentStory<typeof UploadSection> = (args) => (
 );
 
 export const DefautUsage = Template.bind({});
-DefautUsage.args = {};
+DefautUsage.args = {
+  setImagesReadyForUpload: () => console.log("oui"),
+  filesToDisplay: [],
+};
