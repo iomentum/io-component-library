@@ -1,11 +1,6 @@
 module.exports = {
   stories: ["../src/**/*.stories.tsx"],
-  addons: [
-    "@storybook/addon-essentials",
-    "@storybook/addon-links",
-    "@storybook/addon-actions",
-    "@storybook/preset-typescript",
-  ],
+  addons: ["@storybook/addon-essentials", "@storybook/addon-links"],
   typescript: {
     check: false,
     checkOptions: {},
