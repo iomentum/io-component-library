@@ -1,4 +1,11 @@
 module.exports = {
+  stories: ["../src/**/*.stories.tsx"],
+  addons: [
+    "@storybook/addon-actions",
+    "@storybook/addon-links",
+    "@storybook/preset-typescript",
+    "@storybook/addon-essentials",
+  ],
   typescript: {
     check: false,
     checkOptions: {},
@@ -9,6 +16,4 @@ module.exports = {
         prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
 };
