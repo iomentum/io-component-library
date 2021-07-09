@@ -6,7 +6,7 @@
   "license": "ISC",
   "main": "./build/index.js",
   "module": "./build/index.es.js",
-  "types": "./build/Button.d.ts",
+  "types": "./buildindex.ts",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
