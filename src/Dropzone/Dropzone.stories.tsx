@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Dropzone from "../components/Dropzone/Dropzone";
+import Dropzone from "./Dropzone";
 
 export default {
   title: "C&C/Dropzone",
