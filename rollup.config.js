@@ -3,7 +3,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
-import image from "rollup-plugin-image";
+// import image from "rollup-plugin-image";
+import images from "rollup-plugin-image-files";
 
 import packageJson from "./package.json";
 
@@ -32,6 +33,6 @@ export default {
     resolve(), // add to the source code our third party dependencies
     commonjs(), // convert CommonJS modules to ES6, so they can be included in a Rollup bundle
     typescript(),
-    image(), // Import JPG, PNG, GIF and SVG files.
+    images(), // Import JPG, PNG, GIF and SVG files.
   ],
 };
