@@ -28,6 +28,7 @@
     "blitz-resize": "^0.4.0",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "react-dropzone": "^11.3.4",
+    "rollup-plugin-image": "^1.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.30.0",
