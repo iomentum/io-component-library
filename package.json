@@ -11,7 +11,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "start": "npm run storybook",
-    "build": "rollup -c"
+    "build-lib": "rollup -c"
   },
   "dependencies": {
     "react": "^17.0.2",

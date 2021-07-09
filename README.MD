@@ -18,3 +18,5 @@ then
 
 Complile & pubslish your components by running
 `npm run build`
+
+(You may need to run `sudo npm install --global rollup` before)
