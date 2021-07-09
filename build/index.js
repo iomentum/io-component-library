@@ -3391,7 +3391,8 @@ var Image$1 = Ye.img(templateObject_3 || (templateObject_3 = __makeTemplateObjec
 var MiddleBox = Ye.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  transition: 0.5s ease;\n  opacity: 0;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n"], ["\n  transition: 0.5s ease;\n  opacity: 0;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n"])));
 var templateObject_1$1, templateObject_2, templateObject_3, templateObject_4;
 
-var copyIcon = require("./copy-icon.png");
+var img = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABmJLR0QA/wD/AP+gvaeTAAAE10lEQVR4nO2db2hVZRzHP8+5/3bvTBloC1M2a0SxilIU0zkztldFUEGCLkNZy/aiFzFy+KJpIIjgG+u9lYvKUQRWb0L7A8tmL2WvWmZk0B+JLLW5ec+vF3f37jTC2HnO7vMc/H3gwHZ37vP7Pc/3fp8f58e5Z6AoiqIoiqIoiqLUFeMy+PI+KZkGBhG2Aa1Axkkiwk/G8OF12P/za+a3eoZ2JsDyPill8pwE1rvKYS4CPxDQfeGI+bZeMYN6BZpLLs9gRlifEfDlyAot2TKft/TLPfVaB2cOuOMFmcBwJwDC3uJFDo+PmKm659Ev+4ChOS//QkD3udfN2YWO78wBAbQGAoGAq8WfyYNqHpGjOShzqm23PFiP+E4IhEx1wq4WHyAIZxd+1W1QzNZ+XxrAybv6Ze2Cxl/IwW8YOPKJc0nUASuaYOtmKOVqrzUFZU7dvVseXsj4TogWP5dkw9k88iG0LIGeTliUr72+KBPyUXuvPLIQ8dUBkVzyAsUytN4CvZ2wpKH2t8bAcOLeXuleiPhO8EaASA3IhVCcOVY2wvMd0DQrQikDJ+5/Th5PNH6Sg80rsC8CMMcBURFK8GIHLCvWzilkQkZW75InkozvBF9qQBCpAVEHVI/bi/BSBzSXauflAxhZu0u2JxE/azvAmj4pZacYFDPPfo7jha8ShPxZvRy99Fdl0edSLMCejXB4FH69DFTm+Ma6nRKeOWresYlvJcCaPinlpir9HOPJgs6XwDBa/TB8c6HyKV+5+L/PXb0MPr0MUjk/C7z50A757vRb5kzc+FYCNEwyKMafZlocvj5qxjY8Kx8DjyIw9iOM3eB8w7/6NzkMrwCPxY1vJUAA22pbiWHv71fdtRRsKBXYfm2SYeIt5Cab2FbNuM3PyHVm9vyLkxTSuPhRNu2QdYGw0Ria/+9cEfZUf/7imIm9jlYCbOmR2s7/2XD8JNJIUnO324JSWniTIKm5qwAx8UIA1xdRLklq7uqAmHjhABXAHhUgJl4IoDXAHnVATLxwgLNetgckNXdnDtj61OyV5Hvvp+8q2gsH2OyDaa8fqa8Baa8fXjhABbBHBYiJCuAYLwTQImyPOiAmXjhABbBHBYiJFwJoDbBHHRATLxygAtijAsTECwG0BtijDoiJFw5QAexRAWKiAjjGCwG0CNujDoiJFw5QAexRAWLihQBaA+xRB8TECwfY3B2W9rvqUn9nnDqggtaAmGgNcIwXDlAB7FEBYuKFAFoD7FEHxMQLB6gACYxjm0Tcx44FQrn63uPtkrfJo94caZNCZO5lm7FcCnC++t7pHANpEeF4u+SXLmYgMvdzNuO5K8Ihb8887AjgQJjjwLsP+L8vhVSeM1fDMGwznrsaUOIgV+kCNtjk4JjRK39wyGYAZ1vQ06fN35Toygj7ApiI1gTPj3IAEwEMXblE187zZtJmDa2+HvrBfbNfNX3ybPq+aupD/jf1owp8yP+mflSBD/mrAI5RARyjAjhGi7BjbK8DUtvP+STBfo4NtgLU+jm3TjMwnhIRxtsl32iS6+fYYHXx8WWb7IdaPyfNDHVOmFddBLaqAdlJDkoh3f0cgdHpsl0/xwbry++vVkjR5HkZ6AFW4eofcs6PMvC9wLFrIYe2WPZzFEVRFEVRFEVRlBTxDw2sMc1U2IBKAAAAAElFTkSuQmCC";
+
 var ThumbnailsMosaic = function (props) {
     var fileList = props.fileList; __rest(props, ["fileList"]);
     var copyToClipboard = function (image) {
@@ -3407,7 +3408,7 @@ var ThumbnailsMosaic = function (props) {
         fileList.map(function (image, index) { return (React__default['default'].createElement(ThumbnailBox, { key: index, onClick: function () { return copyToClipboard(image); } },
             React__default['default'].createElement(Image$1, { src: image.url, alt: "Image", className: "image" }),
             React__default['default'].createElement(MiddleBox, { className: "middle" },
-                React__default['default'].createElement(Image$1, { src: copyIcon, alt: "copy-icon", className: "copy-icon" })))); }),
+                React__default['default'].createElement(Image$1, { src: img, alt: "copy-icon", className: "copy-icon" })))); }),
         React__default['default'].createElement("div", null)));
 };
 
@@ -3432,5 +3433,4 @@ var UploadSection = function (props) {
 exports.Button = Button;
 exports.ThumbnailsMosaic = ThumbnailsMosaic;
 exports.UploadSection = UploadSection;
-exports.copyIcon = copyIcon;
 //# sourceMappingURL=index.js.map
