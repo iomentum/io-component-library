@@ -16,10 +16,5 @@ then
 
 ## Developpement
 
-To generate types for you components run
-`npm run generate-types-declarations`
-
-_Be careful, don't commit .js files_
-
 Complile & pubslish your components by running
-`npm run build-lib`
+`npm run build`
