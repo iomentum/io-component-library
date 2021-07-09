@@ -5,7 +5,7 @@ import {
   Image,
   MiddleBox,
 } from "./ThumbnailsMosaic.style";
-const copyIcon = require("./copy-icon.png");
+export const copyIcon = require("./copy-icon.png");
 
 export type FileInfo = {
   name: string;

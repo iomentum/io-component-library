@@ -3432,4 +3432,5 @@ var UploadSection = function (props) {
 exports.Button = Button;
 exports.ThumbnailsMosaic = ThumbnailsMosaic;
 exports.UploadSection = UploadSection;
+exports.copyIcon = copyIcon;
 //# sourceMappingURL=index.js.map

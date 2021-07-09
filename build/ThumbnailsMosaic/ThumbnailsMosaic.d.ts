@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+export declare const copyIcon: any;
 export declare type FileInfo = {
     name: string;
     url: string;

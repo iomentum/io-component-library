@@ -3421,5 +3421,5 @@ var UploadSection = function (props) {
         React.createElement(ThumbnailsMosaic, { fileList: filesToDisplay })));
 };
 
-export { Button, ThumbnailsMosaic, UploadSection };
+export { Button, ThumbnailsMosaic, UploadSection, copyIcon };
 //# sourceMappingURL=index.es.js.map
