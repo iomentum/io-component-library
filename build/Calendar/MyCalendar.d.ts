@@ -15,7 +15,7 @@ export interface EventsCollection {
 interface CalendarProps {
     date: MomentRange;
     display: Display;
-    events: EventsCollection[];
+    events?: EventsCollection[];
 }
 export declare function MyCalendar(props: CalendarProps): JSX.Element;
 export {};
