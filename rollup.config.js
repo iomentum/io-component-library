@@ -7,8 +7,6 @@ import image from "@rollup/plugin-image";
 
 import packageJson from "./package.json";
 
-import packageJson from "./package.json";
-
 export default {
   input: "./src/index.ts", // entry point of the application
   output: [
