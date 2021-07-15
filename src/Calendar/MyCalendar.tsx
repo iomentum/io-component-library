@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Dayz from "dayz";
 import { DateRange, MomentRangeStaticMethods } from "moment-range";
-
+import { CalendarHeader } from "./CalendarHeader";
+import { EVENTS } from "./buildEvents";
 import * as m from "moment";
 
 import "dayz/dist/dayz.css";
 import "./MyCalendar.css";
-import { CalendarHeader } from "./CalendarHeader";
-import { EVENTS } from "./buildEvents";
+import { CreateEvent } from "./CreateEvent";
 
 export enum Display {
   Week = "week",
@@ -16,20 +16,29 @@ export enum Display {
 
 export type MomentRange = MomentRangeStaticMethods & m.Moment;
 
-export interface EventsCollection {
+interface Event {
   content: string;
   range: DateRange;
+}
+
+export interface EventsCollection {
+  events: Event[];
+  add: (eventAttrs: any, options?: {}) => void;
 }
 
 interface CalendarProps {
   date: MomentRange;
   display: Display;
-  events?: EventsCollection[];
+  events?: EventsCollection;
 }
 
 export function MyCalendar(props: CalendarProps) {
   const [date, setDate] = useState(props.date);
   const [display, setDisplay] = useState(props.display);
+  const [events, setEvents] = useState(props.events || EVENTS);
+
+  const [createEvent, setCreateEvent] = useState(false);
+  const [selectedStartDate, setSelectedStartDate] = useState(date.toDate());
 
   return (
     <div className="dayz-test-wrapper">
@@ -41,9 +50,20 @@ export function MyCalendar(props: CalendarProps) {
       />
       <Dayz
         date={date}
-        events={props.events || EVENTS}
+        events={events}
         display={display}
-        dayEventHandlers={{ onClick: (y, yo) => console.log(yo) }}
+        dayEventHandlers={{
+          onClick: (_, date) => {
+            setCreateEvent(true);
+            setSelectedStartDate(date._d);
+          },
+        }}
+      />
+      <CreateEvent
+        openState={[createEvent, setCreateEvent]}
+        date={date}
+        eventsState={[events, setEvents]}
+        selectedStartDateState={[selectedStartDate, setSelectedStartDate]}
       />
     </div>
   );
