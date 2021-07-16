@@ -20,83 +20,100 @@ import {
 import { hours, fromDateForHours } from "./utils";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
-import { EventsCollection, MomentRange } from "./MyCalendar";
+import { EventsCollection } from "./MyCalendar";
 import { displayDateReducer, DisplayDateType } from "./reducers/DisplayDate";
+import { selectedDateReducer, SelectedDateType } from "./reducers/SelectedDate";
+import { selectedHourReducer, SelectedHourType } from "./reducers/SelectedHour";
 const moment = extendMoment(m);
 
 interface CreateEventProps {
   openState: [boolean, Dispatch<SetStateAction<boolean>>];
-  date: MomentRange;
   eventsState: [EventsCollection, Dispatch<SetStateAction<EventsCollection>>];
-  selectedStartDateState: [Date, React.Dispatch<React.SetStateAction<Date>>];
+  selectedStartDate: Date;
 }
 
 export function CreateEvent(props: CreateEventProps) {
+  const selectedStartDate = props.selectedStartDate;
   const [openModal, setOpenModal] = props.openState;
   const [events, setEvents] = props.eventsState;
-  const [
-    selectedStartDate,
-    setSelectedStartDate,
-  ] = props.selectedStartDateState;
-
-  const [eventTitle, setEventTitle] = useState("");
-  const [selectedStartHour, setSelectedStartHour] = useState(
-    fromDateForHours(selectedStartDate)
-  );
-  const [selectedEndDate, setSelectedEndDate] = useState(props.date.toDate());
-  const [selectedEndHour, setSelectedEndHour] = useState(hours[4]);
+  
   const [allDayEvent, setAllDayEvent] = useState(false);
+  const [eventTitle, setEventTitle] = useState("");
 
+  const [selectedDate, dispatchSelectedDate] = useReducer(selectedDateReducer, {
+    startDate: selectedStartDate,
+    endDate: selectedStartDate,
+  });
   const [displayDate, dispatchDisplayDate] = useReducer(displayDateReducer, {
-    startDate: selectedStartDate.toISOString().split("T")[0],
-    endDate: selectedEndDate.toISOString().split("T")[0],
+    startDate: selectedDate.startDate.toISOString().split("T")[0],
+    endDate: selectedDate.endDate.toISOString().split("T")[0],
+  });
+  const startHour = fromDateForHours(selectedDate.startDate);
+  const [selectedHour, dispatchSelectedHour] = useReducer(selectedHourReducer, {
+    startHour: startHour,
+    endHour: hours[hours.indexOf(startHour) + 4],
   });
 
   useEffect(() => {
     dispatchDisplayDate({
       type: DisplayDateType.UpdateStartDate,
-      startDate: selectedStartDate.toISOString().split("T")[0],
+      startDate: selectedDate.startDate.toISOString().split("T")[0],
     });
-    setSelectedStartHour(fromDateForHours(selectedStartDate));
-    if (selectedStartDate > selectedEndDate) {
-      setSelectedEndDate(selectedStartDate);
+    dispatchSelectedHour({
+      type: SelectedHourType.UpdateStartHour,
+      startHour: fromDateForHours(selectedDate.startDate),
+    });
+    if (selectedDate.startDate > selectedDate.endDate) {
+      dispatchSelectedDate({
+        type: SelectedDateType.UpdateEndDate,
+        endDate: selectedDate.startDate,
+      });
     }
-  }, [selectedStartDate]);
+  }, [selectedDate.startDate]);
 
   useEffect(() => {
     dispatchDisplayDate({
       type: DisplayDateType.UpdateEndDate,
-      endDate: selectedEndDate.toISOString().split("T")[0],
+      endDate: selectedDate.endDate.toISOString().split("T")[0],
     });
-    if (selectedEndDate < selectedStartDate) {
-      setSelectedStartDate(selectedEndDate);
+    if (selectedDate.endDate < selectedDate.startDate) {
+      dispatchSelectedDate({
+        type: SelectedDateType.UpdateStartDate,
+        startDate: selectedDate.endDate,
+      });
     }
-  }, [selectedEndDate]);
+  }, [selectedDate.endDate]);
 
   useEffect(() => {
-    if (hours.indexOf(selectedStartHour) + 4 > hours.length - 1) {
-      setSelectedEndHour(hours[hours.length - 1]);
+    if (hours.indexOf(selectedHour.startHour) + 4 > hours.length - 1) {
+      dispatchSelectedHour({
+        type: SelectedHourType.UpdateEndHour,
+        endHour: hours[hours.length - 1],
+      });
     } else {
-      setSelectedEndHour(hours[hours.indexOf(selectedStartHour) + 4]);
+      dispatchSelectedHour({
+        type: SelectedHourType.UpdateEndHour,
+        endHour: hours[hours.indexOf(selectedHour.startHour) + 4],
+      });
     }
-  }, [JSON.stringify(selectedStartHour)]);
+  }, [selectedHour.startHour]);
 
   const saveEvent = () => {
     let newEvents: EventsCollection = new Dayz.EventsCollection([
       ...events.events,
     ]);
-    let splittedSelectedStartHour = selectedStartHour.split(":");
-    let splittedSelectedEndHour = selectedEndHour.split(":");
+    let splittedSelectedStartHour = selectedHour.startHour.split(":");
+    let splittedSelectedEndHour = selectedHour.endHour.split(":");
 
     newEvents.add({
       content: eventTitle,
       range: moment.range(
-        moment(selectedStartDate)
+        moment(selectedDate.startDate)
           .hour(+splittedSelectedStartHour[0])
           .minutes(+splittedSelectedStartHour[1]),
         allDayEvent
-          ? moment(selectedEndDate).endOf("day")
-          : moment(selectedStartDate)
+          ? moment(selectedDate.endDate).endOf("day")
+          : moment(selectedDate.startDate)
               .hour(+splittedSelectedEndHour[0])
               .minutes(+splittedSelectedEndHour[1])
       ),
@@ -126,9 +143,12 @@ export function CreateEvent(props: CreateEventProps) {
             type="date"
             value={displayDate.startDate}
             onChange={(event) =>
-              setSelectedStartDate(
-                event.target.value ? new Date(event.target.value) : new Date()
-              )
+              dispatchSelectedDate({
+                type: SelectedDateType.UpdateStartDate,
+                startDate: event.target.value
+                  ? new Date(event.target.value)
+                  : new Date(),
+              })
             }
           />
           {allDayEvent ? (
@@ -137,17 +157,23 @@ export function CreateEvent(props: CreateEventProps) {
               type="date"
               value={displayDate.endDate}
               onChange={(event) =>
-                setSelectedEndDate(
-                  event.target.value ? new Date(event.target.value) : new Date()
-                )
+                dispatchSelectedDate({
+                  type: SelectedDateType.UpdateEndDate,
+                  endDate: event.target.value
+                    ? new Date(event.target.value)
+                    : new Date(),
+                })
               }
             />
           ) : (
             <>
               <Select
-                value={selectedStartHour}
+                value={selectedHour.startHour}
                 onChange={(event) =>
-                  setSelectedStartHour(event.target.value as string)
+                  dispatchSelectedHour({
+                    type: SelectedHourType.UpdateStartHour,
+                    startHour: event.target.value as string,
+                  })
                 }
                 displayEmpty
               >
@@ -161,9 +187,12 @@ export function CreateEvent(props: CreateEventProps) {
                 ))}
               </Select>
               <Select
-                value={selectedEndHour}
+                value={selectedHour.endHour}
                 onChange={(event) =>
-                  setSelectedEndHour(event.target.value as string)
+                  dispatchSelectedHour({
+                    type: SelectedHourType.UpdateEndHour,
+                    endHour: event.target.value as string,
+                  })
                 }
                 displayEmpty
               >
@@ -171,7 +200,7 @@ export function CreateEvent(props: CreateEventProps) {
                   End
                 </MenuItem>
                 {hours
-                  .filter((_, i) => hours.indexOf(selectedStartHour) < i)
+                  .filter((_, i) => hours.indexOf(selectedHour.startHour) < i)
                   .map((hour) => (
                     <MenuItem key={hour} value={hour}>
                       {hour}
