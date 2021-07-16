@@ -24,8 +24,21 @@ interface CreateEventProps {
   selectedStartDateState: [Date, React.Dispatch<React.SetStateAction<Date>>];
 }
 
+const fromDateHourForHours = (dateHour: Date) => {
+  const min = dateHour.getMinutes();
+
+  if (min <= 15) {
+    return hours[dateHour.getHours() * 4];
+  } else if (min <= 30) {
+    return hours[dateHour.getHours() * 4 + 1];
+  } else if (min <= 45) {
+    return hours[dateHour.getHours() * 4 + 2];
+  } else {
+    return hours[dateHour.getHours() * 4 + 3];
+  }
+};
+
 export function CreateEvent(props: CreateEventProps) {
-  const { date } = props;
   const [openModal, setOpenModal] = props.openState;
   const [events, setEvents] = props.eventsState;
   const [
@@ -34,8 +47,10 @@ export function CreateEvent(props: CreateEventProps) {
   ] = props.selectedStartDateState;
 
   const [eventTitle, setEventTitle] = useState("");
-  const [selectedStartHour, setSelectedStartHour] = useState(hours[0]);
-  const [selectedEndDate, setSelectedEndDate] = useState(date.toDate());
+  const [selectedStartHour, setSelectedStartHour] = useState(
+    fromDateHourForHours(selectedStartDate)
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState(props.date.toDate());
   const [selectedEndHour, setSelectedEndHour] = useState(hours[4]);
   const [allDayEvent, setAllDayEvent] = useState(false);
   const [displayedStartDate, setDisplayedStartDate] = useState(
@@ -47,7 +62,7 @@ export function CreateEvent(props: CreateEventProps) {
 
   useEffect(() => {
     setDisplayedStartDate(selectedStartDate.toISOString().split("T")[0]);
-
+    setSelectedStartHour(fromDateHourForHours(selectedStartDate));
     if (selectedStartDate > selectedEndDate) {
       setSelectedEndDate(selectedStartDate);
     }
