@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import Dayz from "dayz";
 import {
   Modal,
@@ -11,10 +17,11 @@ import {
   Checkbox,
   Button,
 } from "@material-ui/core";
-import { hours } from "./utils";
+import { hours, fromDateForHours } from "./utils";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
 import { EventsCollection, MomentRange } from "./MyCalendar";
+import { displayDateReducer, DisplayDateType } from "./reducers/DisplayDate";
 const moment = extendMoment(m);
 
 interface CreateEventProps {
@@ -23,20 +30,6 @@ interface CreateEventProps {
   eventsState: [EventsCollection, Dispatch<SetStateAction<EventsCollection>>];
   selectedStartDateState: [Date, React.Dispatch<React.SetStateAction<Date>>];
 }
-
-const fromDateHourForHours = (dateHour: Date) => {
-  const min = dateHour.getMinutes();
-
-  if (min <= 15) {
-    return hours[dateHour.getHours() * 4];
-  } else if (min <= 30) {
-    return hours[dateHour.getHours() * 4 + 1];
-  } else if (min <= 45) {
-    return hours[dateHour.getHours() * 4 + 2];
-  } else {
-    return hours[dateHour.getHours() * 4 + 3];
-  }
-};
 
 export function CreateEvent(props: CreateEventProps) {
   const [openModal, setOpenModal] = props.openState;
@@ -48,30 +41,37 @@ export function CreateEvent(props: CreateEventProps) {
 
   const [eventTitle, setEventTitle] = useState("");
   const [selectedStartHour, setSelectedStartHour] = useState(
-    fromDateHourForHours(selectedStartDate)
+    fromDateForHours(selectedStartDate)
   );
   const [selectedEndDate, setSelectedEndDate] = useState(props.date.toDate());
   const [selectedEndHour, setSelectedEndHour] = useState(hours[4]);
   const [allDayEvent, setAllDayEvent] = useState(false);
-  const [displayedStartDate, setDisplayedStartDate] = useState(
-    selectedStartDate.toISOString().split("T")[0]
-  );
-  const [displayedEndDate, setDisplayedEndDate] = useState(
-    selectedEndDate.toISOString().split("T")[0]
-  );
+
+  const [displayDate, dispatchDisplayDate] = useReducer(displayDateReducer, {
+    startDate: selectedStartDate.toISOString().split("T")[0],
+    endDate: selectedEndDate.toISOString().split("T")[0],
+  });
 
   useEffect(() => {
-    setDisplayedStartDate(selectedStartDate.toISOString().split("T")[0]);
-    setSelectedStartHour(fromDateHourForHours(selectedStartDate));
+    dispatchDisplayDate({
+      type: DisplayDateType.UpdateStartDate,
+      startDate: selectedStartDate.toISOString().split("T")[0],
+    });
+    setSelectedStartHour(fromDateForHours(selectedStartDate));
     if (selectedStartDate > selectedEndDate) {
       setSelectedEndDate(selectedStartDate);
     }
   }, [selectedStartDate]);
 
-  useEffect(
-    () => setDisplayedEndDate(selectedEndDate.toISOString().split("T")[0]),
-    [selectedEndDate]
-  );
+  useEffect(() => {
+    dispatchDisplayDate({
+      type: DisplayDateType.UpdateEndDate,
+      endDate: selectedEndDate.toISOString().split("T")[0],
+    });
+    if (selectedEndDate < selectedStartDate) {
+      setSelectedStartDate(selectedEndDate);
+    }
+  }, [selectedEndDate]);
 
   useEffect(() => {
     if (hours.indexOf(selectedStartHour) + 4 > hours.length - 1) {
@@ -124,7 +124,7 @@ export function CreateEvent(props: CreateEventProps) {
           <TextField
             id="date"
             type="date"
-            value={displayedStartDate}
+            value={displayDate.startDate}
             onChange={(event) =>
               setSelectedStartDate(
                 event.target.value ? new Date(event.target.value) : new Date()
@@ -135,7 +135,7 @@ export function CreateEvent(props: CreateEventProps) {
             <TextField
               id="date"
               type="date"
-              value={displayedEndDate}
+              value={displayDate.endDate}
               onChange={(event) =>
                 setSelectedEndDate(
                   event.target.value ? new Date(event.target.value) : new Date()

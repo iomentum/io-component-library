@@ -96,3 +96,17 @@ export const hours = [
   "23:30",
   "23:45",
 ];
+
+export const fromDateForHours = (date: Date) => {
+  const min = date.getMinutes();
+
+  if (min <= 15) {
+    return hours[date.getHours() * 4];
+  } else if (min <= 30) {
+    return hours[date.getHours() * 4 + 1];
+  } else if (min <= 45) {
+    return hours[date.getHours() * 4 + 2];
+  } else {
+    return hours[date.getHours() * 4 + 3];
+  }
+};
