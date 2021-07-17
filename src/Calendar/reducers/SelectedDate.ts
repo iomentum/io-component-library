@@ -4,7 +4,7 @@ export enum SelectedDateType {
   Reset,
 }
 
-type DisplayDateAction =
+export type SelectedDateAction =
   | {
       type: SelectedDateType.UpdateStartDate;
       startDate: Date;
@@ -19,7 +19,7 @@ type DisplayDateAction =
       endDate: Date;
     };
 
-interface SelectedDate {
+export interface SelectedDate {
   startDate: Date;
   endDate: Date;
 }
@@ -34,7 +34,7 @@ const selectedDateInitialState = (
 
 export const selectedDateReducer = (
   state: SelectedDate,
-  action: DisplayDateAction
+  action: SelectedDateAction
 ): SelectedDate => {
   switch (action.type) {
     case SelectedDateType.UpdateStartDate:

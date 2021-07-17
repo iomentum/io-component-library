@@ -9,7 +9,6 @@ import Dayz from "dayz";
 import {
   Modal,
   Slide,
-  Paper,
   TextField,
   Select,
   MenuItem,
@@ -24,6 +23,10 @@ import { EventsCollection } from "./MyCalendar";
 import { displayDateReducer, DisplayDateType } from "./reducers/DisplayDate";
 import { selectedDateReducer, SelectedDateType } from "./reducers/SelectedDate";
 import { selectedHourReducer, SelectedHourType } from "./reducers/SelectedHour";
+import { SideModalContent } from "./MyCalendar.style";
+import { OpeningDirection, SideModal } from "./SideModal";
+import { HourSelector } from "./HourSelector";
+import { DurationController } from "./DurationController";
 const moment = extendMoment(m);
 
 interface CreateEventProps {
@@ -34,9 +37,9 @@ interface CreateEventProps {
 
 export function CreateEvent(props: CreateEventProps) {
   const selectedStartDate = props.selectedStartDate;
-  const [openModal, setOpenModal] = props.openState;
+  const [, setOpenModal] = props.openState;
   const [events, setEvents] = props.eventsState;
-  
+
   const [allDayEvent, setAllDayEvent] = useState(false);
   const [eventTitle, setEventTitle] = useState("");
 
@@ -45,8 +48,8 @@ export function CreateEvent(props: CreateEventProps) {
     endDate: selectedStartDate,
   });
   const [displayDate, dispatchDisplayDate] = useReducer(displayDateReducer, {
-    startDate: selectedDate.startDate.toISOString().split("T")[0],
-    endDate: selectedDate.endDate.toISOString().split("T")[0],
+    startDate: selectedDate.startDate.toISOString().replace(/T.*/, ""),
+    endDate: selectedDate.endDate.toISOString().replace(/T.*/, ""),
   });
   const startHour = fromDateForHours(selectedDate.startDate);
   const [selectedHour, dispatchSelectedHour] = useReducer(selectedHourReducer, {
@@ -54,10 +57,19 @@ export function CreateEvent(props: CreateEventProps) {
     endHour: hours[hours.indexOf(startHour) + 4],
   });
 
+  useEffect(
+    () =>
+      dispatchSelectedDate({
+        type: SelectedDateType.UpdateStartDate,
+        startDate: selectedStartDate,
+      }),
+    [selectedStartDate]
+  );
+
   useEffect(() => {
     dispatchDisplayDate({
       type: DisplayDateType.UpdateStartDate,
-      startDate: selectedDate.startDate.toISOString().split("T")[0],
+      startDate: selectedDate.startDate.toISOString().replace(/T.*/, ""),
     });
     dispatchSelectedHour({
       type: SelectedHourType.UpdateStartHour,
@@ -74,7 +86,7 @@ export function CreateEvent(props: CreateEventProps) {
   useEffect(() => {
     dispatchDisplayDate({
       type: DisplayDateType.UpdateEndDate,
-      endDate: selectedDate.endDate.toISOString().split("T")[0],
+      endDate: selectedDate.endDate.toISOString().replace(/T.*/, ""),
     });
     if (selectedDate.endDate < selectedDate.startDate) {
       dispatchSelectedDate({
@@ -122,113 +134,46 @@ export function CreateEvent(props: CreateEventProps) {
   };
 
   return (
-    <Modal open={openModal} onClose={() => setOpenModal(false)}>
-      <Slide direction="left" in={openModal}>
-        <Paper
-          style={{
-            width: 250,
-            height: "100%",
-            margin: "0 0 0 auto",
-            padding: "0 20px",
-          }}
-          elevation={1}
-        >
-          <TextField
-            fullWidth
-            label="Ajouter un titre"
-            onChange={(event) => setEventTitle(event.target.value)}
-          />
-          <TextField
-            id="date"
-            type="date"
-            value={displayDate.startDate}
-            onChange={(event) =>
-              dispatchSelectedDate({
-                type: SelectedDateType.UpdateStartDate,
-                startDate: event.target.value
-                  ? new Date(event.target.value)
-                  : new Date(),
-              })
-            }
-          />
-          {allDayEvent ? (
-            <TextField
-              id="date"
-              type="date"
-              value={displayDate.endDate}
-              onChange={(event) =>
-                dispatchSelectedDate({
-                  type: SelectedDateType.UpdateEndDate,
-                  endDate: event.target.value
-                    ? new Date(event.target.value)
-                    : new Date(),
-                })
-              }
-            />
-          ) : (
-            <>
-              <Select
-                value={selectedHour.startHour}
-                onChange={(event) =>
-                  dispatchSelectedHour({
-                    type: SelectedHourType.UpdateStartHour,
-                    startHour: event.target.value as string,
-                  })
-                }
-                displayEmpty
-              >
-                <MenuItem value="" disabled>
-                  Start
-                </MenuItem>
-                {hours.map((hour) => (
-                  <MenuItem key={hour} value={hour}>
-                    {hour}
-                  </MenuItem>
-                ))}
-              </Select>
-              <Select
-                value={selectedHour.endHour}
-                onChange={(event) =>
-                  dispatchSelectedHour({
-                    type: SelectedHourType.UpdateEndHour,
-                    endHour: event.target.value as string,
-                  })
-                }
-                displayEmpty
-              >
-                <MenuItem value="" disabled>
-                  End
-                </MenuItem>
-                {hours
-                  .filter((_, i) => hours.indexOf(selectedHour.startHour) < i)
-                  .map((hour) => (
-                    <MenuItem key={hour} value={hour}>
-                      {hour}
-                    </MenuItem>
-                  ))}
-              </Select>
-            </>
-          )}
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={allDayEvent}
-                onChange={() => setAllDayEvent((prev) => !prev)}
-                name="allDayEvent"
-                color="primary"
-              />
-            }
-            label="All day"
-          />
-          <Button
-            variant="contained"
+    <SideModal
+      openState={props.openState}
+      openingDirection={OpeningDirection.Left}
+      onSave={saveEvent}
+    >
+      <TextField
+        fullWidth
+        label="Add a title"
+        onChange={(event) => setEventTitle(event.target.value)}
+      />
+      <TextField
+        id="date"
+        type="date"
+        value={displayDate.startDate}
+        onChange={(event) =>
+          dispatchSelectedDate({
+            type: SelectedDateType.UpdateStartDate,
+            startDate: event.target.value
+              ? new Date(event.target.value)
+              : new Date(),
+          })
+        }
+      />
+      <DurationController
+        allDayEvent={allDayEvent}
+        dispatchSelectedDate={dispatchSelectedDate}
+        displayDate={displayDate}
+        selectedHourReducer={[selectedHour, dispatchSelectedHour]}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={allDayEvent}
+            onChange={() => setAllDayEvent((prev) => !prev)}
+            name="allDayEvent"
             color="primary"
-            onClick={() => saveEvent()}
-          >
-            Save
-          </Button>
-        </Paper>
-      </Slide>
-    </Modal>
+          />
+        }
+        label="All day"
+      />
+    </SideModal>
   );
 }

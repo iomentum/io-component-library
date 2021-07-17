@@ -19,7 +19,7 @@ type DisplayDateAction =
       endDate: string;
     };
 
-interface DisplayDate {
+export interface DisplayDate {
   startDate: string;
   endDate: string;
 }

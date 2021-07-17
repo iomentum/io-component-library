@@ -38,8 +38,6 @@ export function MyCalendar(props: CalendarProps) {
   const [events, setEvents] = useState(props.events || EVENTS);
 
   const [createEvent, setCreateEvent] = useState(false);
-  // TODO : Voir pourquoi le start mis a jour a la ligne 59
-  // n'est pas update au moment du passage dans le CreateEvent a la ligne 66
   const [selectedStartDate, setSelectedStartDate] = useState(date.toDate());
 
   return (

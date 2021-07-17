@@ -4,7 +4,7 @@ export enum SelectedHourType {
   Reset,
 }
 
-type DisplayHourAction =
+export type SelectedHourAction =
   | {
       type: SelectedHourType.UpdateStartHour;
       startHour: string;
@@ -19,7 +19,7 @@ type DisplayHourAction =
       endHour: string;
     };
 
-interface SelectedHour {
+export interface SelectedHour {
   startHour: string;
   endHour: string;
 }
@@ -34,7 +34,7 @@ const selectedHourInitialState = (
 
 export const selectedHourReducer = (
   state: SelectedHour,
-  action: DisplayHourAction
+  action: SelectedHourAction
 ): SelectedHour => {
   switch (action.type) {
     case SelectedHourType.UpdateStartHour:
