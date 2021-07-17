@@ -1,5 +1,5 @@
 import React, { Dispatch, memo } from "react";
-import { TextField } from "@material-ui/core";
+import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { HourSelector } from "./HourSelector";
 import { SelectedDateAction, SelectedDateType } from "./reducers/SelectedDate";
 import { SelectedHour, SelectedHourAction } from "./reducers/SelectedHour";
@@ -29,19 +29,36 @@ const DateSelector = memo((props: DateSelectorProps) => {
 });
 
 interface DurationControllerProps {
-  allDayEvent: boolean;
+  allDayEventState: [boolean, Dispatch<boolean>];
   dispatchSelectedDate: Dispatch<SelectedDateAction>;
   displayDate: DisplayDate;
   selectedHourReducer: [SelectedHour, Dispatch<SelectedHourAction>];
 }
 
 export const DurationController = memo((props: DurationControllerProps) => {
-  return props.allDayEvent ? (
-    <DateSelector
-      dispatchSelectedDate={props.dispatchSelectedDate}
-      displayDate={props.displayDate}
-    />
-  ) : (
-    <HourSelector selectedHourReducer={props.selectedHourReducer} />
+  const [allDayEvent, setAllDayEvent] = props.allDayEventState;
+
+  return (
+    <>
+      {allDayEvent ? (
+        <DateSelector
+          dispatchSelectedDate={props.dispatchSelectedDate}
+          displayDate={props.displayDate}
+        />
+      ) : (
+        <HourSelector selectedHourReducer={props.selectedHourReducer} />
+      )}
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={allDayEvent}
+            onChange={() => setAllDayEvent((prev) => !prev)}
+            name="allDayEvent"
+            color="primary"
+          />
+        }
+        label="All day"
+      />
+    </>
   );
 });

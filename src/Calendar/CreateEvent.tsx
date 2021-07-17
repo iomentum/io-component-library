@@ -6,16 +6,7 @@ import React, {
   useState,
 } from "react";
 import Dayz from "dayz";
-import {
-  Modal,
-  Slide,
-  TextField,
-  Select,
-  MenuItem,
-  FormControlLabel,
-  Checkbox,
-  Button,
-} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { hours, fromDateForHours } from "./utils";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
@@ -23,9 +14,7 @@ import { EventsCollection } from "./MyCalendar";
 import { displayDateReducer, DisplayDateType } from "./reducers/DisplayDate";
 import { selectedDateReducer, SelectedDateType } from "./reducers/SelectedDate";
 import { selectedHourReducer, SelectedHourType } from "./reducers/SelectedHour";
-import { SideModalContent } from "./MyCalendar.style";
 import { OpeningDirection, SideModal } from "./SideModal";
-import { HourSelector } from "./HourSelector";
 import { DurationController } from "./DurationController";
 const moment = extendMoment(m);
 
@@ -37,7 +26,6 @@ interface CreateEventProps {
 
 export function CreateEvent(props: CreateEventProps) {
   const selectedStartDate = props.selectedStartDate;
-  const [, setOpenModal] = props.openState;
   const [events, setEvents] = props.eventsState;
 
   const [allDayEvent, setAllDayEvent] = useState(false);
@@ -158,21 +146,10 @@ export function CreateEvent(props: CreateEventProps) {
         }
       />
       <DurationController
-        allDayEvent={allDayEvent}
+        allDayEventState={[allDayEvent, setAllDayEvent]}
         dispatchSelectedDate={dispatchSelectedDate}
         displayDate={displayDate}
         selectedHourReducer={[selectedHour, dispatchSelectedHour]}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={allDayEvent}
-            onChange={() => setAllDayEvent((prev) => !prev)}
-            name="allDayEvent"
-            color="primary"
-          />
-        }
-        label="All day"
       />
     </SideModal>
   );
