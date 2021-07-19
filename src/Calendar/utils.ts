@@ -1,3 +1,8 @@
+import { Event, EventsCollection, SelectedEvent } from "./MyCalendar";
+import * as m from "moment";
+import { extendMoment } from "moment-range";
+const moment = extendMoment(m);
+
 export const hours = [
   "00:00",
   "00:15",
@@ -110,3 +115,15 @@ export const fromDateForHours = (date: Date) => {
     return hours[date.getHours() * 4 + 3];
   }
 };
+
+export const getDefaultEvent = (): Event => ({
+  content: "",
+  range: () => moment.range(moment(), moment().endOf("day")),
+});
+
+export const findEvent = (event: SelectedEvent, events: EventsCollection) =>
+  events.events.find(
+    (currEvent) =>
+      event.content === currEvent.content &&
+      event.range.isSame(currEvent.range())
+  );

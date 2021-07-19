@@ -4,8 +4,8 @@ import {
   SelectedHourAction,
   SelectedHour,
   SelectedHourType,
-} from "./reducers/SelectedHour";
-import { hours } from "./utils";
+} from "./../../reducers/SelectedHour";
+import { hours } from "./../../utils";
 
 interface HourSelectorProps {
   selectedHourReducer: [SelectedHour, Dispatch<SelectedHourAction>];

@@ -1,6 +1,6 @@
 import React, { Dispatch, memo, SetStateAction } from "react";
 import { Button, Modal, Slide } from "@material-ui/core";
-import { SideModalContent } from "./MyCalendar.style";
+import { SideModalContent } from "../MyCalendar.style";
 
 export enum OpeningDirection {
   Left = "left",

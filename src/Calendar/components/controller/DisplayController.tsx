@@ -1,6 +1,6 @@
 import React, { Dispatch, memo, SetStateAction } from "react";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
-import { Display } from "./MyCalendar";
+import { Display } from "./../../MyCalendar";
 
 interface DisplayCheckboxProps {
   setDisplay: Dispatch<SetStateAction<Display>>;

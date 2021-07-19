@@ -7,15 +7,15 @@ import React, {
 } from "react";
 import Dayz from "dayz";
 import { TextField } from "@material-ui/core";
-import { hours, fromDateForHours } from "./utils";
+import { hours, fromDateForHours } from "../../utils";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
-import { EventsCollection } from "./MyCalendar";
-import { displayDateReducer, DisplayDateType } from "./reducers/DisplayDate";
-import { selectedDateReducer, SelectedDateType } from "./reducers/SelectedDate";
-import { selectedHourReducer, SelectedHourType } from "./reducers/SelectedHour";
-import { OpeningDirection, SideModal } from "./SideModal";
-import { DurationController } from "./DurationController";
+import { EventsCollection } from "../../MyCalendar";
+import { displayDateReducer, DisplayDateType } from "../../reducers/DisplayDate";
+import { selectedDateReducer, SelectedDateType } from "../../reducers/SelectedDate";
+import { selectedHourReducer, SelectedHourType } from "../../reducers/SelectedHour";
+import { OpeningDirection, SideModal } from "../SideModal";
+import { DurationSelector } from "../selector/DurationSelector";
 const moment = extendMoment(m);
 
 interface CreateEventProps {
@@ -145,7 +145,7 @@ export function CreateEvent(props: CreateEventProps) {
           })
         }
       />
-      <DurationController
+      <DurationSelector
         allDayEventState={[allDayEvent, setAllDayEvent]}
         dispatchSelectedDate={dispatchSelectedDate}
         displayDate={displayDate}

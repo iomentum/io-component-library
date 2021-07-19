@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { extendMoment } from "moment-range";
 import { Button } from "@material-ui/core";
-import { Display, MomentRange } from "./MyCalendar";
+import { Display, MomentRange } from "./../../MyCalendar";
 
 import * as m from "moment";
 const moment = extendMoment(m);

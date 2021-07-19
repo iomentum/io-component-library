@@ -1,9 +1,9 @@
 import React, { Dispatch, memo } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { HourSelector } from "./HourSelector";
-import { SelectedDateAction, SelectedDateType } from "./reducers/SelectedDate";
-import { SelectedHour, SelectedHourAction } from "./reducers/SelectedHour";
-import { DisplayDate } from "./reducers/DisplayDate";
+import { SelectedDateAction, SelectedDateType } from "../../reducers/SelectedDate";
+import { SelectedHour, SelectedHourAction } from "../../reducers/SelectedHour";
+import { DisplayDate } from "../../reducers/DisplayDate";
 
 interface DateSelectorProps {
   dispatchSelectedDate: Dispatch<SelectedDateAction>;
@@ -35,7 +35,7 @@ interface DurationControllerProps {
   selectedHourReducer: [SelectedHour, Dispatch<SelectedHourAction>];
 }
 
-export const DurationController = memo((props: DurationControllerProps) => {
+export const DurationSelector = memo((props: DurationControllerProps) => {
   const [allDayEvent, setAllDayEvent] = props.allDayEventState;
 
   return (
