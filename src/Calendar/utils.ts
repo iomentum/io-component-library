@@ -1,6 +1,13 @@
-import { Event, EventsCollection, SelectedEvent } from "./MyCalendar";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
+import Dayz from "dayz";
+import {
+  Event,
+  EventsCollection,
+  MomentRange,
+  SelectedEvent,
+} from "./MyCalendar";
+
 const moment = extendMoment(m);
 
 export const hours = [
@@ -116,9 +123,9 @@ export const fromDateForHours = (date: Date) => {
   }
 };
 
-export const getDefaultEvent = (): Event => ({
+export const getDefaultEvent = (start: MomentRange): Event => ({
   content: "",
-  range: () => moment.range(moment(), moment().endOf("day")),
+  range: () => moment.range(moment(start), moment().add(1, "hour")),
 });
 
 export const findEvent = (event: SelectedEvent, events: EventsCollection) =>
@@ -127,3 +134,20 @@ export const findEvent = (event: SelectedEvent, events: EventsCollection) =>
       event.content === currEvent.content &&
       event.range.isSame(currEvent.range())
   );
+
+const date = moment();
+
+export const EVENTS: EventsCollection = new Dayz.EventsCollection([
+  // {
+  //   content: "Weeklong",
+  //   range: moment.range(date.clone(), date.clone().endOf("day")),
+  // },
+  // {
+  //   content: "9am - 2pm",
+  //   range: moment.range(date.clone().hour(9), date.clone().hour(14)),
+  // },
+  // {
+  //   content: "8am - 8pm",
+  //   range: moment.range(date.clone().hour(8), date.clone().hour(21).minutes(40)),
+  // },
+]);

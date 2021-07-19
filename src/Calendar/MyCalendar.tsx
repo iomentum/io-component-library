@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Dayz from "dayz";
 import { DateRange, MomentRangeStaticMethods } from "moment-range";
 import { CalendarHeader } from "./components/CalendarHeader";
-import { EVENTS } from "./buildEvents";
+import { CreateEvent } from "./components/CreateEvent";
+import { findEvent, getDefaultEvent, EVENTS } from "./utils";
 import * as m from "moment";
+import { extendMoment } from "moment-range";
+const moment = extendMoment(m);
 
 import "dayz/dist/dayz.css";
 import "./MyCalendar.css";
-import { CreateEvent } from "./components/modal/CreateEvent";
-import { UpdateEvent } from "./components/modal/UpdateEvent";
-import { findEvent, getDefaultEvent } from "./utils";
 
 export enum Display {
   Week = "week",
@@ -45,9 +45,7 @@ export function MyCalendar(props: CalendarProps) {
   const [events, setEvents] = useState(props.events || EVENTS);
 
   const [createEvent, setCreateEvent] = useState(false);
-  const [updateEvent, setUpdateEvent] = useState(false);
-  const [selectedStartDate, setSelectedStartDate] = useState(date.toDate());
-  const [selectedEvent, setSelectedEvent] = useState<Event>(getDefaultEvent());
+  const [currentEvent, setCurrentEvent] = useState(getDefaultEvent(moment()));
 
   return (
     <div className="dayz-test-wrapper">
@@ -64,26 +62,21 @@ export function MyCalendar(props: CalendarProps) {
         dayEventHandlers={{
           onClick: (_, date) => {
             setCreateEvent(true);
-            setSelectedStartDate(date._d);
+            setCurrentEvent(getDefaultEvent(moment(date._d)));
           },
         }}
         onEventClick={(_, layout) => {
           const currEvent = findEvent(layout.attributes, events);
-          setSelectedEvent(currEvent);
+          setCurrentEvent(currEvent);
           if (currEvent) {
-            setUpdateEvent(true);
+            setCreateEvent(true);
           }
         }}
       />
       <CreateEvent
         openState={[createEvent, setCreateEvent]}
         eventsState={[events, setEvents]}
-        selectedStartDate={selectedStartDate}
-      />
-      <UpdateEvent
-        openState={[updateEvent, setUpdateEvent]}
-        eventsState={[events, setEvents]}
-        eventToUpdateState={[selectedEvent, setSelectedEvent]}
+        currentEvent={currentEvent}
       />
     </div>
   );

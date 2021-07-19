@@ -1,26 +1,26 @@
 import { Select, MenuItem } from "@material-ui/core";
 import React, { Dispatch, memo } from "react";
 import {
-  SelectedHourAction,
-  SelectedHour,
-  SelectedHourType,
-} from "./../../reducers/SelectedHour";
+  EventAction,
+  EventModel,
+  EventType,
+} from "../../reducers/EventReducer";
 import { hours } from "./../../utils";
 
 interface HourSelectorProps {
-  selectedHourReducer: [SelectedHour, Dispatch<SelectedHourAction>];
+  eventReducer: [EventModel, Dispatch<EventAction>];
 }
 
 export const HourSelector = memo((props: HourSelectorProps) => {
-  const [selectedHour, dispatchSelectedHour] = props.selectedHourReducer;
+  const [event, dispatchEvent] = props.eventReducer;
 
   return (
     <>
       <Select
-        value={selectedHour.startHour}
+        value={event.startHour}
         onChange={(event) =>
-          dispatchSelectedHour({
-            type: SelectedHourType.UpdateStartHour,
+          dispatchEvent({
+            type: EventType.UpdateStartHour,
             startHour: event.target.value as string,
           })
         }
@@ -36,10 +36,10 @@ export const HourSelector = memo((props: HourSelectorProps) => {
         ))}
       </Select>
       <Select
-        value={selectedHour.endHour}
+        value={event.endHour}
         onChange={(event) =>
-          dispatchSelectedHour({
-            type: SelectedHourType.UpdateEndHour,
+          dispatchEvent({
+            type: EventType.UpdateEndHour,
             endHour: event.target.value as string,
           })
         }
@@ -49,7 +49,7 @@ export const HourSelector = memo((props: HourSelectorProps) => {
           End
         </MenuItem>
         {hours
-          .filter((_, i) => hours.indexOf(selectedHour.startHour) < i)
+          .filter((_, i) => hours.indexOf(event.startHour) < i)
           .map((hour) => (
             <MenuItem key={hour} value={hour}>
               {hour}

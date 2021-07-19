@@ -1,13 +1,15 @@
 import React, { Dispatch, memo } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { HourSelector } from "./HourSelector";
-import { SelectedDateAction, SelectedDateType } from "../../reducers/SelectedDate";
-import { SelectedHour, SelectedHourAction } from "../../reducers/SelectedHour";
-import { DisplayDate } from "../../reducers/DisplayDate";
+import {
+  EventAction,
+  EventModel,
+  EventType,
+} from "../../reducers/EventReducer";
 
 interface DateSelectorProps {
-  dispatchSelectedDate: Dispatch<SelectedDateAction>;
-  displayDate: DisplayDate;
+  dispatchEvent: Dispatch<EventAction>;
+  displayDate: string;
 }
 
 const DateSelector = memo((props: DateSelectorProps) => {
@@ -15,10 +17,10 @@ const DateSelector = memo((props: DateSelectorProps) => {
     <TextField
       id="date"
       type="date"
-      value={props.displayDate.endDate}
+      value={props.displayDate}
       onChange={(event) =>
-        props.dispatchSelectedDate({
-          type: SelectedDateType.UpdateEndDate,
+        props.dispatchEvent({
+          type: EventType.UpdateEndDate,
           endDate: event.target.value
             ? new Date(event.target.value)
             : new Date(),
@@ -30,23 +32,22 @@ const DateSelector = memo((props: DateSelectorProps) => {
 
 interface DurationControllerProps {
   allDayEventState: [boolean, Dispatch<boolean>];
-  dispatchSelectedDate: Dispatch<SelectedDateAction>;
-  displayDate: DisplayDate;
-  selectedHourReducer: [SelectedHour, Dispatch<SelectedHourAction>];
+  eventReducer: [EventModel, Dispatch<EventAction>];
 }
 
 export const DurationSelector = memo((props: DurationControllerProps) => {
   const [allDayEvent, setAllDayEvent] = props.allDayEventState;
+  const [event, dispatchEvent] = props.eventReducer;
 
   return (
     <>
       {allDayEvent ? (
         <DateSelector
-          dispatchSelectedDate={props.dispatchSelectedDate}
-          displayDate={props.displayDate}
+          dispatchEvent={dispatchEvent}
+          displayDate={event.endDate.toISOString().replace(/T.*/, "")}
         />
       ) : (
-        <HourSelector selectedHourReducer={props.selectedHourReducer} />
+        <HourSelector eventReducer={props.eventReducer} />
       )}
       <FormControlLabel
         control={
