@@ -112,11 +112,11 @@ export const hours = [
 export const fromDateForHours = (date: Date) => {
   const min = date.getMinutes();
 
-  if (min <= 15) {
+  if (min < 15) {
     return hours[date.getHours() * 4];
-  } else if (min <= 30) {
+  } else if (min < 30) {
     return hours[date.getHours() * 4 + 1];
-  } else if (min <= 45) {
+  } else if (min < 45) {
     return hours[date.getHours() * 4 + 2];
   } else {
     return hours[date.getHours() * 4 + 3];

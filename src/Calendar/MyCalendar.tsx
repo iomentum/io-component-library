@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Dayz from "dayz";
 import { DateRange, MomentRangeStaticMethods } from "moment-range";
 import { CalendarHeader } from "./components/CalendarHeader";
-import { CreateEvent } from "./components/CreateEvent";
+import { EventManagement } from "./components/EventManagement";
 import { findEvent, getDefaultEvent, EVENTS } from "./utils";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
@@ -44,7 +44,7 @@ export function MyCalendar(props: CalendarProps) {
   const [display, setDisplay] = useState(props.display);
   const [events, setEvents] = useState(props.events || EVENTS);
 
-  const [createEvent, setCreateEvent] = useState(false);
+  const [openEventManagement, setOpenEventManagement] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(getDefaultEvent(moment()));
 
   return (
@@ -61,7 +61,7 @@ export function MyCalendar(props: CalendarProps) {
         display={display}
         dayEventHandlers={{
           onClick: (_, date) => {
-            setCreateEvent(true);
+            setOpenEventManagement(true);
             setCurrentEvent(getDefaultEvent(moment(date._d)));
           },
         }}
@@ -69,12 +69,12 @@ export function MyCalendar(props: CalendarProps) {
           const currEvent = findEvent(layout.attributes, events);
           setCurrentEvent(currEvent);
           if (currEvent) {
-            setCreateEvent(true);
+            setOpenEventManagement(true);
           }
         }}
       />
-      <CreateEvent
-        openState={[createEvent, setCreateEvent]}
+      <EventManagement
+        openState={[openEventManagement, setOpenEventManagement]}
         eventsState={[events, setEvents]}
         currentEvent={currentEvent}
       />

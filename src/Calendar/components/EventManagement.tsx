@@ -17,13 +17,13 @@ import { DurationSelector } from "./selector/DurationSelector";
 import { eventReducer, EventType } from "../reducers/EventReducer";
 const moment = extendMoment(m);
 
-interface CreateEventProps {
+interface EventManagementProps {
   openState: [boolean, Dispatch<SetStateAction<boolean>>];
   eventsState: [EventsCollection, Dispatch<SetStateAction<EventsCollection>>];
   currentEvent: Event;
 }
 
-export function CreateEvent(props: CreateEventProps) {
+export function EventManagement(props: EventManagementProps) {
   const currentEvent = props.currentEvent;
   const [events, setEvents] = props.eventsState;
 
@@ -60,19 +60,16 @@ export function CreateEvent(props: CreateEventProps) {
   );
 
   useEffect(() => {
-    dispatchEvent({
-      type: EventType.UpdateStartHour,
-      startHour: fromDateForHours(event.startDate),
-    });
     if (event.startDate > event.endDate) {
       dispatchEvent({
         type: EventType.UpdateEndDate,
-        endDate: event.startDate,
+        endDate: new Date(event.startDate.setHours(event.startDate.getHours() + 1)),
       });
-    } else if (event.endDate < event.startDate) {
+    }
+    if (event.endDate < event.startDate) {
       dispatchEvent({
         type: EventType.UpdateStartDate,
-        startDate: event.endDate,
+        startDate: new Date(event.endDate.setHours(event.endDate.getHours() - 1)),
       });
     }
   }, [event.startDate, event.endDate]);
