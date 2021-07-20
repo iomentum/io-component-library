@@ -1,41 +1,36 @@
-import React, { Dispatch, memo, SetStateAction } from "react";
+import React, { useContext } from "react";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
-import { Display } from "./../../MyCalendar";
+import { CalendarContext } from "../../contexts/CalendarContext";
+import { Display } from "../../utils";
 
 interface DisplayCheckboxProps {
-  setDisplay: Dispatch<SetStateAction<Display>>;
-  display: Display;
-  currentDisplay: Display;
+  currentKey: Display;
 }
 
-const DisplayCheckbox = memo((props: DisplayCheckboxProps) => (
-  <FormControlLabel
-    control={
-      <Checkbox
-        color="primary"
-        onChange={() => props.setDisplay(props.display)}
-        checked={props.currentDisplay === props.display}
-      />
-    }
-    label={props.display.charAt(0).toUpperCase() + props.display.slice(1)}
-    labelPlacement="start"
-  />
-));
+const DisplayCheckbox = (props: DisplayCheckboxProps) => {
+  const { display, setDisplay } = useContext(CalendarContext);
 
-interface DisplayControllerProps {
-  setDisplay: Dispatch<SetStateAction<Display>>;
-  display: Display;
-}
+  return (
+    <FormControlLabel
+      control={
+        <Checkbox
+          color="primary"
+          onChange={() => setDisplay(props.currentKey)}
+          checked={display === props.currentKey}
+        />
+      }
+      label={
+        props.currentKey.charAt(0).toUpperCase() + props.currentKey.slice(1)
+      }
+      labelPlacement="start"
+    />
+  );
+};
 
-export const DisplayController = memo((props: DisplayControllerProps) => (
+export const DisplayController = () => (
   <div className="tools">
     {Object.keys(Display).map((key) => (
-      <DisplayCheckbox
-        key={key}
-        setDisplay={props.setDisplay}
-        currentDisplay={props.display}
-        display={Display[key]}
-      />
+      <DisplayCheckbox key={key} currentKey={Display[key]} />
     ))}
   </div>
-));
+);

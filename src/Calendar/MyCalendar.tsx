@@ -1,40 +1,27 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Dayz from "dayz";
-import { DateRange, MomentRangeStaticMethods } from "moment-range";
 import { CalendarHeader } from "./components/CalendarHeader";
 import { EventManagement } from "./components/EventManagement";
-import { findEvent, getDefaultEvent, EVENTS } from "./utils";
-import * as m from "moment";
-import { extendMoment } from "moment-range";
-const moment = extendMoment(m);
+import {
+  findEvent,
+  getDefaultEvent,
+  EVENTS,
+  MomentRangeExtended,
+  extendedMoment,
+  Display,
+  EventsCollection,
+} from "./utils";
 
 import "dayz/dist/dayz.css";
 import "./MyCalendar.css";
-
-export enum Display {
-  Week = "week",
-  Day = "day",
-}
-
-export type MomentRange = MomentRangeStaticMethods & m.Moment;
-
-export interface Event {
-  content: string;
-  range: () => DateRange;
-}
-
-export interface SelectedEvent {
-  content: string;
-  range: DateRange;
-}
-
-export interface EventsCollection {
-  events: Event[];
-  add: (eventAttrs: any, options?: {}) => void;
-}
+import {
+  CalendarContext,
+  CalendarContextInterface,
+} from "./contexts/CalendarContext";
+import { EventContext, EventContextInterface } from "./contexts/EventContext";
 
 interface CalendarProps {
-  date: MomentRange;
+  date: MomentRangeExtended;
   display: Display;
   events?: EventsCollection;
 }
@@ -42,42 +29,58 @@ interface CalendarProps {
 export function MyCalendar(props: CalendarProps) {
   const [date, setDate] = useState(props.date);
   const [display, setDisplay] = useState(props.display);
-  const [events, setEvents] = useState(props.events || EVENTS);
-
+  const [eventsCollection, setEventsCollection] = useState(
+    props.events || EVENTS
+  );
   const [openEventManagement, setOpenEventManagement] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(getDefaultEvent(moment()));
+  const [currentEvent, setCurrentEvent] = useState(
+    getDefaultEvent(extendedMoment())
+  );
+
+  const calendarContextValue = useMemo<CalendarContextInterface>(
+    () => ({
+      display,
+      setDisplay,
+      setDate,
+      openEventManagement,
+      setOpenEventManagement,
+    }),
+    [display, setDisplay, setDate, openEventManagement, setOpenEventManagement]
+  );
+
+  const eventContextValue = useMemo<EventContextInterface>(
+    () => ({
+      eventsCollection,
+      setEventsCollection,
+      currentEvent,
+    }),
+    [eventsCollection, setEventsCollection, currentEvent]
+  );
 
   return (
-    <div className="dayz-test-wrapper">
-      <CalendarHeader
-        setDate={setDate}
-        date={date}
-        setDisplay={setDisplay}
-        display={display}
-      />
-      <Dayz
-        date={date}
-        events={events}
-        display={display}
-        dayEventHandlers={{
-          onClick: (_, date) => {
-            setOpenEventManagement(true);
-            setCurrentEvent(getDefaultEvent(moment(date._d)));
-          },
-        }}
-        onEventClick={(_, layout) => {
-          const currEvent = findEvent(layout.attributes, events);
-          setCurrentEvent(currEvent);
-          if (currEvent) {
-            setOpenEventManagement(true);
-          }
-        }}
-      />
-      <EventManagement
-        openState={[openEventManagement, setOpenEventManagement]}
-        eventsState={[events, setEvents]}
-        currentEvent={currentEvent}
-      />
-    </div>
+    <CalendarContext.Provider value={calendarContextValue}>
+      <EventContext.Provider value={eventContextValue}>
+        <CalendarHeader />
+        <Dayz
+          date={date}
+          events={eventsCollection}
+          display={display}
+          dayEventHandlers={{
+            onClick: (_, date) => {
+              setOpenEventManagement(true);
+              setCurrentEvent(getDefaultEvent(extendedMoment(date._d)));
+            },
+          }}
+          onEventClick={(_, layout) => {
+            const currEvent = findEvent(layout.attributes, eventsCollection);
+            setCurrentEvent(currEvent);
+            if (currEvent) {
+              setOpenEventManagement(true);
+            }
+          }}
+        />
+        <EventManagement />
+      </EventContext.Provider>
+    </CalendarContext.Provider>
   );
 }

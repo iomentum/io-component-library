@@ -1,34 +1,30 @@
 import React, {
-  Dispatch,
-  SetStateAction,
   useCallback,
+  useContext,
   useEffect,
   useReducer,
   useState,
 } from "react";
 import Dayz from "dayz";
 import { TextField } from "@material-ui/core";
-import { hours, fromDateForHours } from "../utils";
-import * as m from "moment";
-import { extendMoment } from "moment-range";
-import { EventsCollection, Event } from "../MyCalendar";
+import {
+  hours,
+  fromDateForHours,
+  extendedMoment,
+  EventsCollection,
+} from "../utils";
 import { SideModal } from "./SideModal";
 import { DurationSelector } from "./selector/DurationSelector";
 import { eventReducer, EventType } from "../reducers/EventReducer";
-const moment = extendMoment(m);
+import { EventContext } from "../contexts/EventContext";
 
-interface EventManagementProps {
-  openState: [boolean, Dispatch<SetStateAction<boolean>>];
-  eventsState: [EventsCollection, Dispatch<SetStateAction<EventsCollection>>];
-  currentEvent: Event;
-}
-
-export function EventManagement(props: EventManagementProps) {
-  const currentEvent = props.currentEvent;
-  const [events, setEvents] = props.eventsState;
+export function EventManagement() {
+  const { eventsCollection, setEventsCollection, currentEvent } = useContext(
+    EventContext
+  );
 
   const [allDayEvent, setAllDayEvent] = useState(
-    moment
+    extendedMoment
       .range(currentEvent.range().start, currentEvent.range().end)
       .diff("days") >= 1
   );
@@ -63,13 +59,17 @@ export function EventManagement(props: EventManagementProps) {
     if (event.startDate > event.endDate) {
       dispatchEvent({
         type: EventType.UpdateEndDate,
-        endDate: new Date(event.startDate.setHours(event.startDate.getHours() + 1)),
+        endDate: new Date(
+          event.startDate.setHours(event.startDate.getHours() + 1)
+        ),
       });
     }
     if (event.endDate < event.startDate) {
       dispatchEvent({
         type: EventType.UpdateStartDate,
-        startDate: new Date(event.endDate.setHours(event.endDate.getHours() - 1)),
+        startDate: new Date(
+          event.endDate.setHours(event.endDate.getHours() - 1)
+        ),
       });
     }
   }, [event.startDate, event.endDate]);
@@ -89,39 +89,39 @@ export function EventManagement(props: EventManagementProps) {
   }, [event.startHour]);
 
   const saveEvent = () => {
-    const currEventIndex = events.events.findIndex(
+    const currEventIndex = eventsCollection.events.findIndex(
       (event) =>
         event.content === currentEvent.content &&
         event.range().isSame(currentEvent.range())
     );
     if (currEventIndex !== -1) {
-      events.events.splice(currEventIndex, 1);
+      eventsCollection.events.splice(currEventIndex, 1);
     }
 
     let newEvents: EventsCollection = new Dayz.EventsCollection([
-      ...events.events,
+      ...eventsCollection.events,
     ]);
     let splittedSelectedStartHour = event.startHour.split(":");
     let splittedSelectedEndHour = event.endHour.split(":");
 
     newEvents.add({
       content: event.content,
-      range: moment.range(
-        moment(event.startDate)
+      range: extendedMoment.range(
+        extendedMoment(event.startDate)
           .hour(+splittedSelectedStartHour[0])
           .minutes(+splittedSelectedStartHour[1]),
         allDayEvent
-          ? moment(event.endDate).endOf("day")
-          : moment(event.startDate)
+          ? extendedMoment(event.endDate).endOf("day")
+          : extendedMoment(event.startDate)
               .hour(+splittedSelectedEndHour[0])
               .minutes(+splittedSelectedEndHour[1])
       ),
     });
-    setEvents(newEvents);
+    setEventsCollection(newEvents);
   };
 
   return (
-    <SideModal openState={props.openState} onSave={saveEvent}>
+    <SideModal onSave={saveEvent}>
       <TextField
         fullWidth
         label="Add a title"

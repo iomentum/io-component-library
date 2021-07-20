@@ -1,8 +1,9 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Display, MyCalendar } from "./MyCalendar";
+import { MyCalendar } from "./MyCalendar";
 import * as m from "moment";
 import { extendMoment } from "moment-range";
+import { Display } from "./utils";
 const moment = extendMoment(m);
 
 export default {

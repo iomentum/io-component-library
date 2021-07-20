@@ -1,4 +1,4 @@
-import React, { Dispatch, memo } from "react";
+import React, { Dispatch } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { HourSelector } from "./HourSelector";
 import {
@@ -12,7 +12,7 @@ interface DateSelectorProps {
   displayDate: string;
 }
 
-const DateSelector = memo((props: DateSelectorProps) => {
+const DateSelector = (props: DateSelectorProps) => {
   return (
     <TextField
       id="date"
@@ -28,14 +28,14 @@ const DateSelector = memo((props: DateSelectorProps) => {
       }
     />
   );
-});
+};
 
 interface DurationControllerProps {
   allDayEventState: [boolean, Dispatch<boolean>];
   eventReducer: [EventModel, Dispatch<EventAction>];
 }
 
-export const DurationSelector = memo((props: DurationControllerProps) => {
+export const DurationSelector = (props: DurationControllerProps) => {
   const [allDayEvent, setAllDayEvent] = props.allDayEventState;
   const [event, dispatchEvent] = props.eventReducer;
 
@@ -62,4 +62,4 @@ export const DurationSelector = memo((props: DurationControllerProps) => {
       />
     </>
   );
-});
+};

@@ -1,15 +1,18 @@
-import React, { Dispatch, memo, SetStateAction } from "react";
+import React, { memo, useContext } from "react";
 import { Button, Modal, Slide } from "@material-ui/core";
 import { SideModalContent } from "../MyCalendar.style";
+import { CalendarContext } from "../contexts/CalendarContext";
 
 interface SideModalProps {
-  openState: [boolean, Dispatch<SetStateAction<boolean>>];
   onSave: () => void;
   children: JSX.Element[];
 }
 
 export const SideModal = memo((props: SideModalProps) => {
-  const [openModal, setOpenModal] = props.openState;
+  const {
+    openEventManagement: openModal,
+    setOpenEventManagement: setOpenModal,
+  } = useContext(CalendarContext);
 
   const handleOnSave = () => {
     props.onSave();

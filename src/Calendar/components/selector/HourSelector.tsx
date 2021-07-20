@@ -1,5 +1,5 @@
 import { Select, MenuItem } from "@material-ui/core";
-import React, { Dispatch, memo } from "react";
+import React, { Dispatch } from "react";
 import {
   EventAction,
   EventModel,
@@ -11,7 +11,7 @@ interface HourSelectorProps {
   eventReducer: [EventModel, Dispatch<EventAction>];
 }
 
-export const HourSelector = memo((props: HourSelectorProps) => {
+export const HourSelector = (props: HourSelectorProps) => {
   const [event, dispatchEvent] = props.eventReducer;
 
   return (
@@ -58,4 +58,4 @@ export const HourSelector = memo((props: HourSelectorProps) => {
       </Select>
     </>
   );
-});
+};

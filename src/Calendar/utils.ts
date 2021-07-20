@@ -1,14 +1,25 @@
 import * as m from "moment";
-import { extendMoment } from "moment-range";
+import { DateRange, extendMoment, MomentRangeStaticMethods } from "moment-range";
 import Dayz from "dayz";
-import {
-  Event,
-  EventsCollection,
-  MomentRange,
-  SelectedEvent,
-} from "./MyCalendar";
 
-const moment = extendMoment(m);
+export const extendedMoment = extendMoment(m);
+
+export type MomentRangeExtended = MomentRangeStaticMethods & m.Moment;
+
+export enum Display {
+  Week = "week",
+  Day = "day",
+}
+
+export interface Event {
+  content: string;
+  range: () => DateRange;
+}
+
+export interface EventsCollection {
+  events: Event[];
+  add: (eventAttrs: any, options?: {}) => void;
+}
 
 export const hours = [
   "00:00",
@@ -123,10 +134,15 @@ export const fromDateForHours = (date: Date) => {
   }
 };
 
-export const getDefaultEvent = (start: MomentRange): Event => ({
+export const getDefaultEvent = (start: MomentRangeExtended): Event => ({
   content: "",
-  range: () => moment.range(moment(start), moment().add(1, "hour")),
+  range: () => extendedMoment.range(extendedMoment(start), extendedMoment(start).add(1, "hour")),
 });
+
+interface SelectedEvent {
+  content: string;
+  range: DateRange;
+}
 
 export const findEvent = (event: SelectedEvent, events: EventsCollection) =>
   events.events.find(
@@ -135,19 +151,19 @@ export const findEvent = (event: SelectedEvent, events: EventsCollection) =>
       event.range.isSame(currEvent.range())
   );
 
-const date = moment();
+const date = extendedMoment();
 
 export const EVENTS: EventsCollection = new Dayz.EventsCollection([
   // {
   //   content: "Weeklong",
-  //   range: moment.range(date.clone(), date.clone().endOf("day")),
+  //   range: extendedMoment.range(date.clone(), date.clone().endOf("day")),
   // },
   // {
   //   content: "9am - 2pm",
-  //   range: moment.range(date.clone().hour(9), date.clone().hour(14)),
+  //   range: extendedMoment.range(date.clone().hour(9), date.clone().hour(14)),
   // },
   // {
   //   content: "8am - 8pm",
-  //   range: moment.range(date.clone().hour(8), date.clone().hour(21).minutes(40)),
+  //   range: extendedMoment.range(date.clone().hour(8), date.clone().hour(21).minutes(40)),
   // },
 ]);
