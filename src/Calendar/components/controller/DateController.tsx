@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useContext } from "react";
+import React, { MouseEventHandler, useCallback, useContext } from "react";
 import { Button } from "@material-ui/core";
 import { CalendarContext } from "../../contexts/CalendarContext";
 import { extendedMoment } from "../../utils";
@@ -15,22 +15,25 @@ const ControlButton = (props: ControlButtonProps) => (
 export const DateController = () => {
   const { display, setDate } = useContext(CalendarContext);
 
+  const handleSubstractButton = useCallback(
+    () => setDate((date) => extendedMoment(date.subtract(1, display))),
+    [setDate, display]
+  );
+
+  const handleTodayButton = useCallback(() => setDate(extendedMoment()), [
+    setDate,
+  ]);
+
+  const handleAddButton = useCallback(
+    () => setDate((date) => extendedMoment(date.add(1, display))),
+    [setDate, display]
+  );
+
   return (
     <>
-      <ControlButton
-        onClick={() =>
-          setDate((date) => extendedMoment(date.subtract(1, display)))
-        }
-        label={"<"}
-      />
-      <ControlButton
-        onClick={() => setDate(extendedMoment())}
-        label={"Today"}
-      />
-      <ControlButton
-        onClick={() => setDate((date) => extendedMoment(date.add(1, display)))}
-        label={">"}
-      />
+      <ControlButton onClick={handleSubstractButton} label={"<"} />
+      <ControlButton onClick={handleTodayButton} label={"Today"} />
+      <ControlButton onClick={handleAddButton} label={">"} />
     </>
   );
 };

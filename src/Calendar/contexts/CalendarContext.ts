@@ -3,10 +3,10 @@ import { Display, MomentRangeExtended } from "../utils";
 
 export interface CalendarContextInterface {
   display: Display;
-  setDisplay: Dispatch<SetStateAction<Display>>;
-  setDate: Dispatch<SetStateAction<MomentRangeExtended>>;
   openEventManagement: boolean;
+  setDisplay: Dispatch<SetStateAction<Display>>;
   setOpenEventManagement: Dispatch<SetStateAction<boolean>>;
+  setDate: Dispatch<SetStateAction<MomentRangeExtended>>;
 }
 
 export const CalendarContext = createContext<CalendarContextInterface>(null);

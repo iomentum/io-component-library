@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Dayz from "dayz";
 import { CalendarHeader } from "./components/CalendarHeader";
 import { EventManagement } from "./components/EventManagement";
@@ -57,6 +57,18 @@ export function MyCalendar(props: CalendarProps) {
     [eventsCollection, setEventsCollection, currentEvent]
   );
 
+  const handleEventClick = useCallback((_, layout) => {
+    setCurrentEvent(findEvent(layout.attributes, eventsCollection));
+    setOpenEventManagement(true);
+  },[eventsCollection]);
+
+  const handleDayEventClick = useMemo(() => ({
+    onClick: (_, date) => {
+      setOpenEventManagement(true);
+      setCurrentEvent(getDefaultEvent(extendedMoment(date._d)));
+    },
+  }), []);
+
   return (
     <CalendarContext.Provider value={calendarContextValue}>
       <EventContext.Provider value={eventContextValue}>
@@ -65,19 +77,8 @@ export function MyCalendar(props: CalendarProps) {
           date={date}
           events={eventsCollection}
           display={display}
-          dayEventHandlers={{
-            onClick: (_, date) => {
-              setOpenEventManagement(true);
-              setCurrentEvent(getDefaultEvent(extendedMoment(date._d)));
-            },
-          }}
-          onEventClick={(_, layout) => {
-            const currEvent = findEvent(layout.attributes, eventsCollection);
-            setCurrentEvent(currEvent);
-            if (currEvent) {
-              setOpenEventManagement(true);
-            }
-          }}
+          dayEventHandlers={handleDayEventClick}
+          onEventClick={handleEventClick}
         />
         <EventManagement />
       </EventContext.Provider>

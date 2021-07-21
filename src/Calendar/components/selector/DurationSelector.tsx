@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useCallback } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { HourSelector } from "./HourSelector";
 import {
@@ -39,6 +39,11 @@ export const DurationSelector = (props: DurationControllerProps) => {
   const [allDayEvent, setAllDayEvent] = props.allDayEventState;
   const [event, dispatchEvent] = props.eventReducer;
 
+  const handleCheckboxChange = useCallback(
+    () => setAllDayEvent((prev) => !prev),
+    [setAllDayEvent]
+  );
+
   return (
     <>
       {allDayEvent ? (
@@ -53,7 +58,7 @@ export const DurationSelector = (props: DurationControllerProps) => {
         control={
           <Checkbox
             checked={allDayEvent}
-            onChange={() => setAllDayEvent((prev) => !prev)}
+            onChange={handleCheckboxChange}
             name="allDayEvent"
             color="primary"
           />

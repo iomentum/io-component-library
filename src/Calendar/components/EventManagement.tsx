@@ -88,7 +88,7 @@ export function EventManagement() {
     }
   }, [event.startHour]);
 
-  const saveEvent = () => {
+  const handleSaveEvent = useCallback(() => {
     const currEventIndex = eventsCollection.events.findIndex(
       (event) =>
         event.content === currentEvent.content &&
@@ -118,33 +118,41 @@ export function EventManagement() {
       ),
     });
     setEventsCollection(newEvents);
-  };
+  }, [eventsCollection, setEventsCollection, currentEvent, event, allDayEvent]);
+
+  const handleTitleChange = useCallback(
+    (nativeEvent) =>
+      dispatchEvent({
+        type: EventType.UpdateContent,
+        content: nativeEvent.target.value,
+      }),
+    []
+  );
+
+  const handleDateChange = useCallback(
+    (nativeEvent) =>
+      dispatchEvent({
+        type: EventType.UpdateStartDate,
+        startDate: nativeEvent.target.value
+          ? new Date(nativeEvent.target.value)
+          : new Date(),
+      }),
+    []
+  );
 
   return (
-    <SideModal onSave={saveEvent}>
+    <SideModal onSave={handleSaveEvent}>
       <TextField
         fullWidth
         label="Add a title"
         value={event.content}
-        onChange={(nativeEvent) =>
-          dispatchEvent({
-            type: EventType.UpdateContent,
-            content: nativeEvent.target.value,
-          })
-        }
+        onChange={handleTitleChange}
       />
       <TextField
         id="date"
         type="date"
         value={event.startDate.toISOString().replace(/T.*/, "")}
-        onChange={(nativeEvent) =>
-          dispatchEvent({
-            type: EventType.UpdateStartDate,
-            startDate: nativeEvent.target.value
-              ? new Date(nativeEvent.target.value)
-              : new Date(),
-          })
-        }
+        onChange={handleDateChange}
       />
       <DurationSelector
         allDayEventState={[allDayEvent, setAllDayEvent]}
