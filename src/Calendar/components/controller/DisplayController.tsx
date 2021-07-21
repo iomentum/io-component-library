@@ -7,11 +7,12 @@ interface DisplayCheckboxProps {
   currentKey: Display;
 }
 
-const DisplayCheckbox = (props: DisplayCheckboxProps) => {
+export const DisplayCheckbox = (props: DisplayCheckboxProps) => {
   const { display, setDisplay } = useContext(CalendarContext);
 
   return (
     <FormControlLabel
+      data-testid={`formDisplayCheckbox-${props.currentKey}`}
       control={
         <Checkbox
           color="primary"
