@@ -8,7 +8,7 @@ interface ControlButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const ControlButton = (props: ControlButtonProps) => (
+export const ControlButton = (props: ControlButtonProps) => (
   <Button onClick={props.onClick}>{props.label}</Button>
 );
 
@@ -20,7 +20,7 @@ export const DateController = () => {
     [setDate, display]
   );
 
-  const handleTodayButton = useCallback(() => setDate(extendedMoment()), [
+  const handleTodayButton = useCallback(() => setDate(() => extendedMoment()), [
     setDate,
   ]);
 

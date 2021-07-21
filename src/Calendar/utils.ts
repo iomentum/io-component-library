@@ -151,7 +151,7 @@ export const findEvent = (event: SelectedEvent, events: EventsCollection) =>
       event.range.isSame(currEvent.range())
   );
 
-const date = extendedMoment();
+// const date = extendedMoment();
 
 export const EVENTS: EventsCollection = new Dayz.EventsCollection([
   // {
