@@ -9,7 +9,9 @@ interface ControlButtonProps {
 }
 
 export const ControlButton = (props: ControlButtonProps) => (
-  <Button onClick={props.onClick}>{props.label}</Button>
+  <Button onClick={props.onClick} data-testid={`controlButton-${props.label}`}>
+    {props.label}
+  </Button>
 );
 
 export const DateController = () => {

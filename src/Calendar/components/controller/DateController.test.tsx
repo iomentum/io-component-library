@@ -25,7 +25,7 @@ describe("ControlButton component", () => {
   });
 });
 
-const dateControllerMock = (component, { providerProps, ...renderOptions }) =>
+const calendarContextMock = (component, { providerProps, ...renderOptions }) =>
   render(
     <CalendarContext.Provider value={providerProps}>
       {component}
@@ -39,9 +39,21 @@ describe("DateController component", () => {
       display: Display,
       setDate: jest.fn(),
     };
-    dateControllerMock(<DateController />, { providerProps });
+    calendarContextMock(<DateController />, { providerProps });
 
     expect(screen.getAllByRole("button").length).toEqual(3);
+  });
+
+  it("should have 3 elements with labels", () => {
+    const controlButtonlabels = ["<", "Today", ">"];
+    const providerProps = {
+      display: Display,
+      setDate: jest.fn(),
+    };
+    calendarContextMock(<DateController />, { providerProps });
+
+    const buttons = controlButtonlabels.map((label) => screen.getByText(label));
+    expect(buttons.length).toEqual(3);
   });
 
   it("each buttons should trigger a setDate on click", () => {
@@ -49,7 +61,7 @@ describe("DateController component", () => {
       display: Display,
       setDate: jest.fn(),
     };
-    dateControllerMock(<DateController />, { providerProps });
+    calendarContextMock(<DateController />, { providerProps });
 
     screen.getAllByRole("button").forEach((button) => button.click());
 
