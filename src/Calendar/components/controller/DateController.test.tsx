@@ -8,12 +8,22 @@ import { CalendarContext } from "../../contexts/CalendarContext";
 import { Display } from "../../utils";
 import { ControlButton, DateController } from "./DateController";
 
-describe("ControlButton component", () => {
-  describe("@static", () => {
-    it("should display the label", () => {
-      render(<ControlButton label="test" onClick={() => {}} />);
+const calendarContextMock = (component, { providerProps, ...renderOptions }) =>
+  render(
+    <CalendarContext.Provider value={providerProps}>
+      {component}
+    </CalendarContext.Provider>,
+    renderOptions
+  );
 
-      expect(screen.getByText("test")).toBeInTheDocument;
+describe("ControlButton component", () => {
+  describe("@snapshot", () => {
+    it("should match with previous ControlButton", () => {
+      const { asFragment } = render(
+        <ControlButton label="test" onClick={() => {}} />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
     });
   });
 
@@ -29,38 +39,18 @@ describe("ControlButton component", () => {
   });
 });
 
-const calendarContextMock = (component, { providerProps, ...renderOptions }) =>
-  render(
-    <CalendarContext.Provider value={providerProps}>
-      {component}
-    </CalendarContext.Provider>,
-    renderOptions
-  );
-
 describe("DateController component", () => {
-  describe("@static", () => {
-    it("should have 3 ControlButtons", () => {
+  describe("@snapshot", () => {
+    it("should match with previous DateController", () => {
       const providerProps = {
         display: Display,
         setDate: jest.fn(),
       };
-      calendarContextMock(<DateController />, { providerProps });
+      const { asFragment } = calendarContextMock(<DateController />, {
+        providerProps,
+      });
 
-      expect(screen.getAllByRole("button").length).toEqual(3);
-    });
-
-    it("should have 3 elements with labels", () => {
-      const controlButtonlabels = ["<", "Today", ">"];
-      const providerProps = {
-        display: Display,
-        setDate: jest.fn(),
-      };
-      calendarContextMock(<DateController />, { providerProps });
-
-      const buttons = controlButtonlabels.map((label) =>
-        screen.getByText(label)
-      );
-      expect(buttons.length).toEqual(3);
+      expect(asFragment()).toMatchSnapshot();
     });
   });
 
