@@ -14,7 +14,7 @@
     "test": "jest",
     "updateSnapshot": "jest --updateSnapshot",
     "prepare": "husky install",
-    "lint":"pretty-quick --staged && lint-staged"
+    "lint": "pretty-quick --staged && lint-staged"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.1",
@@ -52,6 +52,7 @@
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "husky": "^7.0.0",
     "jest": "^27.0.6",
+    "lint-staged": "^11.1.1",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
     "react-dropzone": "^11.3.4",
@@ -69,5 +70,8 @@
     "hooks": {
       "pre-commit": "yarn lint && npm run test"
     }
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx}": "eslint --cache --fix"
   }
 }
