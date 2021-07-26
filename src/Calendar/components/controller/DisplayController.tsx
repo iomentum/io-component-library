@@ -12,7 +12,6 @@ export const DisplayCheckbox = (props: DisplayCheckboxProps) => {
 
   return (
     <FormControlLabel
-      data-testid={`formDisplayCheckbox-${props.currentKey}`}
       control={
         <Checkbox
           color="primary"

@@ -4,7 +4,6 @@ exports[`DisplayCheckbox component @snapshot should match with previous Day chec
 <DocumentFragment>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
-    data-testid="formDisplayCheckbox-day"
   >
     <span
       aria-disabled="false"
@@ -47,7 +46,6 @@ exports[`DisplayCheckbox component @snapshot should match with previous Week che
 <DocumentFragment>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
-    data-testid="formDisplayCheckbox-week"
   >
     <span
       aria-disabled="false"
@@ -93,7 +91,6 @@ exports[`DisplayController component @snapshot should match with previous Displa
   >
     <label
       class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
-      data-testid="formDisplayCheckbox-week"
     >
       <span
         aria-disabled="false"
@@ -131,7 +128,6 @@ exports[`DisplayController component @snapshot should match with previous Displa
     </label>
     <label
       class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
-      data-testid="formDisplayCheckbox-day"
     >
       <span
         aria-disabled="false"

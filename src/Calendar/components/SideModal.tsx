@@ -1,18 +1,18 @@
-import React, { memo, useContext } from "react";
+import React, { useContext } from "react";
 import { Button, Modal, Slide } from "@material-ui/core";
 import { SideModalContent } from "../MyCalendar.style";
-import { CalendarContext } from "../contexts/CalendarContext";
+import { EventContext } from "../contexts/EventContext";
 
 interface SideModalProps {
   onSave: () => void;
   children: JSX.Element[];
 }
 
-export const SideModal = memo((props: SideModalProps) => {
+export const SideModal = (props: SideModalProps) => {
   const {
     openEventManagement: openModal,
     setOpenEventManagement: setOpenModal,
-  } = useContext(CalendarContext);
+  } = useContext(EventContext);
 
   const handleOnSave = () => {
     props.onSave();
@@ -31,4 +31,4 @@ export const SideModal = memo((props: SideModalProps) => {
       </Slide>
     </Modal>
   );
-});
+};

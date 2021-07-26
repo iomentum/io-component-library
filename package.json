@@ -13,6 +13,7 @@
     "start": "npm run storybook",
     "build-lib": "rollup -c",
     "test": "jest",
+    "updateSnapshot": "jest --updateSnapshot",
     "prepare": "husky install"
   },
   "dependencies": {

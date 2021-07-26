@@ -1,4 +1,10 @@
-import React, { MouseEventHandler, useCallback, useContext } from "react";
+import React, {
+  memo,
+  MouseEventHandler,
+  useCallback,
+  useContext,
+  useRef,
+} from "react";
 import { Button } from "@material-ui/core";
 import { CalendarContext } from "../../contexts/CalendarContext";
 import { extendedMoment } from "../../utils";

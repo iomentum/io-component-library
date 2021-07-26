@@ -42,10 +42,8 @@ export function MyCalendar(props: CalendarProps) {
       display,
       setDisplay,
       setDate,
-      openEventManagement,
-      setOpenEventManagement,
     }),
-    [display, setDisplay, setDate, openEventManagement, setOpenEventManagement]
+    [display, setDisplay, setDate]
   );
 
   const eventContextValue = useMemo<EventContextInterface>(
@@ -53,26 +51,42 @@ export function MyCalendar(props: CalendarProps) {
       eventsCollection,
       setEventsCollection,
       currentEvent,
+      openEventManagement,
+      setOpenEventManagement,
     }),
-    [eventsCollection, setEventsCollection, currentEvent]
+    [
+      eventsCollection,
+      setEventsCollection,
+      currentEvent,
+      openEventManagement,
+      setOpenEventManagement,
+    ]
   );
 
-  const handleEventClick = useCallback((_, layout) => {
-    setCurrentEvent(findEvent(layout.attributes, eventsCollection));
-    setOpenEventManagement(true);
-  },[eventsCollection]);
-
-  const handleDayEventClick = useMemo(() => ({
-    onClick: (_, date) => {
+  const handleEventClick = useCallback(
+    (_, layout) => {
+      setCurrentEvent(findEvent(layout.attributes, eventsCollection));
       setOpenEventManagement(true);
-      setCurrentEvent(getDefaultEvent(extendedMoment(date._d)));
     },
-  }), []);
+    [eventsCollection]
+  );
+
+  const handleDayEventClick = useMemo(
+    () => ({
+      onClick: (_, date) => {
+        setOpenEventManagement(true);
+        setCurrentEvent(getDefaultEvent(extendedMoment(date._d)));
+      },
+    }),
+    []
+  );
 
   return (
-    <CalendarContext.Provider value={calendarContextValue}>
-      <EventContext.Provider value={eventContextValue}>
+    <>
+      <CalendarContext.Provider value={calendarContextValue}>
         <CalendarHeader />
+      </CalendarContext.Provider>
+      <EventContext.Provider value={eventContextValue}>
         <Dayz
           date={date}
           events={eventsCollection}
@@ -82,6 +96,6 @@ export function MyCalendar(props: CalendarProps) {
         />
         <EventManagement />
       </EventContext.Provider>
-    </CalendarContext.Provider>
+    </>
   );
 }
