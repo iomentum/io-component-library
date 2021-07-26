@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import Dayz from 'dayz';
 import { TextField } from '@material-ui/core';
 import { hours, fromDateForHours, extendedMoment, EventsCollection } from '../utils';
@@ -6,11 +6,12 @@ import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
 import { EventContext } from '../contexts/EventContext';
+import { EventManagementContext } from '../contexts/EventManagementContext';
 
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
-  const [allDayEvent, setAllDayEvent] = useState(
+  const [fullDayEvent, setFullDayEvent] = useState(
     extendedMoment.range(currentEvent.range().start, currentEvent.range().end).diff('days') >= 1
   );
 
@@ -28,6 +29,16 @@ export function EventManagement() {
     startHour,
     endHour: hours[hours.indexOf(startHour) + 4],
   });
+
+  const eventManagementContextValue = useMemo<EventManagementContext>(
+    () => ({
+      fullDayEvent,
+      setFullDayEvent,
+      event,
+      dispatchEvent,
+    }),
+    [fullDayEvent, event]
+  );
 
   useEffect(
     () =>
@@ -89,7 +100,7 @@ export function EventManagement() {
         extendedMoment(event.startDate)
           .hour(+newEventStartHour)
           .minutes(+newEventStartMinutes),
-        allDayEvent
+        fullDayEvent
           ? extendedMoment(event.endDate).endOf('day')
           : extendedMoment(event.startDate)
               .hour(+newEventEndHour)
@@ -97,7 +108,7 @@ export function EventManagement() {
       ),
     });
     setEventsCollection(newEvents);
-  }, [eventsCollection, setEventsCollection, currentEvent, event, allDayEvent]);
+  }, [eventsCollection, setEventsCollection, currentEvent, event, fullDayEvent]);
 
   const handleTitleChange = useCallback(
     (nativeEvent) =>
@@ -121,10 +132,9 @@ export function EventManagement() {
     <SideModal onSave={handleSaveEvent}>
       <TextField fullWidth label="Add a title" value={event.content} onChange={handleTitleChange} />
       <TextField type="date" value={event.displayStartDate} onChange={handleDateChange} />
-      <DurationSelector
-        allDayEventState={[allDayEvent, setAllDayEvent]}
-        eventReducer={[event, dispatchEvent]}
-      />
+      <EventManagementContext.Provider value={eventManagementContextValue}>
+        <DurationSelector />
+      </EventManagementContext.Provider>
     </SideModal>
   );
 }

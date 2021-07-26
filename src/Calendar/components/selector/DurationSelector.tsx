@@ -1,55 +1,43 @@
-import React, { Dispatch, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
 import { HourSelector } from './HourSelector';
-import { EventAction, EventModel, EventType } from '../../reducers/EventReducer';
+import { EventType } from '../../reducers/EventReducer';
+import { EventManagementContext } from '../../contexts/EventManagementContext';
 
-interface DateSelectorProps {
-  dispatchEvent: Dispatch<EventAction>;
-  displayDate: string;
-}
+const DateSelector = () => {
+  const { event, dispatchEvent } = useContext(EventManagementContext);
 
-const DateSelector = (props: DateSelectorProps) => {
   return (
     <TextField
       type="date"
-      value={props.displayDate}
-      onChange={(event) =>
-        props.dispatchEvent({
+      value={event.displayEndDate}
+      onChange={(onChangeEvent) =>
+        dispatchEvent({
           type: EventType.UpdateEndDate,
-          endDate: event.target.value ? new Date(event.target.value) : new Date(),
+          endDate: onChangeEvent.target.value ? new Date(onChangeEvent.target.value) : new Date(),
         })
       }
     />
   );
 };
 
-interface DurationControllerProps {
-  allDayEventState: [boolean, Dispatch<boolean>];
-  eventReducer: [EventModel, Dispatch<EventAction>];
-}
-
-export const DurationSelector = (props: DurationControllerProps) => {
-  const [allDayEvent, setAllDayEvent] = props.allDayEventState;
-  const [event, dispatchEvent] = props.eventReducer;
+export const DurationSelector = () => {
+  const { fullDayEvent, setFullDayEvent } = useContext(EventManagementContext);
 
   const handleCheckboxChange = useCallback(
-    () => setAllDayEvent(!allDayEvent),
-    [allDayEvent, setAllDayEvent]
+    () => setFullDayEvent(!fullDayEvent),
+    [fullDayEvent, setFullDayEvent]
   );
 
   return (
     <>
-      {allDayEvent ? (
-        <DateSelector dispatchEvent={dispatchEvent} displayDate={event.displayEndDate} />
-      ) : (
-        <HourSelector eventReducer={props.eventReducer} />
-      )}
+      {fullDayEvent ? <DateSelector /> : <HourSelector />}
       <FormControlLabel
         control={
           <Checkbox
-            checked={allDayEvent}
+            checked={fullDayEvent}
             onChange={handleCheckboxChange}
-            name="allDayEvent"
+            name="fullDayEvent"
             color="primary"
           />
         }

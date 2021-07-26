@@ -8,33 +8,33 @@ import { CalendarContext } from '../../contexts/CalendarContext';
 import { Display } from '../../utils';
 import { DisplayCheckbox, DisplayController } from './DisplayController';
 
-const calendarContextMock = (component, { providerProps, ...renderOptions }) =>
+const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
   render(
-    <CalendarContext.Provider value={providerProps}>{component}</CalendarContext.Provider>,
+    <CalendarContext.Provider value={providerValue}>{component}</CalendarContext.Provider>,
     renderOptions
   );
 
 describe('DisplayCheckbox component', () => {
   describe('@snapshot', () => {
     it('should match with previous Week checkbox', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDisplay: jest.fn(),
       };
       const { asFragment } = calendarContextMock(<DisplayCheckbox currentKey={Display.Week} />, {
-        providerProps,
+        providerValue,
       });
 
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should match with previous Day checkbox', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDisplay: jest.fn(),
       };
       const { asFragment } = calendarContextMock(<DisplayCheckbox currentKey={Display.Day} />, {
-        providerProps,
+        providerValue,
       });
 
       expect(asFragment()).toMatchSnapshot();
@@ -43,31 +43,31 @@ describe('DisplayCheckbox component', () => {
 
   describe('@event', () => {
     it('the Week checkbox should trigger a setDisplay on click', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDisplay: jest.fn(),
       };
       calendarContextMock(<DisplayCheckbox currentKey={Display.Week} />, {
-        providerProps,
+        providerValue,
       });
 
       const inputDisplayCheckbox = screen.getByRole('checkbox');
       inputDisplayCheckbox.click();
-      expect(providerProps.setDisplay.mock.calls.length).toEqual(1);
+      expect(providerValue.setDisplay).toHaveBeenCalledTimes(1);
     });
 
     it('the Day checkbox should trigger a setDisplay on click', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDisplay: jest.fn(),
       };
       calendarContextMock(<DisplayCheckbox currentKey={Display.Day} />, {
-        providerProps,
+        providerValue,
       });
 
       const inputDisplayCheckbox = screen.getByRole('checkbox');
       inputDisplayCheckbox.click();
-      expect(providerProps.setDisplay.mock.calls.length).toEqual(1);
+      expect(providerValue.setDisplay).toHaveBeenCalledTimes(1);
     });
   });
 });
@@ -75,12 +75,12 @@ describe('DisplayCheckbox component', () => {
 describe('DisplayController component', () => {
   describe('@snapshot', () => {
     it('should match with previous DisplayCheckbox', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDisplay: jest.fn(),
       };
       const { asFragment } = calendarContextMock(<DisplayController />, {
-        providerProps,
+        providerValue,
       });
 
       expect(asFragment()).toMatchSnapshot();

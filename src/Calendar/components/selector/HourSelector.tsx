@@ -1,14 +1,11 @@
 import { Select, MenuItem } from '@material-ui/core';
-import React, { Dispatch } from 'react';
-import { EventAction, EventModel, EventType } from '../../reducers/EventReducer';
+import React, { useContext } from 'react';
+import { EventManagementContext } from '../../contexts/EventManagementContext';
+import { EventType } from '../../reducers/EventReducer';
 import { hours } from '../../utils';
 
-interface HourSelectorProps {
-  eventReducer: [EventModel, Dispatch<EventAction>];
-}
-
-export const HourSelector = (props: HourSelectorProps) => {
-  const [event, dispatchEvent] = props.eventReducer;
+export const HourSelector = () => {
+  const { event, dispatchEvent } = useContext(EventManagementContext);
 
   return (
     <>

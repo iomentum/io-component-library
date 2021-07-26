@@ -8,9 +8,9 @@ import { CalendarContext } from '../../contexts/CalendarContext';
 import { Display } from '../../utils';
 import { ControlButton, DateController } from './DateController';
 
-const calendarContextMock = (component, { providerProps, ...renderOptions }) =>
+const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
   render(
-    <CalendarContext.Provider value={providerProps}>{component}</CalendarContext.Provider>,
+    <CalendarContext.Provider value={providerValue}>{component}</CalendarContext.Provider>,
     renderOptions
   );
 
@@ -31,7 +31,7 @@ describe('ControlButton component', () => {
 
       screen.getByRole('button').click();
 
-      expect(handleOnClick.mock.calls.length).toEqual(1);
+      expect(handleOnClick).toHaveBeenCalledTimes(1);
     });
   });
 });
@@ -39,12 +39,12 @@ describe('ControlButton component', () => {
 describe('DateController component', () => {
   describe('@snapshot', () => {
     it('should match with previous DateController', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDate: jest.fn(),
       };
       const { asFragment } = calendarContextMock(<DateController />, {
-        providerProps,
+        providerValue,
       });
 
       expect(asFragment()).toMatchSnapshot();
@@ -53,15 +53,15 @@ describe('DateController component', () => {
 
   describe('@event', () => {
     it('each buttons should trigger a setDate on click', () => {
-      const providerProps = {
+      const providerValue = {
         display: Display,
         setDate: jest.fn(),
       };
-      calendarContextMock(<DateController />, { providerProps });
+      calendarContextMock(<DateController />, { providerValue });
 
       screen.getAllByRole('button').forEach((button) => button.click());
 
-      expect(providerProps.setDate.mock.calls.length).toEqual(3);
+      expect(providerValue.setDate).toHaveBeenCalledTimes(3);
     });
   });
 });
