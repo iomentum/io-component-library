@@ -10,7 +10,6 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "start": "npm run storybook",
     "build-lib": "rollup -c",
     "test": "jest",
     "updateSnapshot": "jest --updateSnapshot",
