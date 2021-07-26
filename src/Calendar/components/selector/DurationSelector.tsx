@@ -1,11 +1,7 @@
-import React, { Dispatch, useCallback } from "react";
-import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
-import { HourSelector } from "./HourSelector";
-import {
-  EventAction,
-  EventModel,
-  EventType,
-} from "../../reducers/EventReducer";
+import React, { Dispatch, useCallback } from 'react';
+import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
+import { HourSelector } from './HourSelector';
+import { EventAction, EventModel, EventType } from '../../reducers/EventReducer';
 
 interface DateSelectorProps {
   dispatchEvent: Dispatch<EventAction>;
@@ -21,9 +17,7 @@ const DateSelector = (props: DateSelectorProps) => {
       onChange={(event) =>
         props.dispatchEvent({
           type: EventType.UpdateEndDate,
-          endDate: event.target.value
-            ? new Date(event.target.value)
-            : new Date(),
+          endDate: event.target.value ? new Date(event.target.value) : new Date(),
         })
       }
     />
@@ -40,8 +34,8 @@ export const DurationSelector = (props: DurationControllerProps) => {
   const [event, dispatchEvent] = props.eventReducer;
 
   const handleCheckboxChange = useCallback(
-    () => setAllDayEvent((prev) => !prev),
-    [setAllDayEvent]
+    () => setAllDayEvent(!allDayEvent),
+    [allDayEvent, setAllDayEvent]
   );
 
   return (
@@ -49,7 +43,7 @@ export const DurationSelector = (props: DurationControllerProps) => {
       {allDayEvent ? (
         <DateSelector
           dispatchEvent={dispatchEvent}
-          displayDate={event.endDate.toISOString().replace(/T.*/, "")}
+          displayDate={event.endDate.toISOString().replace(/T.*/, '')}
         />
       ) : (
         <HourSelector eventReducer={props.eventReducer} />

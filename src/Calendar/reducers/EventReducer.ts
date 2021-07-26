@@ -45,10 +45,7 @@ export interface EventModel {
   endHour: string;
 }
 
-export const eventReducer = (
-  state: EventModel,
-  action: EventAction
-): EventModel => {
+export const eventReducer = (state: EventModel, action: EventAction): EventModel => {
   switch (action.type) {
     case EventType.UpdateContent:
       return { ...state, content: action.content };
@@ -68,5 +65,7 @@ export const eventReducer = (
         startHour: action.startHour,
         endHour: action.endHour,
       };
+    default:
+      throw Error('Unknow EventType');
   }
 };

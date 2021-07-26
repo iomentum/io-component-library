@@ -19,6 +19,13 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
+    "react/destructuring-assignment": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": true, "optionalDependencies": true, "peerDependencies": true }
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [

@@ -1,5 +1,5 @@
-import { createContext, Dispatch, SetStateAction } from "react";
-import { EventsCollection, Event } from "../utils";
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { EventsCollection, Event } from '../utils';
 
 export interface EventContextInterface {
   eventsCollection: EventsCollection;

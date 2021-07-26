@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
-import { CalendarContext } from "../../contexts/CalendarContext";
-import { Display } from "../../utils";
+import React, { useContext } from 'react';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { CalendarContext } from '../../contexts/CalendarContext';
+import { Display } from '../../utils';
 
 interface DisplayCheckboxProps {
   currentKey: Display;
@@ -19,9 +19,7 @@ export const DisplayCheckbox = (props: DisplayCheckboxProps) => {
           checked={display === props.currentKey}
         />
       }
-      label={
-        props.currentKey.charAt(0).toUpperCase() + props.currentKey.slice(1)
-      }
+      label={props.currentKey.charAt(0).toUpperCase() + props.currentKey.slice(1)}
       labelPlacement="start"
     />
   );

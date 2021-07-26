@@ -1,5 +1,5 @@
-import { createContext, Dispatch, SetStateAction } from "react";
-import { Display, MomentRangeExtended } from "../utils";
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { Display, MomentRangeExtended } from '../utils';
 
 export interface CalendarContextInterface {
   display: Display;

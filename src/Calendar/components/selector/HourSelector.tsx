@@ -1,11 +1,7 @@
-import { Select, MenuItem } from "@material-ui/core";
-import React, { Dispatch } from "react";
-import {
-  EventAction,
-  EventModel,
-  EventType,
-} from "../../reducers/EventReducer";
-import { hours } from "./../../utils";
+import { Select, MenuItem } from '@material-ui/core';
+import React, { Dispatch } from 'react';
+import { EventAction, EventModel, EventType } from '../../reducers/EventReducer';
+import { hours } from '../../utils';
 
 interface HourSelectorProps {
   eventReducer: [EventModel, Dispatch<EventAction>];
@@ -18,14 +14,13 @@ export const HourSelector = (props: HourSelectorProps) => {
     <>
       <Select
         value={event.startHour}
-        onChange={(event) =>
+        onChange={(onChangeEvent) =>
           dispatchEvent({
             type: EventType.UpdateStartHour,
-            startHour: event.target.value as string,
+            startHour: onChangeEvent.target.value as string,
           })
         }
-        displayEmpty
-      >
+        displayEmpty>
         <MenuItem value="" disabled>
           Start
         </MenuItem>
@@ -37,14 +32,13 @@ export const HourSelector = (props: HourSelectorProps) => {
       </Select>
       <Select
         value={event.endHour}
-        onChange={(event) =>
+        onChange={(onChangeEvent) =>
           dispatchEvent({
             type: EventType.UpdateEndHour,
-            endHour: event.target.value as string,
+            endHour: onChangeEvent.target.value as string,
           })
         }
-        displayEmpty
-      >
+        displayEmpty>
         <MenuItem value="" disabled>
           End
         </MenuItem>

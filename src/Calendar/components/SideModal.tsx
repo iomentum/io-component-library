@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Button, Modal, Slide } from "@material-ui/core";
-import { SideModalContent } from "../MyCalendar.style";
-import { EventContext } from "../contexts/EventContext";
+import React, { useContext } from 'react';
+import { Button, Modal, Slide } from '@material-ui/core';
+import { SideModalContent } from '../MyCalendar.style';
+import { EventContext } from '../contexts/EventContext';
 
 interface SideModalProps {
   onSave: () => void;
@@ -9,10 +9,8 @@ interface SideModalProps {
 }
 
 export const SideModal = (props: SideModalProps) => {
-  const {
-    openEventManagement: openModal,
-    setOpenEventManagement: setOpenModal,
-  } = useContext(EventContext);
+  const { openEventManagement: openModal, setOpenEventManagement: setOpenModal } =
+    useContext(EventContext);
 
   const handleOnSave = () => {
     props.onSave();

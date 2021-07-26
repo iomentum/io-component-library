@@ -1,32 +1,17 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import Dayz from "dayz";
-import { TextField } from "@material-ui/core";
-import {
-  hours,
-  fromDateForHours,
-  extendedMoment,
-  EventsCollection,
-} from "../utils";
-import { SideModal } from "./SideModal";
-import { DurationSelector } from "./selector/DurationSelector";
-import { eventReducer, EventType } from "../reducers/EventReducer";
-import { EventContext } from "../contexts/EventContext";
+import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
+import Dayz from 'dayz';
+import { TextField } from '@material-ui/core';
+import { hours, fromDateForHours, extendedMoment, EventsCollection } from '../utils';
+import { SideModal } from './SideModal';
+import { DurationSelector } from './selector/DurationSelector';
+import { eventReducer, EventType } from '../reducers/EventReducer';
+import { EventContext } from '../contexts/EventContext';
 
 export function EventManagement() {
-  const { eventsCollection, setEventsCollection, currentEvent } = useContext(
-    EventContext
-  );
+  const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
   const [allDayEvent, setAllDayEvent] = useState(
-    extendedMoment
-      .range(currentEvent.range().start, currentEvent.range().end)
-      .diff("days") >= 1
+    extendedMoment.range(currentEvent.range().start, currentEvent.range().end).diff('days') >= 1
   );
 
   const startHour = useCallback(
@@ -46,7 +31,7 @@ export function EventManagement() {
     () =>
       dispatchEvent({
         type: EventType.Reset,
-        content: currentEvent.content || "",
+        content: currentEvent.content || '',
         startDate: currentEvent.range().start.toDate(),
         endDate: currentEvent.range().end.toDate(),
         startHour,
@@ -59,17 +44,13 @@ export function EventManagement() {
     if (event.startDate > event.endDate) {
       dispatchEvent({
         type: EventType.UpdateEndDate,
-        endDate: new Date(
-          event.startDate.setHours(event.startDate.getHours() + 1)
-        ),
+        endDate: new Date(event.startDate.setHours(event.startDate.getHours() + 1)),
       });
     }
     if (event.endDate < event.startDate) {
       dispatchEvent({
         type: EventType.UpdateStartDate,
-        startDate: new Date(
-          event.endDate.setHours(event.endDate.getHours() - 1)
-        ),
+        startDate: new Date(event.endDate.setHours(event.endDate.getHours() - 1)),
       });
     }
   }, [event.startDate, event.endDate]);
@@ -90,19 +71,15 @@ export function EventManagement() {
 
   const handleSaveEvent = useCallback(() => {
     const currEventIndex = eventsCollection.events.findIndex(
-      (event) =>
-        event.content === currentEvent.content &&
-        event.range().isSame(currentEvent.range())
+      (evnt) => evnt.content === currentEvent.content && evnt.range().isSame(currentEvent.range())
     );
     if (currEventIndex !== -1) {
       eventsCollection.events.splice(currEventIndex, 1);
     }
 
-    let newEvents: EventsCollection = new Dayz.EventsCollection([
-      ...eventsCollection.events,
-    ]);
-    let splittedSelectedStartHour = event.startHour.split(":");
-    let splittedSelectedEndHour = event.endHour.split(":");
+    const newEvents: EventsCollection = new Dayz.EventsCollection([...eventsCollection.events]);
+    const splittedSelectedStartHour = event.startHour.split(':');
+    const splittedSelectedEndHour = event.endHour.split(':');
 
     newEvents.add({
       content: event.content,
@@ -111,7 +88,7 @@ export function EventManagement() {
           .hour(+splittedSelectedStartHour[0])
           .minutes(+splittedSelectedStartHour[1]),
         allDayEvent
-          ? extendedMoment(event.endDate).endOf("day")
+          ? extendedMoment(event.endDate).endOf('day')
           : extendedMoment(event.startDate)
               .hour(+splittedSelectedEndHour[0])
               .minutes(+splittedSelectedEndHour[1])
@@ -133,25 +110,18 @@ export function EventManagement() {
     (nativeEvent) =>
       dispatchEvent({
         type: EventType.UpdateStartDate,
-        startDate: nativeEvent.target.value
-          ? new Date(nativeEvent.target.value)
-          : new Date(),
+        startDate: nativeEvent.target.value ? new Date(nativeEvent.target.value) : new Date(),
       }),
     []
   );
 
   return (
     <SideModal onSave={handleSaveEvent}>
-      <TextField
-        fullWidth
-        label="Add a title"
-        value={event.content}
-        onChange={handleTitleChange}
-      />
+      <TextField fullWidth label="Add a title" value={event.content} onChange={handleTitleChange} />
       <TextField
         id="date"
         type="date"
-        value={event.startDate.toISOString().replace(/T.*/, "")}
+        value={event.startDate.toISOString().replace(/T.*/, '')}
         onChange={handleDateChange}
       />
       <DurationSelector
