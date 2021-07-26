@@ -32,7 +32,9 @@ export type EventAction =
       type: EventType.Reset;
       content: string;
       startDate: Date;
+      displayStartDate: string;
       endDate: Date;
+      displayEndDate: string;
       startHour: string;
       endHour: string;
     };
@@ -40,7 +42,9 @@ export type EventAction =
 export interface EventModel {
   content: string;
   startDate: Date;
+  displayStartDate: string;
   endDate: Date;
+  displayEndDate: string;
   startHour: string;
   endHour: string;
 }
@@ -50,9 +54,17 @@ export const eventReducer = (state: EventModel, action: EventAction): EventModel
     case EventType.UpdateContent:
       return { ...state, content: action.content };
     case EventType.UpdateStartDate:
-      return { ...state, startDate: action.startDate };
+      return {
+        ...state,
+        startDate: action.startDate,
+        displayStartDate: action.startDate.toISOString().replace(/T.*/, ''),
+      };
     case EventType.UpdateEndDate:
-      return { ...state, endDate: action.endDate };
+      return {
+        ...state,
+        endDate: action.endDate,
+        displayEndDate: action.endDate.toISOString().replace(/T.*/, ''),
+      };
     case EventType.UpdateStartHour:
       return { ...state, startHour: action.startHour };
     case EventType.UpdateEndHour:
@@ -61,7 +73,9 @@ export const eventReducer = (state: EventModel, action: EventAction): EventModel
       return {
         content: action.content,
         startDate: action.startDate,
+        displayStartDate: action.displayStartDate,
         endDate: action.endDate,
+        displayEndDate: action.displayEndDate,
         startHour: action.startHour,
         endHour: action.endHour,
       };

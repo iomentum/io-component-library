@@ -22,7 +22,9 @@ export function EventManagement() {
   const [event, dispatchEvent] = useReducer(eventReducer, {
     content: currentEvent.content,
     startDate: currentEvent.range().start.toDate(),
+    displayStartDate: currentEvent.range().start.toDate().toISOString().replace(/T.*/, ''),
     endDate: currentEvent.range().end.toDate(),
+    displayEndDate: currentEvent.range().end.toDate().toISOString().replace(/T.*/, ''),
     startHour,
     endHour: hours[hours.indexOf(startHour) + 4],
   });
@@ -33,11 +35,13 @@ export function EventManagement() {
         type: EventType.Reset,
         content: currentEvent.content || '',
         startDate: currentEvent.range().start.toDate(),
+        displayStartDate: currentEvent.range().start.toDate().toISOString().replace(/T.*/, ''),
         endDate: currentEvent.range().end.toDate(),
+        displayEndDate: currentEvent.range().end.toDate().toISOString().replace(/T.*/, ''),
         startHour,
         endHour: hours[hours.indexOf(startHour) + 4],
       }),
-    [currentEvent]
+    [currentEvent, startHour]
   );
 
   useEffect(() => {
@@ -46,8 +50,6 @@ export function EventManagement() {
         type: EventType.UpdateEndDate,
         endDate: new Date(event.startDate.setHours(event.startDate.getHours() + 1)),
       });
-    }
-    if (event.endDate < event.startDate) {
       dispatchEvent({
         type: EventType.UpdateStartDate,
         startDate: new Date(event.endDate.setHours(event.endDate.getHours() - 1)),
@@ -78,20 +80,20 @@ export function EventManagement() {
     }
 
     const newEvents: EventsCollection = new Dayz.EventsCollection([...eventsCollection.events]);
-    const splittedSelectedStartHour = event.startHour.split(':');
-    const splittedSelectedEndHour = event.endHour.split(':');
+    const [newEventStartHour, newEventStartMinutes] = event.startHour.split(':');
+    const [newEventEndHour, newEventEndMinutes] = event.endHour.split(':');
 
     newEvents.add({
       content: event.content,
       range: extendedMoment.range(
         extendedMoment(event.startDate)
-          .hour(+splittedSelectedStartHour[0])
-          .minutes(+splittedSelectedStartHour[1]),
+          .hour(+newEventStartHour)
+          .minutes(+newEventStartMinutes),
         allDayEvent
           ? extendedMoment(event.endDate).endOf('day')
           : extendedMoment(event.startDate)
-              .hour(+splittedSelectedEndHour[0])
-              .minutes(+splittedSelectedEndHour[1])
+              .hour(+newEventEndHour)
+              .minutes(+newEventEndMinutes)
       ),
     });
     setEventsCollection(newEvents);
@@ -118,12 +120,7 @@ export function EventManagement() {
   return (
     <SideModal onSave={handleSaveEvent}>
       <TextField fullWidth label="Add a title" value={event.content} onChange={handleTitleChange} />
-      <TextField
-        id="date"
-        type="date"
-        value={event.startDate.toISOString().replace(/T.*/, '')}
-        onChange={handleDateChange}
-      />
+      <TextField type="date" value={event.displayStartDate} onChange={handleDateChange} />
       <DurationSelector
         allDayEventState={[allDayEvent, setAllDayEvent]}
         eventReducer={[event, dispatchEvent]}

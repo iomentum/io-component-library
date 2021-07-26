@@ -9,7 +9,7 @@ interface SideModalProps {
 }
 
 export const SideModal = (props: SideModalProps) => {
-  const { openEventManagement: openModal, setOpenEventManagement: setOpenModal } =
+  const { eventManagementOpened: openModal, setEventManagementOpened: setOpenModal } =
     useContext(EventContext);
 
   const handleOnSave = () => {

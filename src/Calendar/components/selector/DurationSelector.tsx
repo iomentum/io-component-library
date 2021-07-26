@@ -1,4 +1,4 @@
-import React, { Dispatch, useCallback } from 'react';
+import React, { Dispatch, useCallback, useEffect, useState } from 'react';
 import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
 import { HourSelector } from './HourSelector';
 import { EventAction, EventModel, EventType } from '../../reducers/EventReducer';
@@ -11,7 +11,6 @@ interface DateSelectorProps {
 const DateSelector = (props: DateSelectorProps) => {
   return (
     <TextField
-      id="date"
       type="date"
       value={props.displayDate}
       onChange={(event) =>
@@ -41,10 +40,7 @@ export const DurationSelector = (props: DurationControllerProps) => {
   return (
     <>
       {allDayEvent ? (
-        <DateSelector
-          dispatchEvent={dispatchEvent}
-          displayDate={event.endDate.toISOString().replace(/T.*/, '')}
-        />
+        <DateSelector dispatchEvent={dispatchEvent} displayDate={event.displayEndDate} />
       ) : (
         <HourSelector eventReducer={props.eventReducer} />
       )}
