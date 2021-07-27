@@ -27,8 +27,8 @@ export const DisplayCheckbox = (props: DisplayCheckboxProps) => {
 
 export const DisplayController = () => (
   <div className="tools">
-    {Object.keys(Display).map((key) => (
-      <DisplayCheckbox key={key} currentKey={Display[key]} />
+    {Object.entries(Display).map(([key, value]) => (
+      <DisplayCheckbox key={key} currentKey={value} />
     ))}
   </div>
 );

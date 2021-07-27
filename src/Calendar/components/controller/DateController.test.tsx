@@ -20,7 +20,7 @@ describe('ControlButton component', () => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       const { asFragment } = render(<ControlButton label="test" onClick={() => {}} />);
 
-      expect(asFragment()).toMatchSnapshot();
+      expect(asFragment()).toMatchSnapshot('global snapshot');
     });
   });
 
@@ -38,7 +38,7 @@ describe('ControlButton component', () => {
 
 describe('DateController component', () => {
   describe('@snapshot', () => {
-    it('should match with previous DateController', () => {
+    it('should match with previous ', () => {
       const providerValue = {
         display: Display,
         setDate: jest.fn(),
@@ -47,7 +47,7 @@ describe('DateController component', () => {
         providerValue,
       });
 
-      expect(asFragment()).toMatchSnapshot();
+      expect(asFragment()).toMatchSnapshot('global snapshot');
     });
   });
 
