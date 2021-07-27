@@ -8,15 +8,15 @@ interface DisplayCheckboxProps {
 }
 
 export const DisplayCheckbox = (props: DisplayCheckboxProps) => {
-  const { display, setDisplay } = useContext(CalendarContext);
+  const { displayMode, setDisplayMode } = useContext(CalendarContext);
 
   return (
     <FormControlLabel
       control={
         <Checkbox
           color="primary"
-          onChange={() => setDisplay(props.currentKey)}
-          checked={display === props.currentKey}
+          onChange={() => setDisplayMode(props.currentKey)}
+          checked={displayMode === props.currentKey}
         />
       }
       label={props.currentKey.charAt(0).toUpperCase() + props.currentKey.slice(1)}

@@ -19,6 +19,6 @@ const Template: ComponentStory<typeof MyCalendar> = (args: CalendarProps) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  date: moment(),
-  display: Display.Week,
+  displayedDate: moment(),
+  displayMode: Display.Week,
 };

@@ -17,26 +17,26 @@ import { EventContext, EventContextInterface } from './contexts/EventContext';
 import { DayzWrapper } from './components/DayzWrapper';
 
 export interface CalendarProps {
-  date: MomentRangeExtended;
-  display: Display;
+  displayedDate: MomentRangeExtended;
+  displayMode: Display;
   events?: EventsCollection;
 }
 
 export function MyCalendar(props: CalendarProps) {
-  const [date, setDate] = useState(props.date);
-  const [display, setDisplay] = useState(props.display);
+  const [displayedDate, setDisplayedDate] = useState(props.displayedDate);
+  const [displayMode, setDisplayMode] = useState(props.displayMode);
   const [eventsCollection, setEventsCollection] = useState(props.events);
   const [eventManagementOpened, setEventManagementOpened] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(getDefaultEvent(extendedMoment()));
 
   const calendarContextValue = useMemo<CalendarContextInterface>(
     () => ({
-      display,
-      setDisplay,
-      date,
-      setDate,
+      displayMode,
+      setDisplayMode,
+      displayedDate,
+      setDisplayedDate,
     }),
-    [display, date]
+    [displayMode, displayedDate]
   );
 
   const eventContextValue = useMemo<EventContextInterface>(

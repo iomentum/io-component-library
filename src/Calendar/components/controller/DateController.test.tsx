@@ -40,8 +40,8 @@ describe('DateController component', () => {
   describe('@snapshot', () => {
     it('should match with previous ', () => {
       const providerValue = {
-        display: Display,
-        setDate: jest.fn(),
+        displayMode: Display,
+        setDisplayedDate: jest.fn(),
       };
       const { asFragment } = calendarContextMock(<DateController />, {
         providerValue,
@@ -52,16 +52,16 @@ describe('DateController component', () => {
   });
 
   describe('@event', () => {
-    it('each buttons should trigger a setDate on click', () => {
+    it('each buttons should trigger a setDisplayedDate on click', () => {
       const providerValue = {
-        display: Display,
-        setDate: jest.fn(),
+        displayMode: Display,
+        setDisplayedDate: jest.fn(),
       };
       calendarContextMock(<DateController />, { providerValue });
 
       screen.getAllByRole('button').forEach((button) => button.click());
 
-      expect(providerValue.setDate).toHaveBeenCalledTimes(3);
+      expect(providerValue.setDisplayedDate).toHaveBeenCalledTimes(3);
     });
   });
 });

@@ -5,7 +5,7 @@ import { EventContext } from '../contexts/EventContext';
 import { findEvent, getDefaultEvent, extendedMoment } from '../utils';
 
 export const DayzWrapper = () => {
-  const { date, display } = useContext(CalendarContext);
+  const { displayedDate, displayMode } = useContext(CalendarContext);
   const { eventsCollection, setCurrentEvent, setEventManagementOpened } = useContext(EventContext);
 
   const handleEventClick = useCallback(
@@ -29,9 +29,9 @@ export const DayzWrapper = () => {
 
   return (
     <Dayz
-      date={date}
+      date={displayedDate}
       events={eventsCollection}
-      display={display}
+      display={displayMode}
       dayEventHandlers={handleDayEventClick}
       onEventClick={handleEventClick}
     />

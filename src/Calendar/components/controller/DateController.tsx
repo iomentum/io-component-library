@@ -13,18 +13,21 @@ export const ControlButton = (props: ControlButtonProps) => (
 );
 
 export const DateController = () => {
-  const { display, setDate } = useContext(CalendarContext);
+  const { displayMode, setDisplayedDate } = useContext(CalendarContext);
 
   const handleSubstractButton = useCallback(
-    () => setDate((date) => extendedMoment(date.subtract(1, display))),
-    [setDate, display]
+    () => setDisplayedDate((date) => extendedMoment(date.subtract(1, displayMode))),
+    [setDisplayedDate, displayMode]
   );
 
-  const handleTodayButton = useCallback(() => setDate(() => extendedMoment()), [setDate]);
+  const handleTodayButton = useCallback(
+    () => setDisplayedDate(() => extendedMoment()),
+    [setDisplayedDate]
+  );
 
   const handleAddButton = useCallback(
-    () => setDate((date) => extendedMoment(date.add(1, display))),
-    [setDate, display]
+    () => setDisplayedDate((date) => extendedMoment(date.add(1, displayMode))),
+    [setDisplayedDate, displayMode]
   );
 
   return (
