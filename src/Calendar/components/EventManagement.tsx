@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import Dayz from 'dayz';
 import { TextField } from '@material-ui/core';
-import { hours, fromDateForHours, extendedMoment, EventsCollection } from '../utils';
+import { hours, getHours, extendedMoment, EventsCollection } from '../utils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
@@ -16,7 +16,7 @@ export function EventManagement() {
   );
 
   const startHour = useCallback(
-    () => fromDateForHours(currentEvent.range().start.toDate()),
+    () => getHours(currentEvent.range().start.toDate()),
     [currentEvent]
   )();
 

@@ -126,19 +126,11 @@ export const hours = [
   '23:45',
 ];
 
-export const fromDateForHours = (date: Date) => {
-  const min = date.getMinutes();
+export const getHours = (date: Date) => {
+  const quarter = Math.floor(date.getMinutes() / 15);
+  const oneHour = 4;
 
-  if (min < 15) {
-    return hours[date.getHours() * 4];
-  }
-  if (min < 30) {
-    return hours[date.getHours() * 4 + 1];
-  }
-  if (min < 45) {
-    return hours[date.getHours() * 4 + 2];
-  }
-  return hours[date.getHours() * 4 + 3];
+  return hours[date.getHours() * oneHour + quarter];
 };
 
 export const getDefaultEvent = (start: MomentRangeExtended): Event => ({
