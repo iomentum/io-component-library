@@ -6,7 +6,7 @@ import {
   EVENTS,
   MomentRangeExtended,
   extendedMoment,
-  Display,
+  DisplayMode,
   EventsCollection,
 } from './utils';
 
@@ -18,7 +18,7 @@ import { DayzWrapper } from './components/DayzWrapper';
 
 export interface CalendarProps {
   displayedDate: MomentRangeExtended;
-  displayMode: Display;
+  displayMode: DisplayMode;
   events?: EventsCollection;
 }
 

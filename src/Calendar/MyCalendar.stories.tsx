@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import * as m from 'moment';
 import { extendMoment } from 'moment-range';
 import { CalendarProps, MyCalendar } from './MyCalendar';
-import { Display } from './utils';
+import { DisplayMode } from './utils';
 
 const moment = extendMoment(m);
 
@@ -20,5 +20,5 @@ const Template: ComponentStory<typeof MyCalendar> = (args: CalendarProps) => (
 export const Primary = Template.bind({});
 Primary.args = {
   displayedDate: moment(),
-  displayMode: Display.Week,
+  displayMode: DisplayMode.Week,
 };

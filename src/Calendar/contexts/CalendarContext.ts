@@ -1,10 +1,10 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { Display, MomentRangeExtended } from '../utils';
+import { DisplayMode, MomentRangeExtended } from '../utils';
 
 export interface CalendarContextInterface {
-  displayMode: Display;
+  displayMode: DisplayMode;
   displayedDate: MomentRangeExtended;
-  setDisplayMode: Dispatch<SetStateAction<Display>>;
+  setDisplayMode: Dispatch<SetStateAction<DisplayMode>>;
   setDisplayedDate: Dispatch<SetStateAction<MomentRangeExtended>>;
 }
 

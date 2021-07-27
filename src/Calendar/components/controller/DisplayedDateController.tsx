@@ -12,7 +12,7 @@ export const ControlButton = (props: ControlButtonProps) => (
   <Button onClick={props.onClick}>{props.label}</Button>
 );
 
-export const DateController = () => {
+export const DisplayedDateController = () => {
   const { displayMode, setDisplayedDate } = useContext(CalendarContext);
 
   const handleSubstractButton = useCallback(

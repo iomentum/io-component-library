@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import { DateController } from './controller/DateController';
-import { DisplayController } from './controller/DisplayController';
+import { DisplayedDateController } from './controller/DisplayedDateController';
+import { DisplayModeController } from './controller/DisplayModeController';
 
 export const CalendarHeader = memo(() => (
   <>
-    <DisplayController />
-    <DateController />
+    <DisplayModeController />
+    <DisplayedDateController />
   </>
 ));

@@ -84,7 +84,7 @@ exports[`DisplayCheckbox component @snapshot should match with previous Week che
 </DocumentFragment>
 `;
 
-exports[`DisplayController component @snapshot should match with previous DisplayCheckbox 1`] = `
+exports[`DisplayModeController component @snapshot should match with previous DisplayCheckbox 1`] = `
 <DocumentFragment>
   <div
     class="tools"

@@ -5,8 +5,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { CalendarContext } from '../../contexts/CalendarContext';
-import { Display } from '../../utils';
-import { ControlButton, DateController } from './DateController';
+import { DisplayMode } from '../../utils';
+import { ControlButton, DisplayedDateController } from './DisplayedDateController';
 
 const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
   render(
@@ -36,14 +36,14 @@ describe('ControlButton component', () => {
   });
 });
 
-describe('DateController component', () => {
+describe('DisplayedDateController component', () => {
   describe('@snapshot', () => {
     it('should match with previous ', () => {
       const providerValue = {
-        displayMode: Display,
+        displayMode: DisplayMode,
         setDisplayedDate: jest.fn(),
       };
-      const { asFragment } = calendarContextMock(<DateController />, {
+      const { asFragment } = calendarContextMock(<DisplayedDateController />, {
         providerValue,
       });
 
@@ -54,10 +54,10 @@ describe('DateController component', () => {
   describe('@event', () => {
     it('each buttons should trigger a setDisplayedDate on click', () => {
       const providerValue = {
-        displayMode: Display,
+        displayMode: DisplayMode,
         setDisplayedDate: jest.fn(),
       };
-      calendarContextMock(<DateController />, { providerValue });
+      calendarContextMock(<DisplayedDateController />, { providerValue });
 
       screen.getAllByRole('button').forEach((button) => button.click());
 

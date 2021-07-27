@@ -19,7 +19,7 @@ exports[`ControlButton component @snapshot should match with previous ControlBut
 </DocumentFragment>
 `;
 
-exports[`DateController component @snapshot should match with previous : global snapshot 1`] = `
+exports[`DisplayedDateController component @snapshot should match with previous : global snapshot 1`] = `
 <DocumentFragment>
   <button
     class="MuiButtonBase-root MuiButton-root MuiButton-text"

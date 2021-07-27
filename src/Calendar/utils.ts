@@ -6,7 +6,7 @@ export const extendedMoment = extendMoment(m);
 
 export type MomentRangeExtended = MomentRangeStaticMethods & m.Moment;
 
-export enum Display {
+export enum DisplayMode {
   Week = 'week',
   Day = 'day',
 }
