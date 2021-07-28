@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import Dayz from 'dayz';
 import { TextField } from '@material-ui/core';
-import { hours, getHours, extendedMoment, EventsCollection } from '../utils';
+import { extendedMoment, EventsCollection, formatDateAndHour } from '../utils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
@@ -15,19 +15,24 @@ export function EventManagement() {
     extendedMoment.range(currentEvent.range().start, currentEvent.range().end).diff('days') >= 1
   );
 
-  const startHour = useCallback(
-    () => getHours(currentEvent.range().start.toDate()),
+  const [displayStartDate, startHour] = useCallback(
+    () => formatDateAndHour(currentEvent.range().start),
+    [currentEvent]
+  )();
+
+  const [displayEndDate, endHour] = useCallback(
+    () => formatDateAndHour(currentEvent.range().end),
     [currentEvent]
   )();
 
   const [event, dispatchEvent] = useReducer(eventReducer, {
     content: currentEvent.content,
     startDate: currentEvent.range().start.toDate(),
-    displayStartDate: currentEvent.range().start.toDate().toISOString().replace(/T.*/, ''),
+    displayStartDate,
     endDate: currentEvent.range().end.toDate(),
-    displayEndDate: currentEvent.range().end.toDate().toISOString().replace(/T.*/, ''),
+    displayEndDate,
     startHour,
-    endHour: hours[hours.indexOf(startHour) + 4],
+    endHour,
   });
 
   const eventManagementContextValue = useMemo<EventManagementContext>(
@@ -46,41 +51,14 @@ export function EventManagement() {
         type: EventType.Reset,
         content: currentEvent.content || '',
         startDate: currentEvent.range().start.toDate(),
-        displayStartDate: currentEvent.range().start.toDate().toISOString().replace(/T.*/, ''),
+        displayStartDate,
         endDate: currentEvent.range().end.toDate(),
-        displayEndDate: currentEvent.range().end.toDate().toISOString().replace(/T.*/, ''),
+        displayEndDate,
         startHour,
-        endHour: hours[hours.indexOf(startHour) + 4],
+        endHour,
       }),
-    [currentEvent, startHour]
+    [currentEvent, startHour, endHour, displayEndDate, displayStartDate]
   );
-
-  useEffect(() => {
-    if (event.startDate > event.endDate) {
-      dispatchEvent({
-        type: EventType.UpdateEndDate,
-        endDate: new Date(event.startDate.setHours(event.startDate.getHours() + 1)),
-      });
-      dispatchEvent({
-        type: EventType.UpdateStartDate,
-        startDate: new Date(event.endDate.setHours(event.endDate.getHours() - 1)),
-      });
-    }
-  }, [event.startDate, event.endDate]);
-
-  useEffect(() => {
-    if (hours.indexOf(event.startHour) + 4 > hours.length - 1) {
-      dispatchEvent({
-        type: EventType.UpdateEndHour,
-        endHour: hours[hours.length - 1],
-      });
-    } else {
-      dispatchEvent({
-        type: EventType.UpdateEndHour,
-        endHour: hours[hours.indexOf(event.startHour) + 4],
-      });
-    }
-  }, [event.startHour]);
 
   const handleSaveEvent = useCallback(() => {
     const currEventIndex = eventsCollection.events.findIndex(

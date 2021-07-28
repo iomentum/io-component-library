@@ -1,25 +1,8 @@
 import React, { useCallback, useContext } from 'react';
-import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
-import { HourSelector } from './HourSelector';
-import { EventType } from '../../reducers/EventReducer';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
-
-const DateSelector = () => {
-  const { event, dispatchEvent } = useContext(EventManagementContext);
-
-  return (
-    <TextField
-      type="date"
-      value={event.displayEndDate}
-      onChange={(onChangeEvent) =>
-        dispatchEvent({
-          type: EventType.UpdateEndDate,
-          endDate: onChangeEvent.target.value ? new Date(onChangeEvent.target.value) : new Date(),
-        })
-      }
-    />
-  );
-};
+import { HourSelector } from './HourSelector';
+import { DateSelector } from './DateSelector';
 
 export const DurationSelector = () => {
   const { fullDayEvent, setFullDayEvent } = useContext(EventManagementContext);
