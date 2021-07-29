@@ -27,9 +27,9 @@ export interface EventsCollection {
   ) => void;
 }
 
-export const formatDateAndHour = (date: m.Moment) => date.format('YYYY-MM-DD HH:MM').split(' ');
+export const formatDateAndHour = (date: m.Moment) => date.format('YYYY-MM-DD HH:mm').split(' ');
 
-export const getDefaultEvent = (start: MomentRangeExtended): Event => ({
+export const createRangeEvent = (start: MomentRangeExtended): Event => ({
   content: '',
   range: () => extendedMoment.range(extendedMoment(start), extendedMoment(start).add(1, 'hour')),
 });

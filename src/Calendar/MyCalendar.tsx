@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { CalendarHeader } from './components/CalendarHeader';
 import { EventManagement } from './components/EventManagement';
 import {
-  getDefaultEvent,
+  createRangeEvent,
   EVENTS,
   MomentRangeExtended,
   extendedMoment,
@@ -27,7 +27,7 @@ export function MyCalendar(props: CalendarProps) {
   const [displayMode, setDisplayMode] = useState(props.displayMode);
   const [eventsCollection, setEventsCollection] = useState(props.events);
   const [eventManagementOpened, setEventManagementOpened] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(getDefaultEvent(extendedMoment()));
+  const [currentEvent, setCurrentEvent] = useState(createRangeEvent(extendedMoment()));
 
   const calendarContextValue = useMemo<CalendarContextInterface>(
     () => ({

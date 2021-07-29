@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useMemo } from 'react';
 import Dayz from 'dayz';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext } from '../contexts/EventContext';
-import { findEvent, getDefaultEvent, extendedMoment } from '../utils';
+import { findEvent, createRangeEvent, extendedMoment } from '../utils';
 
 export const DayzWrapper = () => {
   const { displayedDate, displayMode } = useContext(CalendarContext);
@@ -21,7 +21,7 @@ export const DayzWrapper = () => {
       onClick: (_, eventDate) => {
         setEventManagementOpened(true);
         // eslint-disable-next-line no-underscore-dangle
-        setCurrentEvent(getDefaultEvent(extendedMoment(eventDate._d)));
+        setCurrentEvent(createRangeEvent(extendedMoment(eventDate._d)));
       },
     }),
     [setCurrentEvent, setEventManagementOpened]
