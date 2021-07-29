@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { HourSelector } from './HourSelector';
-import { DateSelector } from './DateSelector';
+import { DateSelector, DateType } from './DateSelector';
 
 export const DurationSelector = () => {
   const { fullDayEvent, setFullDayEvent } = useContext(EventManagementContext);
@@ -14,7 +14,7 @@ export const DurationSelector = () => {
 
   return (
     <>
-      {fullDayEvent ? <DateSelector /> : <HourSelector />}
+      {fullDayEvent ? <DateSelector dateType={DateType.End} /> : <HourSelector />}
       <FormControlLabel
         control={
           <Checkbox

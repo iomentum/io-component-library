@@ -7,6 +7,7 @@ import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagementContext } from '../contexts/EventManagementContext';
+import { DateSelector, DateType } from './selector/DateSelector';
 
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
@@ -57,7 +58,7 @@ export function EventManagement() {
         startHour,
         endHour,
       }),
-    [currentEvent, startHour, endHour, displayEndDate, displayStartDate]
+    [currentEvent]
   );
 
   const handleSaveEvent = useCallback(() => {
@@ -97,20 +98,11 @@ export function EventManagement() {
     []
   );
 
-  const handleDateChange = useCallback(
-    (nativeEvent) =>
-      dispatchEvent({
-        type: EventType.UpdateStartDate,
-        startDate: nativeEvent.target.value ? new Date(nativeEvent.target.value) : new Date(),
-      }),
-    []
-  );
-
   return (
     <SideModal onSave={handleSaveEvent}>
       <TextField fullWidth label="Add a title" value={event.content} onChange={handleTitleChange} />
-      <TextField type="date" value={event.displayStartDate} onChange={handleDateChange} />
       <EventManagementContext.Provider value={eventManagementContextValue}>
+        <DateSelector dateType={DateType.Start} />
         <DurationSelector />
       </EventManagementContext.Provider>
     </SideModal>
