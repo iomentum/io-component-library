@@ -1,14 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CalendarHeader } from './components/CalendarHeader';
 import { EventManagement } from './components/EventManagement';
-import {
-  createRangeEvent,
-  EVENTS,
-  MomentRangeExtended,
-  extendedMoment,
-  DisplayMode,
-  EventsCollection,
-} from './utils';
+import { createRangeEvent, EVENTS, extendedMoment, DisplayMode, EventsCollection } from './utils';
 
 import 'dayz/dist/dayz.css';
 import './MyCalendar.css';
@@ -17,7 +10,7 @@ import { EventContext, EventContextInterface } from './contexts/EventContext';
 import { DayzWrapper } from './components/DayzWrapper';
 
 export interface CalendarProps {
-  displayedDate: MomentRangeExtended;
+  displayedDate: Date;
   displayMode: DisplayMode;
   events?: EventsCollection;
 }

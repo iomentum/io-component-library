@@ -6,7 +6,12 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { CalendarContext } from '../../contexts/CalendarContext';
 import { DisplayMode } from '../../utils';
-import { ControlButton, DisplayedDateController } from './DisplayedDateController';
+import {
+  computeNewDate,
+  ControlButton,
+  DisplayedDateController,
+  MathOperation,
+} from './DisplayedDateController';
 
 const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
   render(
@@ -62,6 +67,44 @@ describe('DisplayedDateController component', () => {
       screen.getAllByRole('button').forEach((button) => button.click());
 
       expect(providerValue.setDisplayedDate).toHaveBeenCalledTimes(3);
+    });
+  });
+});
+
+describe('computeDate function', () => {
+  describe('should add', () => {
+    it('1 day', () => {
+      const date = new Date();
+      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 1);
+
+      date.setDate(date.getDate() + 1);
+      expect(computedDate).toEqual(new Date(date));
+    });
+
+    it('7 day', () => {
+      const date = new Date();
+      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 7);
+
+      date.setDate(date.getDate() + 7);
+      expect(computedDate).toEqual(new Date(date));
+    });
+  });
+
+  describe('should substract', () => {
+    it('1 day', () => {
+      const date = new Date();
+      const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 1);
+
+      date.setDate(date.getDate() - 1);
+      expect(computedDate).toEqual(new Date(date));
+    });
+
+    it('7 day', () => {
+      const date = new Date();
+      const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 7);
+
+      date.setDate(date.getDate() - 7);
+      expect(computedDate).toEqual(new Date(date));
     });
   });
 });

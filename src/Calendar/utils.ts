@@ -6,6 +6,11 @@ export const extendedMoment = extendMoment(m);
 
 export type MomentRangeExtended = MomentRangeStaticMethods & m.Moment;
 
+export interface EventDateRange {
+  eventStart: Date;
+  eventEnd: Date;
+}
+
 export enum DisplayMode {
   Week = 'week',
   Day = 'day',
@@ -29,10 +34,17 @@ export interface EventsCollection {
 
 export const formatDateAndHour = (date: m.Moment) => date.format('YYYY-MM-DD HH:mm').split(' ');
 
+export const createExtendedMomentFromDate = (date: Date) => extendedMoment(date);
+
 export const createRangeEvent = (start: MomentRangeExtended): Event => ({
   content: '',
   range: () => extendedMoment.range(extendedMoment(start), extendedMoment(start).add(1, 'hour')),
 });
+
+export const createMomentDateRangeFromDate = (start: Date, end: Date) =>
+  extendedMoment.range(extendedMoment(start), extendedMoment(end));
+
+// export const extractMomentRangeIntoDateRange;
 
 interface SelectedEvent {
   content: string;

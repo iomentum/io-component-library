@@ -1,7 +1,12 @@
-import React, { MouseEventHandler, useCallback, useContext } from 'react';
+import React, { MouseEventHandler, useCallback, useContext, useMemo } from 'react';
 import { Button } from '@material-ui/core';
 import { CalendarContext } from '../../contexts/CalendarContext';
-import { extendedMoment } from '../../utils';
+import { DisplayMode } from '../../utils';
+
+export enum MathOperation {
+  Addition,
+  Substraction,
+}
 
 interface ControlButtonProps {
   label: string;
@@ -12,22 +17,33 @@ export const ControlButton = (props: ControlButtonProps) => (
   <Button onClick={props.onClick}>{props.label}</Button>
 );
 
+export const computeNewDate = (date: Date, op: MathOperation, dayToCompute: number) => {
+  if (op === MathOperation.Addition) {
+    date.setDate(date.getDate() + dayToCompute);
+  } else {
+    date.setDate(date.getDate() - dayToCompute);
+  }
+  return new Date(date);
+};
+
 export const DisplayedDateController = () => {
   const { displayMode, setDisplayedDate } = useContext(CalendarContext);
+  const dayToCompute = useMemo(() => (displayMode === DisplayMode.Day ? 1 : 7), [displayMode]);
 
   const handleSubstractButton = useCallback(
-    () => setDisplayedDate((date) => extendedMoment(date.subtract(1, displayMode))),
-    [setDisplayedDate, displayMode]
+    () =>
+      setDisplayedDate((date) => computeNewDate(date, MathOperation.Substraction, dayToCompute)),
+    [setDisplayedDate, dayToCompute]
   );
 
   const handleTodayButton = useCallback(
-    () => setDisplayedDate(() => extendedMoment()),
+    () => setDisplayedDate(() => new Date()),
     [setDisplayedDate]
   );
 
   const handleAddButton = useCallback(
-    () => setDisplayedDate((date) => extendedMoment(date.add(1, displayMode))),
-    [setDisplayedDate, displayMode]
+    () => setDisplayedDate((date) => computeNewDate(date, MathOperation.Addition, dayToCompute)),
+    [setDisplayedDate, dayToCompute]
   );
 
   return (

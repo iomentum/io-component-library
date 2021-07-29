@@ -2,11 +2,21 @@ import React, { useCallback, useContext, useMemo } from 'react';
 import Dayz from 'dayz';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext } from '../contexts/EventContext';
-import { findEvent, createRangeEvent, extendedMoment } from '../utils';
+import {
+  findEvent,
+  createRangeEvent,
+  extendedMoment,
+  createExtendedMomentFromDate,
+} from '../utils';
 
 export const DayzWrapper = () => {
   const { displayedDate, displayMode } = useContext(CalendarContext);
   const { eventsCollection, setCurrentEvent, setEventManagementOpened } = useContext(EventContext);
+
+  const displayedDayzDate = useMemo(
+    () => createExtendedMomentFromDate(displayedDate),
+    [displayedDate]
+  );
 
   const handleEventClick = useCallback(
     (_, layout) => {
@@ -29,7 +39,7 @@ export const DayzWrapper = () => {
 
   return (
     <Dayz
-      date={displayedDate}
+      date={displayedDayzDate}
       events={eventsCollection}
       display={displayMode}
       dayEventHandlers={handleDayEventClick}
