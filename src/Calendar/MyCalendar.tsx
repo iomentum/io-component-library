@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CalendarHeader } from './components/CalendarHeader';
 import { EventManagement } from './components/EventManagement';
-import { createRangeEvent, EVENTS, extendedMoment, DisplayMode, EventsCollection } from './utils';
+import { createEvent, EVENTS, DisplayMode, DayzEventsCollection } from './utils';
 
 import 'dayz/dist/dayz.css';
 import './MyCalendar.css';
@@ -12,7 +12,7 @@ import { DayzWrapper } from './components/DayzWrapper';
 export interface CalendarProps {
   displayedDate: Date;
   displayMode: DisplayMode;
-  events?: EventsCollection;
+  events?: DayzEventsCollection;
 }
 
 export function MyCalendar(props: CalendarProps) {
@@ -20,7 +20,7 @@ export function MyCalendar(props: CalendarProps) {
   const [displayMode, setDisplayMode] = useState(props.displayMode);
   const [eventsCollection, setEventsCollection] = useState(props.events);
   const [eventManagementOpened, setEventManagementOpened] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(createRangeEvent(extendedMoment()));
+  const [currentEvent, setCurrentEvent] = useState(createEvent(displayedDate));
 
   const calendarContextValue = useMemo<CalendarContextInterface>(
     () => ({

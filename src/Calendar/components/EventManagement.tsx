@@ -1,7 +1,13 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import Dayz from 'dayz';
 import { TextField } from '@material-ui/core';
-import { extendedMoment, EventsCollection, formatDateAndHour, dateDiff } from '../utils';
+import {
+  DayzEventsCollection,
+  Event,
+  formatDateAndHour,
+  computeIsFullDayEvent,
+  convertEventIntoDayzEvent,
+} from '../utils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
@@ -12,7 +18,9 @@ import { DateSelector, DateType } from './selector/DateSelector';
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
-  const [isFullDayEvent, setIsFullDayEvent] = useState(dateDiff(currentEvent.dateRange));
+  const [isFullDayEvent, setIsFullDayEvent] = useState(
+    computeIsFullDayEvent(currentEvent.dateRange)
+  );
 
   const [displayStartDate, startHour] = useCallback(
     () => formatDateAndHour(currentEvent.dateRange.eventStart),
@@ -61,29 +69,38 @@ export function EventManagement() {
 
   const handleSaveEvent = useCallback(() => {
     const currEventIndex = eventsCollection.events.findIndex(
-      (evnt) => evnt.content === currentEvent.content && evnt.range().isSame(currentEvent.range())
+      (evnt) =>
+        evnt.content === currentEvent.content &&
+        evnt.range().isSame(convertEventIntoDayzEvent(currentEvent).range())
     );
     if (currEventIndex !== -1) {
       eventsCollection.events.splice(currEventIndex, 1);
     }
 
-    const newEvents: EventsCollection = new Dayz.EventsCollection([...eventsCollection.events]);
     const [newEventStartHour, newEventStartMinutes] = event.startHour.split(':');
     const [newEventEndHour, newEventEndMinutes] = event.endHour.split(':');
 
-    newEvents.add({
+    const newEventStartDate = new Date(event.startDate);
+    newEventStartDate.setHours(+newEventStartHour, +newEventStartMinutes);
+
+    const newEventEndDate = new Date(event.endDate);
+    if (isFullDayEvent) {
+      newEventEndDate.setHours(23, 59);
+    } else {
+      newEventEndDate.setHours(+newEventEndHour, +newEventEndMinutes);
+    }
+
+    const newEvent: Event = {
       content: event.content,
-      range: extendedMoment.range(
-        extendedMoment(event.startDate)
-          .hour(+newEventStartHour)
-          .minutes(+newEventStartMinutes),
-        isFullDayEvent
-          ? extendedMoment(event.endDate).endOf('day')
-          : extendedMoment(event.startDate)
-              .hour(+newEventEndHour)
-              .minutes(+newEventEndMinutes)
-      ),
-    });
+      dateRange: {
+        eventStart: newEventStartDate,
+        eventEnd: newEventEndDate,
+      },
+    };
+
+    const newEvents: DayzEventsCollection = new Dayz.EventsCollection([...eventsCollection.events]);
+    const newDayzEvent = convertEventIntoDayzEvent(newEvent);
+    newEvents.add({ content: newDayzEvent.content, range: newDayzEvent.range() });
     setEventsCollection(newEvents);
   }, [eventsCollection, setEventsCollection, currentEvent, event, isFullDayEvent]);
 
