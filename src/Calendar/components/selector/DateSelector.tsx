@@ -7,6 +7,7 @@ export enum DateType {
   Start,
   End,
 }
+
 interface DateSelectorProps {
   dateType: DateType;
 }

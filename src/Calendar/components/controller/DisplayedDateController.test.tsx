@@ -5,7 +5,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { CalendarContext } from '../../contexts/CalendarContext';
-import { DisplayMode } from '../../utils';
 import {
   computeNewDate,
   ControlButton,
@@ -22,10 +21,9 @@ const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
 describe('ControlButton component', () => {
   describe('@snapshot', () => {
     it('should match with previous ControlButton', () => {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      const { asFragment } = render(<ControlButton label="test" onClick={() => {}} />);
+      const { asFragment } = render(<ControlButton label="test" onClick={jest.fn()} />);
 
-      expect(asFragment()).toMatchSnapshot('global snapshot');
+      expect(asFragment()).toMatchSnapshot('ControlButton snapshot');
     });
   });
 
@@ -45,21 +43,19 @@ describe('DisplayedDateController component', () => {
   describe('@snapshot', () => {
     it('should match with previous ', () => {
       const providerValue = {
-        displayMode: DisplayMode,
         setDisplayedDate: jest.fn(),
       };
       const { asFragment } = calendarContextMock(<DisplayedDateController />, {
         providerValue,
       });
 
-      expect(asFragment()).toMatchSnapshot('global snapshot');
+      expect(asFragment()).toMatchSnapshot('DisplayedDateController snapshot');
     });
   });
 
   describe('@event', () => {
     it('each buttons should trigger a setDisplayedDate on click', () => {
       const providerValue = {
-        displayMode: DisplayMode,
         setDisplayedDate: jest.fn(),
       };
       calendarContextMock(<DisplayedDateController />, { providerValue });
@@ -71,7 +67,7 @@ describe('DisplayedDateController component', () => {
   });
 });
 
-describe('computeDate function', () => {
+describe('computeNewDate function', () => {
   describe('should add', () => {
     it('1 day', () => {
       const date = new Date();
