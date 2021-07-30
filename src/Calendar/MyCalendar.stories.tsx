@@ -1,11 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import * as m from 'moment';
-import { extendMoment } from 'moment-range';
 import { CalendarProps, MyCalendar } from './MyCalendar';
-import { DisplayMode, EventDateRange } from './utils';
-
-const moment = extendMoment(m);
+import { DisplayMode } from './utils';
 
 export default {
   title: 'C&C/MyCalendar',

@@ -2,9 +2,9 @@ import { createContext, Dispatch, SetStateAction } from 'react';
 import { EventAction, EventModel } from '../reducers/EventReducer';
 
 export interface EventManagementContext {
-  fullDayEvent: boolean;
+  isFullDayEvent: boolean;
   event: EventModel;
-  setFullDayEvent: Dispatch<SetStateAction<boolean>>;
+  setIsFullDayEvent: Dispatch<SetStateAction<boolean>>;
   dispatchEvent: Dispatch<EventAction>;
 }
 

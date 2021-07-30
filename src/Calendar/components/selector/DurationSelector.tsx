@@ -5,22 +5,22 @@ import { HourSelector } from './HourSelector';
 import { DateSelector, DateType } from './DateSelector';
 
 export const DurationSelector = () => {
-  const { fullDayEvent, setFullDayEvent } = useContext(EventManagementContext);
+  const { isFullDayEvent, setIsFullDayEvent } = useContext(EventManagementContext);
 
   const handleCheckboxChange = useCallback(
-    () => setFullDayEvent(!fullDayEvent),
-    [fullDayEvent, setFullDayEvent]
+    () => setIsFullDayEvent(!isFullDayEvent),
+    [isFullDayEvent, setIsFullDayEvent]
   );
 
   return (
     <>
-      {fullDayEvent ? <DateSelector dateType={DateType.End} /> : <HourSelector />}
+      {isFullDayEvent ? <DateSelector dateType={DateType.End} /> : <HourSelector />}
       <FormControlLabel
         control={
           <Checkbox
-            checked={fullDayEvent}
+            checked={isFullDayEvent}
             onChange={handleCheckboxChange}
-            name="fullDayEvent"
+            name="isFullDayEvent"
             color="primary"
           />
         }

@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import Dayz from 'dayz';
 import { TextField } from '@material-ui/core';
-import { extendedMoment, EventsCollection, formatDateAndHour } from '../utils';
+import { extendedMoment, EventsCollection, formatDateAndHour, dateDiff } from '../utils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
@@ -12,25 +12,23 @@ import { DateSelector, DateType } from './selector/DateSelector';
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
-  const [fullDayEvent, setFullDayEvent] = useState(
-    extendedMoment.range(currentEvent.range().start, currentEvent.range().end).diff('days') >= 1
-  );
+  const [isFullDayEvent, setIsFullDayEvent] = useState(dateDiff(currentEvent.dateRange));
 
   const [displayStartDate, startHour] = useCallback(
-    () => formatDateAndHour(currentEvent.range().start),
+    () => formatDateAndHour(currentEvent.dateRange.eventStart),
     [currentEvent]
   )();
 
   const [displayEndDate, endHour] = useCallback(
-    () => formatDateAndHour(currentEvent.range().end),
+    () => formatDateAndHour(currentEvent.dateRange.eventEnd),
     [currentEvent]
   )();
 
   const [event, dispatchEvent] = useReducer(eventReducer, {
     content: currentEvent.content,
-    startDate: currentEvent.range().start.toDate(),
+    startDate: currentEvent.dateRange.eventStart,
     displayStartDate,
-    endDate: currentEvent.range().end.toDate(),
+    endDate: currentEvent.dateRange.eventEnd,
     displayEndDate,
     startHour,
     endHour,
@@ -38,12 +36,12 @@ export function EventManagement() {
 
   const eventManagementContextValue = useMemo<EventManagementContext>(
     () => ({
-      fullDayEvent,
-      setFullDayEvent,
+      isFullDayEvent,
+      setIsFullDayEvent,
       event,
       dispatchEvent,
     }),
-    [fullDayEvent, event]
+    [isFullDayEvent, event]
   );
 
   useEffect(
@@ -51,9 +49,9 @@ export function EventManagement() {
       dispatchEvent({
         type: EventType.Reset,
         content: currentEvent.content || '',
-        startDate: currentEvent.range().start.toDate(),
+        startDate: currentEvent.dateRange.eventStart,
         displayStartDate,
-        endDate: currentEvent.range().end.toDate(),
+        endDate: currentEvent.dateRange.eventEnd,
         displayEndDate,
         startHour,
         endHour,
@@ -79,7 +77,7 @@ export function EventManagement() {
         extendedMoment(event.startDate)
           .hour(+newEventStartHour)
           .minutes(+newEventStartMinutes),
-        fullDayEvent
+        isFullDayEvent
           ? extendedMoment(event.endDate).endOf('day')
           : extendedMoment(event.startDate)
               .hour(+newEventEndHour)
@@ -87,7 +85,7 @@ export function EventManagement() {
       ),
     });
     setEventsCollection(newEvents);
-  }, [eventsCollection, setEventsCollection, currentEvent, event, fullDayEvent]);
+  }, [eventsCollection, setEventsCollection, currentEvent, event, isFullDayEvent]);
 
   const handleTitleChange = useCallback(
     (nativeEvent) =>

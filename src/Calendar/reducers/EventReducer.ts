@@ -1,3 +1,5 @@
+import { getFormattedDate } from '../utils';
+
 export enum EventType {
   UpdateContent,
   UpdateStartDate,
@@ -57,13 +59,13 @@ export const eventReducer = (state: EventModel, action: EventAction): EventModel
       return {
         ...state,
         startDate: action.startDate,
-        displayStartDate: action.startDate.toISOString().replace(/T.*/, ''),
+        displayStartDate: getFormattedDate(action.startDate),
       };
     case EventType.UpdateEndDate:
       return {
         ...state,
         endDate: action.endDate,
-        displayEndDate: action.endDate.toISOString().replace(/T.*/, ''),
+        displayEndDate: getFormattedDate(action.endDate),
       };
     case EventType.UpdateStartHour:
       return { ...state, startHour: action.startHour };

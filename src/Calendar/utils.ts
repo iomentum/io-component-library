@@ -18,7 +18,7 @@ export enum DisplayMode {
 
 export interface Event {
   content: string;
-  range: () => DateRange;
+  dateRange: EventDateRange;
 }
 
 export interface EventsCollection {
@@ -32,10 +32,16 @@ export interface EventsCollection {
   ) => void;
 }
 
-export const formatDateAndHour = (date: m.Moment) => date.format('YYYY-MM-DD HH:mm').split(' ');
+export const getFormattedDate = (date: Date) => date.toISOString().replace(/T.*/, '');
+
+export const dateDiff = (range: EventDateRange): boolean =>
+  getFormattedDate(range.eventStart) === getFormattedDate(range.eventEnd);
+
+export const formatDateAndHour = (date: Date) => date.toISOString().split('T');
 
 export const createExtendedMomentFromDate = (date: Date) => extendedMoment(date);
 
+// FIXME:
 export const createRangeEvent = (start: MomentRangeExtended): Event => ({
   content: '',
   range: () => extendedMoment.range(extendedMoment(start), extendedMoment(start).add(1, 'hour')),

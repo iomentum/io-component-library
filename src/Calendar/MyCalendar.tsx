@@ -45,15 +45,13 @@ export function MyCalendar(props: CalendarProps) {
   );
 
   return (
-    <>
-      <CalendarContext.Provider value={calendarContextValue}>
-        <CalendarHeader />
-        <EventContext.Provider value={eventContextValue}>
-          <DayzWrapper />
-          <EventManagement />
-        </EventContext.Provider>
-      </CalendarContext.Provider>
-    </>
+    <CalendarContext.Provider value={calendarContextValue}>
+      <CalendarHeader />
+      <EventContext.Provider value={eventContextValue}>
+        <DayzWrapper />
+        <EventManagement />
+      </EventContext.Provider>
+    </CalendarContext.Provider>
   );
 }
 
