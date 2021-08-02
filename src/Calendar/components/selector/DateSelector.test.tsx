@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { formatDateAndHour } from '../../utils';
@@ -20,19 +20,13 @@ describe('DateSelector component', () => {
   describe('@snapshot', () => {
     it('should match with previous DateSelector', () => {
       const startDate = new Date('2021-07-30');
-      const endDate = new Date(startDate);
-      endDate.setHours(1);
       const [displayStartDate, startHour] = formatDateAndHour(startDate);
-      const [displayEndDate, endHour] = formatDateAndHour(endDate);
+
       const providerValue = {
         event: {
-          content: 'Test',
           startDate,
           displayStartDate,
-          endDate,
-          displayEndDate,
           startHour,
-          endHour,
         },
         dispatchEvent: jest.fn(),
       };
@@ -42,6 +36,46 @@ describe('DateSelector component', () => {
       );
 
       expect(asFragment()).toMatchSnapshot('DateSelector snapshot');
+    });
+  });
+
+  describe('@props', () => {
+    describe('should match the expected dateType', () => {
+      it('dateType: Start', () => {
+        const startDate = new Date('2021-07-25');
+        const [displayStartDate, startHour] = formatDateAndHour(startDate);
+
+        const providerValue = {
+          event: {
+            startDate,
+            displayStartDate,
+            startHour,
+          },
+          dispatchEvent: jest.fn(),
+        };
+
+        eventManagementContextMock(<DateSelector dateType={DateType.Start} />, { providerValue });
+
+        expect(screen.getByDisplayValue('2021-07-25')).not.toBeNull();
+      });
+
+      it('dateType: End', () => {
+        const endDate = new Date('2021-07-30');
+        const [displayEndDate, endHour] = formatDateAndHour(endDate);
+
+        const providerValue = {
+          event: {
+            endDate,
+            displayEndDate,
+            endHour,
+          },
+          dispatchEvent: jest.fn(),
+        };
+
+        eventManagementContextMock(<DateSelector dateType={DateType.End} />, { providerValue });
+
+        expect(screen.getByDisplayValue('2021-07-30')).not.toBeNull();
+      });
     });
   });
 });
