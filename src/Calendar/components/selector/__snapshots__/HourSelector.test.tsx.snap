@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HourSelector component @snapshot should match with the previous HourSelector: HourSelector snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+      data-shrink="true"
+    >
+      Start
+    </label>
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input"
+        data-testid="startTime"
+        type="time"
+        value="00:00"
+      />
+    </div>
+  </div>
+  <div
+    class="MuiFormControl-root MuiTextField-root"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+      data-shrink="true"
+    >
+      End
+    </label>
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input"
+        data-testid="endTime"
+        type="time"
+        value="01:00"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

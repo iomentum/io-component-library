@@ -77,7 +77,7 @@ describe('computeNewDate function', () => {
       expect(computedDate).toEqual(new Date(date));
     });
 
-    it('7 day', () => {
+    it('7 days', () => {
       const date = new Date();
       const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 7);
 
@@ -95,7 +95,7 @@ describe('computeNewDate function', () => {
       expect(computedDate).toEqual(new Date(date));
     });
 
-    it('7 day', () => {
+    it('7 days', () => {
       const date = new Date();
       const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 7);
 
