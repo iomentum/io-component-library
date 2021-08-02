@@ -28,7 +28,7 @@ describe('DisplayCheckbox component', () => {
         }
       );
 
-      expect(asFragment()).toMatchSnapshot();
+      expect(asFragment()).toMatchSnapshot('DisplayCheckbox Week snapshot');
     });
 
     it('should match with previous Day checkbox', () => {
@@ -43,7 +43,7 @@ describe('DisplayCheckbox component', () => {
         }
       );
 
-      expect(asFragment()).toMatchSnapshot();
+      expect(asFragment()).toMatchSnapshot('DisplayCheckbox Day snapshot');
     });
   });
 
@@ -59,7 +59,7 @@ describe('DisplayCheckbox component', () => {
 
       const inputDisplayCheckbox = screen.getByRole('checkbox');
       inputDisplayCheckbox.click();
-      expect(providerValue.setDisplayMode).toHaveBeenCalledTimes(1);
+      expect(providerValue.setDisplayMode).toHaveBeenCalledWith('week');
     });
 
     it('the Day checkbox should trigger a setDisplayMode on click', () => {
@@ -73,7 +73,7 @@ describe('DisplayCheckbox component', () => {
 
       const inputDisplayCheckbox = screen.getByRole('checkbox');
       inputDisplayCheckbox.click();
-      expect(providerValue.setDisplayMode).toHaveBeenCalledTimes(1);
+      expect(providerValue.setDisplayMode).toHaveBeenCalledWith('day');
     });
   });
 });
@@ -89,7 +89,7 @@ describe('DisplayModeController component', () => {
         providerValue,
       });
 
-      expect(asFragment()).toMatchSnapshot();
+      expect(asFragment()).toMatchSnapshot('DisplayModeController snapshot');
     });
   });
 });
