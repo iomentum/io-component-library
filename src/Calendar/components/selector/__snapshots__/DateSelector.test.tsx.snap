@@ -11,6 +11,7 @@ exports[`DateSelector component @snapshot should match with previous DateType.En
       <input
         aria-invalid="false"
         class="MuiInputBase-input MuiInput-input"
+        data-testid="endDate"
         type="date"
         value="2021-07-30"
       />
@@ -30,6 +31,7 @@ exports[`DateSelector component @snapshot should match with previous DateType.St
       <input
         aria-invalid="false"
         class="MuiInputBase-input MuiInput-input"
+        data-testid="startDate"
         type="date"
         value="2021-07-30"
       />

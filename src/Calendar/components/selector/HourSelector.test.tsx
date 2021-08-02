@@ -41,12 +41,13 @@ describe('HourSelector component', () => {
         },
         dispatchEvent: jest.fn(),
       };
-      const container = eventManagementContextMock(<HourSelector />, {
+      const component = eventManagementContextMock(<HourSelector />, {
         providerValue,
       });
-      const input = container.getByTestId('startTime') as HTMLInputElement;
 
+      const input = component.getByTestId('startTime') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '01:10' } });
+
       expect(providerValue.dispatchEvent).toHaveBeenCalledWith({
         type: EventType.UpdateStartHour,
         startHour: '01:10',
@@ -61,12 +62,13 @@ describe('HourSelector component', () => {
         },
         dispatchEvent: jest.fn(),
       };
-      const container = eventManagementContextMock(<HourSelector />, {
+      const component = eventManagementContextMock(<HourSelector />, {
         providerValue,
       });
-      const input = container.getByTestId('endTime') as HTMLInputElement;
 
+      const input = component.getByTestId('endTime') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '01:10' } });
+
       expect(providerValue.dispatchEvent).toHaveBeenCalledWith({
         type: EventType.UpdateEndHour,
         endHour: '01:10',

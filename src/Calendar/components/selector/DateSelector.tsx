@@ -4,8 +4,8 @@ import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { EventType } from '../../reducers/EventReducer';
 
 export enum DateType {
-  Start,
-  End,
+  Start = 'start',
+  End = 'end',
 }
 
 interface DateSelectorProps {
@@ -55,5 +55,14 @@ export const DateSelector = (props: DateSelectorProps) => {
     []
   );
 
-  return <TextField type="date" value={displayedValue} onChange={handleOnChange} />;
+  return (
+    <TextField
+      type="date"
+      value={displayedValue}
+      onChange={handleOnChange}
+      inputProps={{
+        'data-testid': `${dateType}Date`,
+      }}
+    />
+  );
 };
