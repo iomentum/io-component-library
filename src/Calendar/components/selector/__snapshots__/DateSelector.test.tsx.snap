@@ -1,6 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DateSelector component @snapshot should match with previous DateSelector: DateSelector snapshot 1`] = `
+exports[`DateSelector component @snapshot should match with previous DateType.End DateSelector: End DateSelector snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root"
+  >
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input"
+        type="date"
+        value="2021-07-30"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DateSelector component @snapshot should match with previous DateType.Start DateSelector: Start DateSelector snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiFormControl-root MuiTextField-root"

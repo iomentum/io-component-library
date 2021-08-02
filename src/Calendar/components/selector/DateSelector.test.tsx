@@ -18,7 +18,7 @@ const eventManagementContextMock = (component, { providerValue, ...renderOptions
 
 describe('DateSelector component', () => {
   describe('@snapshot', () => {
-    it('should match with previous DateSelector', () => {
+    it('should match with previous DateType.Start DateSelector', () => {
       const startDate = new Date('2021-07-30');
       const [displayStartDate, startHour] = formatDateAndHour(startDate);
 
@@ -35,7 +35,26 @@ describe('DateSelector component', () => {
         { providerValue }
       );
 
-      expect(asFragment()).toMatchSnapshot('DateSelector snapshot');
+      expect(asFragment()).toMatchSnapshot('Start DateSelector snapshot');
+    });
+
+    it('should match with previous DateType.End DateSelector', () => {
+      const endDate = new Date('2021-07-30');
+      const [displayEndDate, endHour] = formatDateAndHour(endDate);
+
+      const providerValue = {
+        event: {
+          endDate,
+          displayEndDate,
+          endHour,
+        },
+        dispatchEvent: jest.fn(),
+      };
+      const { asFragment } = eventManagementContextMock(<DateSelector dateType={DateType.End} />, {
+        providerValue,
+      });
+
+      expect(asFragment()).toMatchSnapshot('End DateSelector snapshot');
     });
   });
 
