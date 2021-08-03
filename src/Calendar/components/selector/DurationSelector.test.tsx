@@ -56,7 +56,7 @@ describe('DurationSelector component', () => {
     });
   });
 
-  describe('@event', () => {
+  describe('@events', () => {
     describe('checkbox toggle', () => {
       it('should call setIsFullDayEvent with false', () => {
         const providerValue = generateProviderValue(true);

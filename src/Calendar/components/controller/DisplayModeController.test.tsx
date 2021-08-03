@@ -47,7 +47,7 @@ describe('DisplayCheckbox component', () => {
     });
   });
 
-  describe('@event', () => {
+  describe('@events', () => {
     it('the Week checkbox should trigger a setDisplayMode on click', () => {
       const providerValue = {
         displayMode: DisplayMode,

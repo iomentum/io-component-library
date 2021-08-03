@@ -27,7 +27,7 @@ describe('ControlButton component', () => {
     });
   });
 
-  describe('@event', () => {
+  describe('@events', () => {
     it('should handle a click', () => {
       const handleOnClick = jest.fn();
       render(<ControlButton label="" onClick={handleOnClick} />);
@@ -53,7 +53,7 @@ describe('DisplayedDateController component', () => {
     });
   });
 
-  describe('@event', () => {
+  describe('@events', () => {
     it('each buttons should trigger a setDisplayedDate on click', () => {
       const providerValue = {
         setDisplayedDate: jest.fn(),

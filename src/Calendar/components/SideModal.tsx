@@ -9,7 +9,7 @@ interface SideModalProps {
 }
 
 export const SideModal = (props: SideModalProps) => {
-  const { eventManagementOpened: openModal, setEventManagementOpened: setOpenModal } =
+  const { eventManagementOpened: openedModal, setEventManagementOpened: setOpenModal } =
     useContext(EventContext);
 
   const handleOnSave = () => {
@@ -18,8 +18,8 @@ export const SideModal = (props: SideModalProps) => {
   };
 
   return (
-    <Modal open={openModal} onClose={() => setOpenModal(false)}>
-      <Slide direction="left" in={openModal}>
+    <Modal open={openedModal} onClose={() => setOpenModal(false)}>
+      <Slide direction="left" in={openedModal}>
         <SideModalContent elevation={1}>
           {props.children}
           <Button variant="contained" color="primary" onClick={handleOnSave}>
