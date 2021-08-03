@@ -8,25 +8,25 @@ import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { HourSelector, computeStartHourChanges, computeEndHourChanges } from './HourSelector';
 import { EventType } from '../../reducers/EventReducer';
 
-const eventManagementContextMock = (component, { providerValue, ...renderOptions }) =>
+const eventManagementContextMock = (component, providerValue) =>
   render(
     <EventManagementContext.Provider value={providerValue}>
       {component}
-    </EventManagementContext.Provider>,
-    renderOptions
+    </EventManagementContext.Provider>
   );
+
+const providerValue = {
+  event: {
+    startHour: '00:00',
+    endHour: '01:00',
+  },
+  dispatchEvent: jest.fn(),
+};
 
 describe('HourSelector component', () => {
   describe('@snapshots', () => {
     it('should match with the previous HourSelector', () => {
-      const providerValue = {
-        event: {
-          startHour: '00:00',
-          endHour: '01:00',
-        },
-        dispatchEvent: jest.fn(),
-      };
-      const { asFragment } = eventManagementContextMock(<HourSelector />, { providerValue });
+      const { asFragment } = eventManagementContextMock(<HourSelector />, providerValue);
 
       expect(asFragment()).toMatchSnapshot('HourSelector snapshot');
     });
@@ -34,16 +34,7 @@ describe('HourSelector component', () => {
 
   describe('@events', () => {
     it('should be dispatched with the right startHour', () => {
-      const providerValue = {
-        event: {
-          startHour: '00:00',
-          endHour: '01:00',
-        },
-        dispatchEvent: jest.fn(),
-      };
-      const component = eventManagementContextMock(<HourSelector />, {
-        providerValue,
-      });
+      const component = eventManagementContextMock(<HourSelector />, providerValue);
 
       const input = component.getByTestId('startTime') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '01:10' } });
@@ -55,16 +46,7 @@ describe('HourSelector component', () => {
     });
 
     it('should be dispatched with the right endHour', () => {
-      const providerValue = {
-        event: {
-          startHour: '00:00',
-          endHour: '01:00',
-        },
-        dispatchEvent: jest.fn(),
-      };
-      const component = eventManagementContextMock(<HourSelector />, {
-        providerValue,
-      });
+      const component = eventManagementContextMock(<HourSelector />, providerValue);
 
       const input = component.getByTestId('endTime') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '01:10' } });

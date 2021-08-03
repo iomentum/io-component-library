@@ -12,11 +12,12 @@ import {
   MathOperation,
 } from './DisplayedDateController';
 
-const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
-  render(
-    <CalendarContext.Provider value={providerValue}>{component}</CalendarContext.Provider>,
-    renderOptions
-  );
+const calendarContextMock = (component, providerValue) =>
+  render(<CalendarContext.Provider value={providerValue}>{component}</CalendarContext.Provider>);
+
+const providerValue = {
+  setDisplayedDate: jest.fn(),
+};
 
 describe('ControlButton component', () => {
   describe('@snapshots', () => {
@@ -42,12 +43,7 @@ describe('ControlButton component', () => {
 describe('DisplayedDateController component', () => {
   describe('@snapshots', () => {
     it('should match with previous ', () => {
-      const providerValue = {
-        setDisplayedDate: jest.fn(),
-      };
-      const { asFragment } = calendarContextMock(<DisplayedDateController />, {
-        providerValue,
-      });
+      const { asFragment } = calendarContextMock(<DisplayedDateController />, providerValue);
 
       expect(asFragment()).toMatchSnapshot('DisplayedDateController snapshot');
     });
@@ -55,10 +51,7 @@ describe('DisplayedDateController component', () => {
 
   describe('@events', () => {
     it('each buttons should trigger a setDisplayedDate on click', () => {
-      const providerValue = {
-        setDisplayedDate: jest.fn(),
-      };
-      calendarContextMock(<DisplayedDateController />, { providerValue });
+      calendarContextMock(<DisplayedDateController />, providerValue);
 
       screen.getAllByRole('button').forEach((button) => button.click());
 

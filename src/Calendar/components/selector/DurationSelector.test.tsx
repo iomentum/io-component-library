@@ -8,12 +8,11 @@ import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { formatDateAndHour } from '../../utils';
 import { DurationSelector } from './DurationSelector';
 
-const eventManagementContextMock = (component, { providerValue, ...renderOptions }) =>
+const eventManagementContextMock = (component, providerValue) =>
   render(
     <EventManagementContext.Provider value={providerValue}>
       {component}
-    </EventManagementContext.Provider>,
-    renderOptions
+    </EventManagementContext.Provider>
   );
 
 const generateProviderValue = (isFullDayEvent: boolean) => ({
@@ -42,15 +41,16 @@ describe('DurationSelector component', () => {
         },
         dispatchEvent: jest.fn(),
       };
-      const { asFragment } = eventManagementContextMock(<DurationSelector />, { providerValue });
+      const { asFragment } = eventManagementContextMock(<DurationSelector />, providerValue);
 
       expect(asFragment()).toMatchSnapshot('DurationSelector fullDayEvent snapshot');
     });
 
     it('should match with the previous DurationSelector notFullDayEvent', () => {
-      const { asFragment } = eventManagementContextMock(<DurationSelector />, {
-        providerValue: generateProviderValue(false),
-      });
+      const { asFragment } = eventManagementContextMock(
+        <DurationSelector />,
+        generateProviderValue(false)
+      );
 
       expect(asFragment()).toMatchSnapshot('DurationSelector notFullDayEvent snapshot');
     });
@@ -60,10 +60,7 @@ describe('DurationSelector component', () => {
     describe('checkbox toggle', () => {
       it('should call setIsFullDayEvent with false', () => {
         const providerValue = generateProviderValue(true);
-
-        eventManagementContextMock(<DurationSelector />, {
-          providerValue,
-        });
+        eventManagementContextMock(<DurationSelector />, providerValue);
 
         const inputDisplayCheckbox = screen.getByRole('checkbox');
         inputDisplayCheckbox.click();
@@ -73,10 +70,7 @@ describe('DurationSelector component', () => {
 
       it('should call setIsFullDayEvent with true', () => {
         const providerValue = generateProviderValue(false);
-
-        eventManagementContextMock(<DurationSelector />, {
-          providerValue,
-        });
+        eventManagementContextMock(<DurationSelector />, providerValue);
 
         const inputDisplayCheckbox = screen.getByRole('checkbox');
         inputDisplayCheckbox.click();
@@ -88,17 +82,13 @@ describe('DurationSelector component', () => {
 
   describe('@props', () => {
     it('should display DateSelector when isFullDayEvent is true', () => {
-      eventManagementContextMock(<DurationSelector />, {
-        providerValue: generateProviderValue(true),
-      });
+      eventManagementContextMock(<DurationSelector />, generateProviderValue(true));
 
       expect(screen.getByTestId('endDate')).not.toBeNull();
     });
 
     it('should display HourSelector when isFullDayEvent is false', () => {
-      eventManagementContextMock(<DurationSelector />, {
-        providerValue: generateProviderValue(false),
-      });
+      eventManagementContextMock(<DurationSelector />, generateProviderValue(false));
 
       expect(screen.getByTestId('startTime')).not.toBeNull();
       expect(screen.getByTestId('endTime')).not.toBeNull();

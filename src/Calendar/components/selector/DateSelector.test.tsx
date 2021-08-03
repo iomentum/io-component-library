@@ -9,12 +9,11 @@ import { EventType } from '../../reducers/EventReducer';
 import { formatDateAndHour } from '../../utils';
 import { DateSelector, DateType } from './DateSelector';
 
-const eventManagementContextMock = (component, { providerValue, ...renderOptions }) =>
+const eventManagementContextMock = (component, providerValue) =>
   render(
     <EventManagementContext.Provider value={providerValue}>
       {component}
-    </EventManagementContext.Provider>,
-    renderOptions
+    </EventManagementContext.Provider>
   );
 
 describe('DateSelector component', () => {
@@ -33,7 +32,7 @@ describe('DateSelector component', () => {
       };
       const { asFragment } = eventManagementContextMock(
         <DateSelector dateType={DateType.Start} />,
-        { providerValue }
+        providerValue
       );
 
       expect(asFragment()).toMatchSnapshot('Start DateSelector snapshot');
@@ -51,9 +50,10 @@ describe('DateSelector component', () => {
         },
         dispatchEvent: jest.fn(),
       };
-      const { asFragment } = eventManagementContextMock(<DateSelector dateType={DateType.End} />, {
-        providerValue,
-      });
+      const { asFragment } = eventManagementContextMock(
+        <DateSelector dateType={DateType.End} />,
+        providerValue
+      );
 
       expect(asFragment()).toMatchSnapshot('End DateSelector snapshot');
     });
@@ -74,7 +74,7 @@ describe('DateSelector component', () => {
           dispatchEvent: jest.fn(),
         };
 
-        eventManagementContextMock(<DateSelector dateType={DateType.Start} />, { providerValue });
+        eventManagementContextMock(<DateSelector dateType={DateType.Start} />, providerValue);
 
         expect(screen.getByDisplayValue('2021-07-25')).not.toBeNull();
       });
@@ -92,7 +92,7 @@ describe('DateSelector component', () => {
           dispatchEvent: jest.fn(),
         };
 
-        eventManagementContextMock(<DateSelector dateType={DateType.End} />, { providerValue });
+        eventManagementContextMock(<DateSelector dateType={DateType.End} />, providerValue);
 
         expect(screen.getByDisplayValue('2021-07-30')).not.toBeNull();
       });
@@ -112,9 +112,10 @@ describe('DateSelector component', () => {
         },
         dispatchEvent: jest.fn(),
       };
-      const component = eventManagementContextMock(<DateSelector dateType={DateType.Start} />, {
-        providerValue,
-      });
+      const component = eventManagementContextMock(
+        <DateSelector dateType={DateType.Start} />,
+        providerValue
+      );
 
       const input = component.getByTestId('startDate') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '2021-07-26' } });
@@ -137,9 +138,10 @@ describe('DateSelector component', () => {
         },
         dispatchEvent: jest.fn(),
       };
-      const component = eventManagementContextMock(<DateSelector dateType={DateType.End} />, {
-        providerValue,
-      });
+      const component = eventManagementContextMock(
+        <DateSelector dateType={DateType.End} />,
+        providerValue
+      );
 
       const input = component.getByTestId('endDate') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '2021-07-26' } });
