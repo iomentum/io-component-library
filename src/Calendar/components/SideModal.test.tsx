@@ -79,5 +79,25 @@ describe('SideModal component', () => {
     });
   });
 
-  // describe('@events', () => {});
+  describe('@events', () => {
+    it('should handle save', () => {
+      const onSave = jest.fn();
+      const generatedProviderValue = providerValue(true);
+
+      eventContextMock(
+        <SideModal onSave={onSave}>
+          <div data-testid="test" />
+          <div />
+        </SideModal>,
+        {
+          providerValue: generatedProviderValue,
+        }
+      );
+
+      screen.getByRole('button').click();
+
+      expect(onSave).toHaveBeenCalledTimes(1);
+      expect(generatedProviderValue.setEventManagementOpened).toHaveBeenCalledWith(false);
+    });
+  });
 });
