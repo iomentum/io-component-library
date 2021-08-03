@@ -19,7 +19,7 @@ const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
   );
 
 describe('ControlButton component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with previous ControlButton', () => {
       const { asFragment } = render(<ControlButton label="test" onClick={jest.fn()} />);
 
@@ -40,7 +40,7 @@ describe('ControlButton component', () => {
 });
 
 describe('DisplayedDateController component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with previous ', () => {
       const providerValue = {
         setDisplayedDate: jest.fn(),

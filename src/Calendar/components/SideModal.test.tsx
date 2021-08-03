@@ -19,7 +19,7 @@ const providerValue = (eventManagementOpened) => ({
 });
 
 describe('SideModal component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with previous opened SideModal', () => {
       const { baseElement } = eventContextMock(
         <SideModal onSave={jest.fn()}>

@@ -17,7 +17,7 @@ const eventManagementContextMock = (component, { providerValue, ...renderOptions
   );
 
 describe('HourSelector component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with the previous HourSelector', () => {
       const providerValue = {
         event: {

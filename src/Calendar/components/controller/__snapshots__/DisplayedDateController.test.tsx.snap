@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ControlButton component @snapshot should match with previous ControlButton: ControlButton snapshot 1`] = `
+exports[`ControlButton component @snapshots should match with previous ControlButton: ControlButton snapshot 1`] = `
 <DocumentFragment>
   <button
     class="MuiButtonBase-root MuiButton-root MuiButton-text"
@@ -19,7 +19,7 @@ exports[`ControlButton component @snapshot should match with previous ControlBut
 </DocumentFragment>
 `;
 
-exports[`DisplayedDateController component @snapshot should match with previous : DisplayedDateController snapshot 1`] = `
+exports[`DisplayedDateController component @snapshots should match with previous : DisplayedDateController snapshot 1`] = `
 <DocumentFragment>
   <button
     class="MuiButtonBase-root MuiButton-root MuiButton-text"

@@ -27,7 +27,7 @@ const generateProviderValue = (isFullDayEvent: boolean) => ({
 });
 
 describe('DurationSelector component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with the previous DurationSelector fullDayEvent', () => {
       const endDate = new Date('2021-07-30');
       const [displayEndDate, endHour] = formatDateAndHour(endDate);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DateSelector component @snapshot should match with previous DateType.End DateSelector: End DateSelector snapshot 1`] = `
+exports[`DateSelector component @snapshots should match with previous DateType.End DateSelector: End DateSelector snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiFormControl-root MuiTextField-root"
@@ -20,7 +20,7 @@ exports[`DateSelector component @snapshot should match with previous DateType.En
 </DocumentFragment>
 `;
 
-exports[`DateSelector component @snapshot should match with previous DateType.Start DateSelector: Start DateSelector snapshot 1`] = `
+exports[`DateSelector component @snapshots should match with previous DateType.Start DateSelector: Start DateSelector snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiFormControl-root MuiTextField-root"

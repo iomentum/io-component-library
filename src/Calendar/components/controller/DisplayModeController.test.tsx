@@ -15,7 +15,7 @@ const calendarContextMock = (component, { providerValue, ...renderOptions }) =>
   );
 
 describe('DisplayCheckbox component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with previous Week checkbox', () => {
       const providerValue = {
         displayMode: DisplayMode,
@@ -79,7 +79,7 @@ describe('DisplayCheckbox component', () => {
 });
 
 describe('DisplayModeController component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with previous DisplayCheckbox', () => {
       const providerValue = {
         displayMode: DisplayMode,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HourSelector component @snapshot should match with the previous HourSelector: HourSelector snapshot 1`] = `
+exports[`HourSelector component @snapshots should match with the previous HourSelector: HourSelector snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiFormControl-root MuiTextField-root"

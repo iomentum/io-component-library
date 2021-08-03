@@ -18,7 +18,7 @@ const eventManagementContextMock = (component, { providerValue, ...renderOptions
   );
 
 describe('DateSelector component', () => {
-  describe('@snapshot', () => {
+  describe('@snapshots', () => {
     it('should match with previous DateType.Start DateSelector', () => {
       const startDate = new Date('2021-07-30');
       const [displayStartDate, startHour] = formatDateAndHour(startDate);

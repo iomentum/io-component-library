@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisplayCheckbox component @snapshot should match with previous Day checkbox: DisplayCheckbox Day snapshot 1`] = `
+exports[`DisplayCheckbox component @snapshots should match with previous Day checkbox: DisplayCheckbox Day snapshot 1`] = `
 <DocumentFragment>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
@@ -42,7 +42,7 @@ exports[`DisplayCheckbox component @snapshot should match with previous Day chec
 </DocumentFragment>
 `;
 
-exports[`DisplayCheckbox component @snapshot should match with previous Week checkbox: DisplayCheckbox Week snapshot 1`] = `
+exports[`DisplayCheckbox component @snapshots should match with previous Week checkbox: DisplayCheckbox Week snapshot 1`] = `
 <DocumentFragment>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
@@ -84,7 +84,7 @@ exports[`DisplayCheckbox component @snapshot should match with previous Week che
 </DocumentFragment>
 `;
 
-exports[`DisplayModeController component @snapshot should match with previous DisplayCheckbox: DisplayModeController snapshot 1`] = `
+exports[`DisplayModeController component @snapshots should match with previous DisplayCheckbox: DisplayModeController snapshot 1`] = `
 <DocumentFragment>
   <div
     class="tools"

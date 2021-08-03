@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DurationSelector component @snapshot should match with the previous DurationSelector fullDayEvent: DurationSelector fullDayEvent snapshot 1`] = `
+exports[`DurationSelector component @snapshots should match with the previous DurationSelector fullDayEvent: DurationSelector fullDayEvent snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiFormControl-root MuiTextField-root"
@@ -59,7 +59,7 @@ exports[`DurationSelector component @snapshot should match with the previous Dur
 </DocumentFragment>
 `;
 
-exports[`DurationSelector component @snapshot should match with the previous DurationSelector notFullDayEvent: DurationSelector notFullDayEvent snapshot 1`] = `
+exports[`DurationSelector component @snapshots should match with the previous DurationSelector notFullDayEvent: DurationSelector notFullDayEvent snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiFormControl-root MuiTextField-root"
