@@ -1,0 +1,1271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyCalendar component @snapshots should match with previous MyCalendar Day: MyCalendar snapshot Day 1`] = `
+<DocumentFragment>
+  <div
+    class="tools"
+  >
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-8"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        W
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-8"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        E
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-8"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        E
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-8"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        K
+      </span>
+    </label>
+  </div>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      &lt;
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Today
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      &gt;
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <div
+    class="dayz month"
+  >
+    <div
+      class="x-labels"
+    >
+      <div
+        class="day-label"
+      >
+        Sunday
+      </div>
+      <div
+        class="day-label"
+      >
+        Monday
+      </div>
+      <div
+        class="day-label"
+      >
+        Tuesday
+      </div>
+      <div
+        class="day-label"
+      >
+        Wednesday
+      </div>
+      <div
+        class="day-label"
+      >
+        Thursday
+      </div>
+      <div
+        class="day-label"
+      >
+        Friday
+      </div>
+      <div
+        class="day-label"
+      >
+        Saturday
+      </div>
+    </div>
+    <div
+      class="body"
+    >
+      <div
+        class="days"
+      >
+        <div
+          class="day before"
+          data-date="20210801"
+          style="order: 0;"
+        >
+          <div
+            class="label"
+          >
+            1
+          </div>
+        </div>
+        <div
+          class="day before"
+          data-date="20210802"
+          style="order: 1;"
+        >
+          <div
+            class="label"
+          >
+            2
+          </div>
+        </div>
+        <div
+          class="day before"
+          data-date="20210803"
+          style="order: 2;"
+        >
+          <div
+            class="label"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210804"
+          style="order: 3;"
+        >
+          <div
+            class="label"
+          >
+            4
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210805"
+          style="order: 4;"
+        >
+          <div
+            class="label"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210806"
+          style="order: 5;"
+        >
+          <div
+            class="label"
+          >
+            6
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210807"
+          style="order: 6;"
+        >
+          <div
+            class="label"
+          >
+            7
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210808"
+          style="order: 7;"
+        >
+          <div
+            class="label"
+          >
+            8
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210809"
+          style="order: 8;"
+        >
+          <div
+            class="label"
+          >
+            9
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210810"
+          style="order: 9;"
+        >
+          <div
+            class="label"
+          >
+            10
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210811"
+          style="order: 10;"
+        >
+          <div
+            class="label"
+          >
+            11
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210812"
+          style="order: 11;"
+        >
+          <div
+            class="label"
+          >
+            12
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210813"
+          style="order: 12;"
+        >
+          <div
+            class="label"
+          >
+            13
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210814"
+          style="order: 13;"
+        >
+          <div
+            class="label"
+          >
+            14
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210815"
+          style="order: 14;"
+        >
+          <div
+            class="label"
+          >
+            15
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210816"
+          style="order: 15;"
+        >
+          <div
+            class="label"
+          >
+            16
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210817"
+          style="order: 16;"
+        >
+          <div
+            class="label"
+          >
+            17
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210818"
+          style="order: 17;"
+        >
+          <div
+            class="label"
+          >
+            18
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210819"
+          style="order: 18;"
+        >
+          <div
+            class="label"
+          >
+            19
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210820"
+          style="order: 19;"
+        >
+          <div
+            class="label"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210821"
+          style="order: 20;"
+        >
+          <div
+            class="label"
+          >
+            21
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210822"
+          style="order: 21;"
+        >
+          <div
+            class="label"
+          >
+            22
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210823"
+          style="order: 22;"
+        >
+          <div
+            class="label"
+          >
+            23
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210824"
+          style="order: 23;"
+        >
+          <div
+            class="label"
+          >
+            24
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210825"
+          style="order: 24;"
+        >
+          <div
+            class="label"
+          >
+            25
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210826"
+          style="order: 25;"
+        >
+          <div
+            class="label"
+          >
+            26
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210827"
+          style="order: 26;"
+        >
+          <div
+            class="label"
+          >
+            27
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210828"
+          style="order: 27;"
+        >
+          <div
+            class="label"
+          >
+            28
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210829"
+          style="order: 28;"
+        >
+          <div
+            class="label"
+          >
+            29
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210830"
+          style="order: 29;"
+        >
+          <div
+            class="label"
+          >
+            30
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210831"
+          style="order: 30;"
+        >
+          <div
+            class="label"
+          >
+            31
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210901"
+          style="order: 31;"
+        >
+          <div
+            class="label"
+          >
+            1
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210902"
+          style="order: 32;"
+        >
+          <div
+            class="label"
+          >
+            2
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210903"
+          style="order: 33;"
+        >
+          <div
+            class="label"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210904"
+          style="order: 34;"
+        >
+          <div
+            class="label"
+          >
+            4
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MyCalendar component @snapshots should match with previous MyCalendar Week: MyCalendar snapshot Week 1`] = `
+<DocumentFragment>
+  <div
+    class="tools"
+  >
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-4"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        W
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-4"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        E
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-4"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        E
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-4"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        K
+      </span>
+    </label>
+  </div>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      &lt;
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Today
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      &gt;
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <div
+    class="dayz month"
+  >
+    <div
+      class="x-labels"
+    >
+      <div
+        class="day-label"
+      >
+        Sunday
+      </div>
+      <div
+        class="day-label"
+      >
+        Monday
+      </div>
+      <div
+        class="day-label"
+      >
+        Tuesday
+      </div>
+      <div
+        class="day-label"
+      >
+        Wednesday
+      </div>
+      <div
+        class="day-label"
+      >
+        Thursday
+      </div>
+      <div
+        class="day-label"
+      >
+        Friday
+      </div>
+      <div
+        class="day-label"
+      >
+        Saturday
+      </div>
+    </div>
+    <div
+      class="body"
+    >
+      <div
+        class="days"
+      >
+        <div
+          class="day before"
+          data-date="20210801"
+          style="order: 0;"
+        >
+          <div
+            class="label"
+          >
+            1
+          </div>
+        </div>
+        <div
+          class="day before"
+          data-date="20210802"
+          style="order: 1;"
+        >
+          <div
+            class="label"
+          >
+            2
+          </div>
+        </div>
+        <div
+          class="day before"
+          data-date="20210803"
+          style="order: 2;"
+        >
+          <div
+            class="label"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210804"
+          style="order: 3;"
+        >
+          <div
+            class="label"
+          >
+            4
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210805"
+          style="order: 4;"
+        >
+          <div
+            class="label"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210806"
+          style="order: 5;"
+        >
+          <div
+            class="label"
+          >
+            6
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210807"
+          style="order: 6;"
+        >
+          <div
+            class="label"
+          >
+            7
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210808"
+          style="order: 7;"
+        >
+          <div
+            class="label"
+          >
+            8
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210809"
+          style="order: 8;"
+        >
+          <div
+            class="label"
+          >
+            9
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210810"
+          style="order: 9;"
+        >
+          <div
+            class="label"
+          >
+            10
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210811"
+          style="order: 10;"
+        >
+          <div
+            class="label"
+          >
+            11
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210812"
+          style="order: 11;"
+        >
+          <div
+            class="label"
+          >
+            12
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210813"
+          style="order: 12;"
+        >
+          <div
+            class="label"
+          >
+            13
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210814"
+          style="order: 13;"
+        >
+          <div
+            class="label"
+          >
+            14
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210815"
+          style="order: 14;"
+        >
+          <div
+            class="label"
+          >
+            15
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210816"
+          style="order: 15;"
+        >
+          <div
+            class="label"
+          >
+            16
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210817"
+          style="order: 16;"
+        >
+          <div
+            class="label"
+          >
+            17
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210818"
+          style="order: 17;"
+        >
+          <div
+            class="label"
+          >
+            18
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210819"
+          style="order: 18;"
+        >
+          <div
+            class="label"
+          >
+            19
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210820"
+          style="order: 19;"
+        >
+          <div
+            class="label"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210821"
+          style="order: 20;"
+        >
+          <div
+            class="label"
+          >
+            21
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210822"
+          style="order: 21;"
+        >
+          <div
+            class="label"
+          >
+            22
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210823"
+          style="order: 22;"
+        >
+          <div
+            class="label"
+          >
+            23
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210824"
+          style="order: 23;"
+        >
+          <div
+            class="label"
+          >
+            24
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210825"
+          style="order: 24;"
+        >
+          <div
+            class="label"
+          >
+            25
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210826"
+          style="order: 25;"
+        >
+          <div
+            class="label"
+          >
+            26
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210827"
+          style="order: 26;"
+        >
+          <div
+            class="label"
+          >
+            27
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210828"
+          style="order: 27;"
+        >
+          <div
+            class="label"
+          >
+            28
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210829"
+          style="order: 28;"
+        >
+          <div
+            class="label"
+          >
+            29
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210830"
+          style="order: 29;"
+        >
+          <div
+            class="label"
+          >
+            30
+          </div>
+        </div>
+        <div
+          class="day after"
+          data-date="20210831"
+          style="order: 30;"
+        >
+          <div
+            class="label"
+          >
+            31
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210901"
+          style="order: 31;"
+        >
+          <div
+            class="label"
+          >
+            1
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210902"
+          style="order: 32;"
+        >
+          <div
+            class="label"
+          >
+            2
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210903"
+          style="order: 33;"
+        >
+          <div
+            class="label"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="day after outside"
+          data-date="20210904"
+          style="order: 34;"
+        >
+          <div
+            class="label"
+          >
+            4
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
