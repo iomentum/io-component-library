@@ -1,19 +1,29 @@
 import React, { useContext } from 'react';
-import { Button, Modal, Slide } from '@material-ui/core';
-import { SideModalContent } from '../MyCalendar.style';
+import { Modal, Slide, Button } from '@material-ui/core';
+import { SideModalContent, PrimaryButton } from './SideModal.style';
 import { EventContext } from '../contexts/EventContext';
+import { Row, Gap } from './common.style';
 
 interface SideModalProps {
   onSave: () => void;
+  onDelete: () => void;
   children: JSX.Element[];
+  isEventExisting: boolean;
 }
 
 export const SideModal = (props: SideModalProps) => {
+  const { onSave, onDelete, children, isEventExisting } = props;
+
   const { eventManagementOpened: openedModal, setEventManagementOpened: setOpenModal } =
     useContext(EventContext);
 
   const handleOnSave = () => {
-    props.onSave();
+    onSave();
+    setOpenModal(false);
+  };
+
+  const handleOnDelete = () => {
+    onDelete();
     setOpenModal(false);
   };
 
@@ -21,10 +31,20 @@ export const SideModal = (props: SideModalProps) => {
     <Modal open={openedModal} onClose={() => setOpenModal(false)}>
       <Slide direction="left" in={openedModal}>
         <SideModalContent elevation={1}>
-          {props.children}
-          <Button variant="contained" color="primary" onClick={handleOnSave}>
-            Save
-          </Button>
+          <div>{children}</div>
+          <Row>
+            <PrimaryButton variant="contained" color="primary" onClick={handleOnSave}>
+              Save
+            </PrimaryButton>
+            {isEventExisting && (
+              <>
+                <Gap />
+                <Button variant="contained" color="secondary" onClick={handleOnDelete}>
+                  Delete
+                </Button>
+              </>
+            )}
+          </Row>
         </SideModalContent>
       </Slide>
     </Modal>

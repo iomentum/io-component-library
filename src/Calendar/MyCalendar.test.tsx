@@ -34,6 +34,8 @@ jest.mock('./utils', () => ({
   formatDateAndHour: () => formatDateAndHour(new Date('2021-08-03')),
 }));
 
+jest.mock('./utils/eventUtils', () => ({ isEventExisting: jest.fn() }));
+
 describe('MyCalendar component', () => {
   describe('@snapshots', () => {
     it('should match with previous MyCalendar Week', () => {
