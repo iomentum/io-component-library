@@ -2,6 +2,7 @@ import React, { Dispatch, useContext, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { EventAction, EventType } from '../../reducers/EventReducer';
+import { Row, Gap } from '../common.style';
 
 export const computeStartHourChanges = (
   startHour: string,
@@ -57,8 +58,9 @@ export const HourSelector = () => {
   }, [event.startHour]);
 
   return (
-    <>
+    <Row>
       <TextField
+        fullWidth
         label="Start"
         type="time"
         value={event.startHour}
@@ -72,7 +74,9 @@ export const HourSelector = () => {
           })
         }
       />
+      <Gap />
       <TextField
+        fullWidth
         label="End"
         type="time"
         value={event.endHour}
@@ -86,6 +90,6 @@ export const HourSelector = () => {
           })
         }
       />
-    </>
+    </Row>
   );
 };

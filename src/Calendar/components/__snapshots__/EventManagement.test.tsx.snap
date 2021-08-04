@@ -51,10 +51,16 @@ exports[`EventManagement component @snapshots should match with previous EventMa
         </div>
       </div>
       <div
-        class="MuiFormControl-root MuiTextField-root"
+        class="MuiFormControl-root MuiTextField-root WithStyles(ForwardRef(TextField))-root-1 MuiFormControl-fullWidth"
       >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+          data-shrink="true"
+        >
+          Start day
+        </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
         >
           <input
             aria-invalid="false"
@@ -66,59 +72,66 @@ exports[`EventManagement component @snapshots should match with previous EventMa
         </div>
       </div>
       <div
-        class="MuiFormControl-root MuiTextField-root"
+        class="sc-gtsrHT kIVTqI"
       >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-          data-shrink="true"
-        >
-          Start
-        </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
         >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiInput-input"
-            data-testid="startTime"
-            type="time"
-            value="02:00"
-          />
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+            data-shrink="true"
+          >
+            Start
+          </label>
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              data-testid="startTime"
+              type="time"
+              value="02:00"
+            />
+          </div>
         </div>
-      </div>
-      <div
-        class="MuiFormControl-root MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-          data-shrink="true"
-        >
-          End
-        </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          class="sc-dlnjwi gjFHxI"
+        />
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
         >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiInput-input"
-            data-testid="endTime"
-            type="time"
-            value="02:00"
-          />
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+            data-shrink="true"
+          >
+            End
+          </label>
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              data-testid="endTime"
+              type="time"
+              value="02:00"
+            />
+          </div>
         </div>
       </div>
       <label
-        class="MuiFormControlLabel-root"
+        class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-2"
       >
         <span
           aria-disabled="false"
-          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-3 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
         >
           <span
             class="MuiIconButton-label"
           >
             <input
-              class="PrivateSwitchBase-input-4"
+              class="PrivateSwitchBase-input-6"
               data-indeterminate="false"
               name="isFullDayEvent"
               type="checkbox"

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField } from './DateSelector.style';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { EventType } from '../../reducers/EventReducer';
 
@@ -20,6 +20,8 @@ export const DateSelector = (props: DateSelectorProps) => {
     () => (dateType === DateType.Start ? event.displayStartDate : event.displayEndDate),
     [dateType, event]
   );
+
+  const label = useMemo(() => `${dateType === DateType.Start ? 'Start' : 'End'} day`, [dateType]);
 
   useEffect(() => {
     if (event.startDate > event.endDate) {
@@ -57,6 +59,8 @@ export const DateSelector = (props: DateSelectorProps) => {
 
   return (
     <TextField
+      fullWidth
+      label={label}
       type="date"
       value={displayedValue}
       onChange={handleOnChange}

@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useMemo } from 'react';
 import Dayz from 'dayz';
+import { DayzBox } from './DayzWrapper.style';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext } from '../contexts/EventContext';
 import { findEvent, createEvent, createExtendedMomentFromDate } from '../utils';
@@ -33,12 +34,16 @@ export const DayzWrapper = () => {
   );
 
   return (
-    <Dayz
-      date={displayedDayzDate}
-      events={eventsCollection}
-      display={displayMode}
-      dayEventHandlers={handleDayEventClick}
-      onEventClick={handleEventClick}
-    />
+    <DayzBox>
+      <Dayz
+        date={displayedDayzDate}
+        events={eventsCollection}
+        display={displayMode}
+        displayHours={[0, 24]}
+        timeFormat="HH:mm"
+        dayEventHandlers={handleDayEventClick}
+        onEventClick={handleEventClick}
+      />
+    </DayzBox>
   );
 };

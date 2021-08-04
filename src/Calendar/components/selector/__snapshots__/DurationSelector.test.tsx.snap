@@ -3,10 +3,16 @@
 exports[`DurationSelector component @snapshots should match with the previous DurationSelector fullDayEvent: DurationSelector fullDayEvent snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiFormControl-root MuiTextField-root"
+    class="MuiFormControl-root MuiTextField-root WithStyles(ForwardRef(TextField))-root-1 MuiFormControl-fullWidth"
   >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+      data-shrink="true"
+    >
+      End day
+    </label>
     <div
-      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
     >
       <input
         aria-invalid="false"
@@ -18,18 +24,18 @@ exports[`DurationSelector component @snapshots should match with the previous Du
     </div>
   </div>
   <label
-    class="MuiFormControlLabel-root"
+    class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-2"
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-2 Mui-checked MuiIconButton-colorPrimary"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-3 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-4 Mui-checked MuiIconButton-colorPrimary"
     >
       <span
         class="MuiIconButton-label"
       >
         <input
           checked=""
-          class="PrivateSwitchBase-input-4"
+          class="PrivateSwitchBase-input-6"
           data-indeterminate="false"
           name="isFullDayEvent"
           type="checkbox"
@@ -62,59 +68,66 @@ exports[`DurationSelector component @snapshots should match with the previous Du
 exports[`DurationSelector component @snapshots should match with the previous DurationSelector notFullDayEvent: DurationSelector notFullDayEvent snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiFormControl-root MuiTextField-root"
+    class="sc-bdnxRM dAVrlh"
   >
-    <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-      data-shrink="true"
-    >
-      Start
-    </label>
     <div
-      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
     >
-      <input
-        aria-invalid="false"
-        class="MuiInputBase-input MuiInput-input"
-        data-testid="startTime"
-        type="time"
-        value="00:00"
-      />
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+        data-shrink="true"
+      >
+        Start
+      </label>
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiInput-input"
+          data-testid="startTime"
+          type="time"
+          value="00:00"
+        />
+      </div>
     </div>
-  </div>
-  <div
-    class="MuiFormControl-root MuiTextField-root"
-  >
-    <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-      data-shrink="true"
-    >
-      End
-    </label>
     <div
-      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      class="sc-gtsrHT kWzEBg"
+    />
+    <div
+      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
     >
-      <input
-        aria-invalid="false"
-        class="MuiInputBase-input MuiInput-input"
-        data-testid="endTime"
-        type="time"
-        value="01:00"
-      />
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+        data-shrink="true"
+      >
+        End
+      </label>
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiInput-input"
+          data-testid="endTime"
+          type="time"
+          value="01:00"
+        />
+      </div>
     </div>
   </div>
   <label
-    class="MuiFormControlLabel-root"
+    class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-7"
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-8 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
     >
       <span
         class="MuiIconButton-label"
       >
         <input
-          class="PrivateSwitchBase-input-8"
+          class="PrivateSwitchBase-input-11"
           data-indeterminate="false"
           name="isFullDayEvent"
           type="checkbox"

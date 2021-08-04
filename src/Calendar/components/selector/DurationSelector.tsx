@@ -1,5 +1,6 @@
 import React, { useCallback, useContext } from 'react';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core';
+import { FormControlLabel } from './DurationSelector.style';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
 import { HourSelector } from './HourSelector';
 import { DateSelector, DateType } from './DateSelector';
