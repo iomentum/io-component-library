@@ -38,6 +38,15 @@ jest.mock('./utils/eventUtils', () => ({ isEventExisting: jest.fn() }));
 
 describe('MyCalendar component', () => {
   describe('@snapshots', () => {
+    it('should match with previous MyCalendar Month', () => {
+      const newDate: Date = new Date('2021-08-03');
+      const { asFragment } = render(
+        <MyCalendar displayMode={DisplayMode.Month} displayedDate={newDate} />
+      );
+
+      expect(asFragment()).toMatchSnapshot('MyCalendar snapshot Month');
+    });
+
     it('should match with previous MyCalendar Week', () => {
       const newDate: Date = new Date('2021-08-03');
       const { asFragment } = render(

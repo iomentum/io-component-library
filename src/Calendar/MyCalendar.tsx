@@ -1,26 +1,38 @@
 import React, { useMemo, useState } from 'react';
 import { CalendarHeader } from './components/CalendarHeader';
 import { EventManagement } from './components/EventManagement';
-import { createEvent, EVENTS, DisplayMode, DayzEventsCollection } from './utils';
+import { DisplayMode, WeekStartsOn } from './utils';
 
 import 'dayz/dist/dayz.css';
 import './MyCalendar.css';
 import { CalendarContext, CalendarContextInterface } from './contexts/CalendarContext';
 import { EventContext, EventContextInterface } from './contexts/EventContext';
 import { DayzWrapper } from './components/DayzWrapper';
+import { createDefaultMyCalendarEvent, MyCalendarEvent } from './utils/eventUtils';
 
-export interface CalendarProps {
-  displayedDate: Date;
+interface MyCalendarOptions {
   displayMode: DisplayMode;
-  events?: DayzEventsCollection;
+  displayedHours: [number, number];
+  timeFormat: string;
+  locale: string;
+  weekStartsOn: WeekStartsOn;
 }
 
-export function MyCalendar(props: CalendarProps) {
+export interface MyCalendarProps {
+  displayedDate: Date;
+  events: MyCalendarEvent[];
+  onCreate: (event: Event) => MyCalendarEvent[];
+  onUpdate: (event: Event) => MyCalendarEvent[];
+  onDelete: (event: Event) => MyCalendarEvent[];
+  options: MyCalendarOptions;
+}
+
+export function MyCalendar(props: MyCalendarProps) {
   const [displayedDate, setDisplayedDate] = useState(props.displayedDate);
-  const [displayMode, setDisplayMode] = useState(props.displayMode);
+  const [displayMode, setDisplayMode] = useState(props.options.displayMode);
   const [eventsCollection, setEventsCollection] = useState(props.events);
   const [eventManagementOpened, setEventManagementOpened] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(createEvent(displayedDate));
+  const [currentEvent, setCurrentEvent] = useState(createDefaultMyCalendarEvent(displayedDate));
 
   const calendarContextValue = useMemo<CalendarContextInterface>(
     () => ({
@@ -54,7 +66,3 @@ export function MyCalendar(props: CalendarProps) {
     </CalendarContext.Provider>
   );
 }
-
-MyCalendar.defaultProps = {
-  events: EVENTS,
-};

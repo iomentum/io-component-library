@@ -12,8 +12,14 @@ export interface EventDateRange {
 }
 
 export enum DisplayMode {
+  Month = 'month',
   Week = 'week',
   Day = 'day',
+}
+
+export enum WeekStartsOn {
+  Sunday,
+  Monday,
 }
 
 export interface Event {
@@ -66,11 +72,6 @@ export const createEvent = (eventStart: Date): Event => {
 export const createMomentDateRangeFromDate = (start: Date, end: Date) =>
   extendedMoment.range(extendedMoment(start), extendedMoment(end));
 
-interface SelectedEvent {
-  content: string;
-  range: DateRange;
-}
-
 export const convertEventIntoDayzEvent = (event: Event): DayzEvent => ({
   content: event.content,
   range: () =>
@@ -87,27 +88,3 @@ export const convertDayzEventIntoEvent = (dayzEvent: DayzEvent): Event => ({
     eventEnd: dayzEvent.range().end.toDate(),
   },
 });
-
-export const findEvent = (event: SelectedEvent, events: DayzEventsCollection) =>
-  convertDayzEventIntoEvent(
-    events.events.find(
-      (currEvent) => event.content === currEvent.content && event.range.isSame(currEvent.range())
-    )
-  );
-
-// const date = extendedMoment();
-
-export const EVENTS: DayzEventsCollection = new Dayz.EventsCollection([
-  // {
-  //   content: "Weeklong",
-  //   range: extendedMoment.range(date.clone(), date.clone().endOf("day")),
-  // },
-  // {
-  //   content: "9am - 2pm",
-  //   range: extendedMoment.range(date.clone().hour(9), date.clone().hour(14)),
-  // },
-  // {
-  //   content: "8am - 8pm",
-  //   range: extendedMoment.range(date.clone().hour(8), date.clone().hour(21).minutes(40)),
-  // },
-]);

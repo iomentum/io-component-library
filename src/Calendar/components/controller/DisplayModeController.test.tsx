@@ -18,6 +18,15 @@ const providerValue = {
 
 describe('DisplayCheckbox component', () => {
   describe('@snapshots', () => {
+    it('should match with previous Month checkbox', () => {
+      const { asFragment } = calendarContextMock(
+        <DisplayCheckbox displayMode={DisplayMode.Month} />,
+        providerValue
+      );
+
+      expect(asFragment()).toMatchSnapshot('DisplayCheckbox Month snapshot');
+    });
+
     it('should match with previous Week checkbox', () => {
       const { asFragment } = calendarContextMock(
         <DisplayCheckbox displayMode={DisplayMode.Week} />,
@@ -38,6 +47,14 @@ describe('DisplayCheckbox component', () => {
   });
 
   describe('@events', () => {
+    it('the Month checkbox should trigger a setDisplayMode on click', () => {
+      calendarContextMock(<DisplayCheckbox displayMode={DisplayMode.Month} />, providerValue);
+
+      const inputDisplayCheckbox = screen.getByRole('checkbox');
+      inputDisplayCheckbox.click();
+      expect(providerValue.setDisplayMode).toHaveBeenCalledWith('month');
+    });
+
     it('the Week checkbox should trigger a setDisplayMode on click', () => {
       calendarContextMock(<DisplayCheckbox displayMode={DisplayMode.Week} />, providerValue);
 

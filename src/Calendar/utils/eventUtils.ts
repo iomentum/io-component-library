@@ -1,41 +1,115 @@
+import { DateRange } from 'moment-range';
+import Dayz from 'dayz';
 import { EventModel } from '../reducers/EventReducer';
-import { DayzEventsCollection, Event, convertEventIntoDayzEvent } from '../utils';
+import { Event, extendedMoment } from '../utils';
 
-const currentEventIndex = (eventsCollection: DayzEventsCollection, currentEvent: Event) =>
-  eventsCollection.events.findIndex(
-    (evnt) =>
-      evnt.content === currentEvent.content &&
-      evnt.range().isSame(convertEventIntoDayzEvent(currentEvent).range())
-  );
+export interface MyCalendarEvent {
+  uuid: string;
+  title: string;
+  startDate: Date;
+  endDate: Date;
+  metadata: Record<string, unknown>;
+}
 
-export const deleteEvent = (eventsCollection: DayzEventsCollection, eventToDelete: Event) => {
-  const eventToDeleteIndex = currentEventIndex(eventsCollection, eventToDelete);
+export interface DayzEvent {
+  content: string;
+  range: DateRange;
+  uuid: string;
+}
 
-  eventsCollection.events.splice(eventToDeleteIndex, 1);
+export interface DayzEventsCollection {
+  events: DayzEvent[];
+  add: (
+    eventAttrs: {
+      content: string;
+      range: DateRange;
+    },
+    options?: Record<string, never>
+  ) => void;
+}
+
+export const currentEventIndex = (
+  myCalendarEvents: MyCalendarEvent[],
+  myCalendarEvent: MyCalendarEvent
+) => myCalendarEvents.findIndex((event) => event.uuid === myCalendarEvent.uuid);
+
+export const deleteEvent = (
+  myCalendarEvents: MyCalendarEvent[],
+  myCalendarEvent: MyCalendarEvent
+) => {
+  const eventToDeleteIndex = currentEventIndex(myCalendarEvents, myCalendarEvent);
+
+  myCalendarEvents.splice(eventToDeleteIndex, 1);
 };
 
-export const isEventExisting = (eventsCollection: DayzEventsCollection, currentEvent: Event) =>
-  currentEventIndex(eventsCollection, currentEvent) !== -1;
+export const isEventExisting = (
+  eventsCollection: MyCalendarEvent[],
+  myCalendarEvent: MyCalendarEvent
+) => currentEventIndex(eventsCollection, myCalendarEvent) !== -1;
 
-export const createEvent = (event: EventModel, isFullDayEvent: boolean): Event => {
+const computeEventDate = (event: EventModel): [Date, Date] => {
   const [newEventStartHour, newEventStartMinutes] = event.startHour.split(':');
   const [newEventEndHour, newEventEndMinutes] = event.endHour.split(':');
 
-  const newEventStartDate = new Date(event.startDate);
-  newEventStartDate.setHours(+newEventStartHour, +newEventStartMinutes);
+  const startDate = new Date(event.startDate);
+  startDate.setHours(+newEventStartHour, +newEventStartMinutes);
 
-  const newEventEndDate = new Date(event.endDate);
-  if (isFullDayEvent) {
-    newEventEndDate.setHours(23, 59);
-  } else {
-    newEventEndDate.setHours(+newEventEndHour, +newEventEndMinutes);
-  }
+  const endDate = new Date(event.endDate);
+  endDate.setHours(+newEventEndHour, +newEventEndMinutes);
+
+  return [startDate, endDate];
+};
+
+export const createEvent = (event: EventModel): MyCalendarEvent => {
+  const [startDate, endDate] = computeEventDate(event);
 
   return {
-    content: event.content,
-    dateRange: {
-      eventStart: newEventStartDate,
-      eventEnd: newEventEndDate,
-    },
+    uuid: 'awdawd',
+    title: event.content,
+    startDate,
+    endDate,
+    metadata: {},
   };
 };
+
+export const updateEvent = (event: EventModel, eventToUpdate: MyCalendarEvent): MyCalendarEvent => {
+  const [startDate, endDate] = computeEventDate(event);
+
+  return {
+    uuid: eventToUpdate.uuid,
+    title: event.content,
+    startDate,
+    endDate,
+    metadata: eventToUpdate.metadata,
+  };
+};
+
+const convertMyCalendarEventIntoDayzEvent = (myCalendarEvent: MyCalendarEvent): DayzEvent => ({
+  content: myCalendarEvent.title,
+  range: extendedMoment.range(
+    extendedMoment(new Date(myCalendarEvent.startDate)),
+    extendedMoment(new Date(myCalendarEvent.endDate))
+  ),
+  uuid: myCalendarEvent.uuid,
+});
+
+export const convertMyCalendarEventsIntoDayzEventsCollection = (
+  myCalendarEvents: MyCalendarEvent[]
+): DayzEventsCollection =>
+  new Dayz.EventsCollection([...myCalendarEvents.map(convertMyCalendarEventIntoDayzEvent)]);
+
+export const createDefaultMyCalendarEvent = (startDate: Date): MyCalendarEvent => {
+  const endDate = new Date(startDate);
+  endDate.setHours(endDate.getHours() + 1);
+
+  return {
+    uuid: `awdawd`,
+    title: '',
+    startDate,
+    endDate,
+    metadata: {},
+  };
+};
+
+export const findEvent = (event: DayzEvent, myCalendarEvents: MyCalendarEvent[]) =>
+  myCalendarEvents.find((myCalendarEvent) => myCalendarEvent.uuid === event.uuid);

@@ -1,12 +1,6 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
-import Dayz from 'dayz';
 import { TextField } from './EventManagement.style';
-import {
-  DayzEventsCollection,
-  formatDateAndHour,
-  computeIsFullDayEvent,
-  convertEventIntoDayzEvent,
-} from '../utils';
+import { formatDateAndHour } from '../utils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
@@ -15,32 +9,34 @@ import { EventManagementContext } from '../contexts/EventManagementContext';
 import { DateSelector, DateType } from './selector/DateSelector';
 import {
   createEvent,
-  deleteEvent,
+  currentEventIndex,
   isEventExisting as isEventExistingFunction,
+  updateEvent,
 } from '../utils/eventUtils';
 
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
   const [isFullDayEvent, setIsFullDayEvent] = useState(
-    computeIsFullDayEvent(currentEvent.dateRange)
+    true
+    // computeIsFullDayEvent(currentEvent.dateRange)
   );
 
   const [displayStartDate, startHour] = useCallback(
-    () => formatDateAndHour(currentEvent.dateRange.eventStart),
+    () => formatDateAndHour(currentEvent.startDate),
     [currentEvent]
   )();
 
   const [displayEndDate, endHour] = useCallback(
-    () => formatDateAndHour(currentEvent.dateRange.eventEnd),
+    () => formatDateAndHour(currentEvent.endDate),
     [currentEvent]
   )();
 
   const [event, dispatchEvent] = useReducer(eventReducer, {
-    content: currentEvent.content,
-    startDate: currentEvent.dateRange.eventStart,
+    content: currentEvent.title,
+    startDate: currentEvent.startDate,
     displayStartDate,
-    endDate: currentEvent.dateRange.eventEnd,
+    endDate: currentEvent.endDate,
     displayEndDate,
     startHour,
     endHour,
@@ -65,10 +61,10 @@ export function EventManagement() {
     () =>
       dispatchEvent({
         type: EventType.Reset,
-        content: currentEvent.content || '',
-        startDate: currentEvent.dateRange.eventStart,
+        content: currentEvent.title || '',
+        startDate: currentEvent.startDate,
         displayStartDate,
-        endDate: currentEvent.dateRange.eventEnd,
+        endDate: currentEvent.endDate,
         displayEndDate,
         startHour,
         endHour,
@@ -78,18 +74,24 @@ export function EventManagement() {
 
   const handleSaveEvent = useCallback(() => {
     if (isEventExisting) {
-      deleteEvent(eventsCollection, currentEvent);
+      const updatedEvent = updateEvent(event, currentEvent);
+      setEventsCollection((prevEvents) => {
+        const newEventsCollection = [...prevEvents];
+        newEventsCollection[currentEventIndex(prevEvents, updatedEvent)] = updatedEvent;
+        return newEventsCollection;
+      });
+    } else {
+      setEventsCollection((prevEvents) => [...prevEvents, createEvent(event)]);
     }
-
-    const newEvents: DayzEventsCollection = new Dayz.EventsCollection([...eventsCollection.events]);
-    const newDayzEvent = convertEventIntoDayzEvent(createEvent(event, isFullDayEvent));
-
-    newEvents.add({ content: newDayzEvent.content, range: newDayzEvent.range() });
-    setEventsCollection(newEvents);
-  }, [eventsCollection, currentEvent, isEventExisting, event, isFullDayEvent]);
+  }, [currentEvent, isEventExisting, event]);
 
   const handleDeleteEvent = useCallback(
-    () => deleteEvent(eventsCollection, currentEvent),
+    () =>
+      setEventsCollection((prevEvents) => {
+        const newEventsCollection = [...prevEvents];
+        newEventsCollection.splice(currentEventIndex(prevEvents, currentEvent), 1);
+        return newEventsCollection;
+      }),
     [currentEvent, eventsCollection]
   );
 

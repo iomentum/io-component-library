@@ -1,9 +1,15 @@
 import React, { useCallback, useContext, useMemo } from 'react';
 import Dayz from 'dayz';
+import moment from 'moment';
 import { DayzBox } from './DayzWrapper.style';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext } from '../contexts/EventContext';
-import { findEvent, createEvent, createExtendedMomentFromDate } from '../utils';
+import { createExtendedMomentFromDate } from '../utils';
+import {
+  findEvent,
+  convertMyCalendarEventsIntoDayzEventsCollection,
+  createDefaultMyCalendarEvent,
+} from '../utils/eventUtils';
 
 export const DayzWrapper = () => {
   const { displayedDate, displayMode } = useContext(CalendarContext);
@@ -14,12 +20,17 @@ export const DayzWrapper = () => {
     [displayedDate]
   );
 
+  const dayzEventsCollection = useMemo(
+    () => convertMyCalendarEventsIntoDayzEventsCollection(eventsCollection),
+    [eventsCollection]
+  );
+
   const handleEventClick = useCallback(
     (_, layout) => {
       setCurrentEvent(findEvent(layout.attributes, eventsCollection));
       setEventManagementOpened(true);
     },
-    [eventsCollection, setCurrentEvent, setEventManagementOpened]
+    [dayzEventsCollection]
   );
 
   const handleDayEventClick = useMemo(
@@ -27,17 +38,17 @@ export const DayzWrapper = () => {
       onClick: (_, eventDate) => {
         setEventManagementOpened(true);
         // eslint-disable-next-line no-underscore-dangle
-        setCurrentEvent(createEvent(eventDate._d));
+        setCurrentEvent(createDefaultMyCalendarEvent(moment(eventDate).toDate()));
       },
     }),
-    [setCurrentEvent, setEventManagementOpened]
+    []
   );
 
   return (
     <DayzBox>
       <Dayz
         date={displayedDayzDate}
-        events={eventsCollection}
+        events={dayzEventsCollection}
         display={displayMode}
         displayHours={[0, 24]}
         timeFormat="HH:mm"

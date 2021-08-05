@@ -1,12 +1,12 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { DayzEventsCollection, Event } from '../utils';
+import { MyCalendarEvent } from '../utils/eventUtils';
 
 export interface EventContextInterface {
-  eventsCollection: DayzEventsCollection;
-  currentEvent: Event;
+  eventsCollection: MyCalendarEvent[];
+  currentEvent: MyCalendarEvent;
   eventManagementOpened: boolean;
-  setEventsCollection: Dispatch<SetStateAction<DayzEventsCollection>>;
-  setCurrentEvent: Dispatch<SetStateAction<Event>>;
+  setEventsCollection: Dispatch<SetStateAction<MyCalendarEvent[]>>;
+  setCurrentEvent: Dispatch<SetStateAction<MyCalendarEvent>>;
   setEventManagementOpened: Dispatch<SetStateAction<boolean>>;
 }
 

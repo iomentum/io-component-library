@@ -28,7 +28,11 @@ export const computeNewDate = (date: Date, op: MathOperation, dayToCompute: numb
 
 export const DisplayedDateController = () => {
   const { displayMode, setDisplayedDate } = useContext(CalendarContext);
-  const dayToCompute = useMemo(() => (displayMode === DisplayMode.Day ? 1 : 7), [displayMode]);
+  const dayToCompute = useMemo(
+    // eslint-disable-next-line no-nested-ternary
+    () => (displayMode === DisplayMode.Day ? 1 : displayMode === DisplayMode.Week ? 7 : 30),
+    [displayMode]
+  );
 
   const handleSubstractButton = useCallback(
     () =>
