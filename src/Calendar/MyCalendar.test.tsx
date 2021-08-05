@@ -5,21 +5,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MyCalendar } from './MyCalendar';
-import { MockMyCalendarEvents } from './utils/testUtils';
-import { DisplayMode, WeekStartsOn, MyCalendarEvent } from './types';
-
-const createDefaultMyCalendarEvent = (startDate: Date): MyCalendarEvent => {
-  const endDate = new Date(startDate);
-  endDate.setHours(endDate.getHours() + 1);
-
-  return {
-    uuid: `awdawd`,
-    title: '',
-    startDate,
-    endDate,
-    metadata: {},
-  };
-};
+import { MockEvents } from './utils/testUtils';
+import { DisplayMode, WeekStartsOn } from './types';
 
 jest.mock('./utils/momentUtils', () => ({
   createExtendedMomentFromDate: () => new Date('2021-08-03'),
@@ -27,76 +14,48 @@ jest.mock('./utils/momentUtils', () => ({
 
 jest.mock('./utils/eventUtils', () => {
   const Dayz = jest.requireActual('dayz');
+  const { createDefaultEvent } = jest.requireActual('./__mocks__/eventUtils.mock');
+
   return {
-    createDefaultMyCalendarEvent: () => createDefaultMyCalendarEvent(new Date('2021-08-03')),
-    convertMyCalendarEventsIntoDayzEventsCollection: () => new Dayz.EventsCollection([]),
-    getMyCalendarEventIndex: jest.fn(),
+    createDefaultEvent: () => createDefaultEvent(new Date('2021-08-03')),
+    convertEventsIntoDayzEventsCollection: () => new Dayz.EventsCollection([]),
+    getEventIndex: jest.fn(),
   };
 });
 
+const myCalendarMock = (displayMode: DisplayMode) =>
+  render(
+    <MyCalendar
+      events={MockEvents}
+      displayedDate={new Date('2021-08-03')}
+      onCreate={() => []}
+      onUpdate={() => []}
+      onDelete={() => []}
+      options={{
+        displayMode,
+        displayedHours: [0, 24],
+        timeFormat: 'HH:mm',
+        locale: 'fr',
+        weekStartsOn: WeekStartsOn.Monday,
+      }}
+    />
+  );
+
 describe('MyCalendar component', () => {
   describe('@snapshots', () => {
-    it('should match with previous MyCalendar Month', () => {
-      const { asFragment } = render(
-        <MyCalendar
-          events={MockMyCalendarEvents}
-          displayedDate={new Date('2021-08-03')}
-          onCreate={jest.fn()}
-          onUpdate={jest.fn()}
-          onDelete={jest.fn()}
-          options={{
-            displayMode: DisplayMode.Month,
-            displayedHours: [0, 24],
-            timeFormat: 'HH:mm',
-            locale: 'fr',
-            weekStartsOn: WeekStartsOn.Monday,
-          }}
-        />
-      );
+    it('should match with previous MyCalendar Month', () =>
+      expect(myCalendarMock(DisplayMode.Month).asFragment()).toMatchSnapshot(
+        'MyCalendar snapshot Month'
+      ));
 
-      expect(asFragment()).toMatchSnapshot('MyCalendar snapshot Month');
-    });
+    it('should match with previous MyCalendar Week', () =>
+      expect(myCalendarMock(DisplayMode.Week).asFragment()).toMatchSnapshot(
+        'MyCalendar snapshot Week'
+      ));
 
-    it('should match with previous MyCalendar Week', () => {
-      const { asFragment } = render(
-        <MyCalendar
-          events={MockMyCalendarEvents}
-          displayedDate={new Date('2021-08-03')}
-          onCreate={jest.fn()}
-          onUpdate={jest.fn()}
-          onDelete={jest.fn()}
-          options={{
-            displayMode: DisplayMode.Week,
-            displayedHours: [0, 24],
-            timeFormat: 'HH:mm',
-            locale: 'fr',
-            weekStartsOn: WeekStartsOn.Monday,
-          }}
-        />
-      );
-
-      expect(asFragment()).toMatchSnapshot('MyCalendar snapshot Week');
-    });
-
-    it('should match with previous MyCalendar Day', () => {
-      const { asFragment } = render(
-        <MyCalendar
-          events={MockMyCalendarEvents}
-          displayedDate={new Date('2021-08-03')}
-          onCreate={jest.fn()}
-          onUpdate={jest.fn()}
-          onDelete={jest.fn()}
-          options={{
-            displayMode: DisplayMode.Day,
-            displayedHours: [0, 24],
-            timeFormat: 'HH:mm',
-            locale: 'fr',
-            weekStartsOn: WeekStartsOn.Monday,
-          }}
-        />
-      );
-
-      expect(asFragment()).toMatchSnapshot('MyCalendar snapshot Day');
-    });
+    it('should match with previous MyCalendar Day', () =>
+      expect(myCalendarMock(DisplayMode.Day).asFragment()).toMatchSnapshot(
+        'MyCalendar snapshot Day'
+      ));
   });
 });

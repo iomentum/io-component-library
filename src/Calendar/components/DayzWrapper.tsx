@@ -5,14 +5,16 @@ import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext } from '../contexts/EventContext';
 import {
   findEvent,
-  convertMyCalendarEventsIntoDayzEventsCollection,
-  createDefaultMyCalendarEvent,
+  convertEventsIntoDayzEventsCollection,
+  createDefaultEvent,
 } from '../utils/eventUtils';
 import { createExtendedMomentFromDate, createDateFromMoment } from '../utils/momentUtils';
+import { EventType } from '../reducers/EventReducer';
+import { formatDateAndHour } from '../utils/dateUtils';
 
 export const DayzWrapper = () => {
   const { displayedDate, displayMode } = useContext(CalendarContext);
-  const { eventsCollection, setCurrentEvent, setEventManagementOpened } = useContext(EventContext);
+  const { eventsCollection, setEventManagementOpened, dispatchEvent } = useContext(EventContext);
 
   const displayedDayzDate = useMemo(
     () => createExtendedMomentFromDate(displayedDate),
@@ -20,13 +22,29 @@ export const DayzWrapper = () => {
   );
 
   const dayzEventsCollection = useMemo(
-    () => convertMyCalendarEventsIntoDayzEventsCollection(eventsCollection),
+    () => convertEventsIntoDayzEventsCollection(eventsCollection),
     [eventsCollection]
   );
 
   const handleEventClick = useCallback(
     (_, layout) => {
-      setCurrentEvent(findEvent(layout.attributes, eventsCollection));
+      const { uuid, title, startDate, endDate, metadata } = findEvent(
+        layout.attributes,
+        eventsCollection
+      );
+      const [, startHour] = formatDateAndHour(startDate);
+      const [, endHour] = formatDateAndHour(endDate);
+
+      dispatchEvent({
+        type: EventType.UpdateEvent,
+        uuid,
+        title,
+        startDate,
+        endDate,
+        startHour,
+        endHour,
+        metadata,
+      });
       setEventManagementOpened(true);
     },
     [eventsCollection]
@@ -35,7 +53,22 @@ export const DayzWrapper = () => {
   const handleDayEventClick = useMemo(
     () => ({
       onClick: (_, eventDate) => {
-        setCurrentEvent(createDefaultMyCalendarEvent(createDateFromMoment(eventDate)));
+        const { uuid, title, startDate, endDate, metadata } = createDefaultEvent(
+          createDateFromMoment(eventDate)
+        );
+        const [, startHour] = formatDateAndHour(startDate);
+        const [, endHour] = formatDateAndHour(endDate);
+
+        dispatchEvent({
+          type: EventType.UpdateEvent,
+          uuid,
+          title,
+          startDate,
+          endDate,
+          startHour,
+          endHour,
+          metadata,
+        });
         setEventManagementOpened(true);
       },
     }),

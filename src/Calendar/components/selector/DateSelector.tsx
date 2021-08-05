@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { TextField } from './DateSelector.style';
-import { EventManagementContext } from '../../contexts/EventManagementContext';
+import { EventContext } from '../../contexts/EventContext';
 import { EventType } from '../../reducers/EventReducer';
 
 export enum DateType {
@@ -14,7 +14,7 @@ interface DateSelectorProps {
 
 export const DateSelector = (props: DateSelectorProps) => {
   const { dateType } = props;
-  const { event, dispatchEvent } = useContext(EventManagementContext);
+  const { event, dispatchEvent } = useContext(EventContext);
 
   const displayedValue = useMemo(
     () => (dateType === DateType.Start ? event.displayStartDate : event.displayEndDate),
