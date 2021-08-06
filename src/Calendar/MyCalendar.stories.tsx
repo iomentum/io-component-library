@@ -9,8 +9,7 @@ export default {
 } as ComponentMeta<typeof MyCalendar>;
 
 const Template: ComponentStory<typeof MyCalendar> = (args: CalendarProps) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <MyCalendar {...args} />
+  <MyCalendar displayedDate={args.displayedDate} displayMode={args.displayMode} />
 );
 
 export const Primary = Template.bind({});
