@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateSelector component @snapshots should match with previous DateType.End DateSelector: End DateSelector snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root WithStyles(ForwardRef(TextField))-root-2 MuiFormControl-fullWidth"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+      data-shrink="true"
+    >
+      End day
+    </label>
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input"
+        data-testid="endDate"
+        type="date"
+        value="2021-07-30"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DateSelector component @snapshots should match with previous DateType.Start DateSelector: Start DateSelector snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root WithStyles(ForwardRef(TextField))-root-1 MuiFormControl-fullWidth"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+      data-shrink="true"
+    >
+      Start day
+    </label>
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input"
+        data-testid="startDate"
+        type="date"
+        value="2021-07-30"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
