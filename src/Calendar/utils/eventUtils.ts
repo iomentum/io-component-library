@@ -22,8 +22,8 @@ export interface DayzEventsCollection {
 }
 
 export const getMyCalendarEventIndex = (
-  myCalendarEvents: MyCalendarEvent[],
-  myCalendarEvent: MyCalendarEvent
+  myCalendarEvent: MyCalendarEvent,
+  myCalendarEvents: MyCalendarEvent[]
 ) => myCalendarEvents.findIndex((event) => event.uuid === myCalendarEvent.uuid);
 
 const computeEventDate = (event: EventModel): [Date, Date] => {
@@ -66,7 +66,7 @@ export const updateEvent = (event: EventModel, eventToUpdate: MyCalendarEvent): 
 export const deleteEvent = (
   myCalendarEvents: MyCalendarEvent[],
   myCalendarEvent: MyCalendarEvent
-) => myCalendarEvents.splice(getMyCalendarEventIndex(myCalendarEvents, myCalendarEvent), 1);
+) => myCalendarEvents.splice(getMyCalendarEventIndex(myCalendarEvent, myCalendarEvents), 1);
 
 const convertMyCalendarEventIntoDayzEvent = (myCalendarEvent: MyCalendarEvent): DayzEvent => ({
   content: myCalendarEvent.title,

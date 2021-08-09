@@ -4,7 +4,7 @@ import { MyCalendar, MyCalendarProps } from './MyCalendar';
 import { DisplayMode, WeekStartsOn, MyCalendarEvent } from './types';
 
 export default {
-  title: 'C&C/MyCalendar',
+  title: 'MyCalendar',
   component: MyCalendar,
 } as ComponentMeta<typeof MyCalendar>;
 

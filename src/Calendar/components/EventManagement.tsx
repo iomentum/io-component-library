@@ -45,7 +45,7 @@ export function EventManagement() {
   );
 
   const isEventExisting = useMemo(
-    () => getMyCalendarEventIndex(eventsCollection, currentEvent) !== -1,
+    () => getMyCalendarEventIndex(currentEvent, eventsCollection) !== -1,
     [eventsCollection, currentEvent]
   );
 
@@ -69,7 +69,7 @@ export function EventManagement() {
       const updatedEvent = updateEvent(event, currentEvent);
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection[getMyCalendarEventIndex(prevEvents, updatedEvent)] = updatedEvent;
+        newEventsCollection[getMyCalendarEventIndex(updatedEvent, prevEvents)] = updatedEvent;
         return newEventsCollection;
       });
     } else {
@@ -81,7 +81,7 @@ export function EventManagement() {
     () =>
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection.splice(getMyCalendarEventIndex(prevEvents, currentEvent), 1);
+        newEventsCollection.splice(getMyCalendarEventIndex(currentEvent, prevEvents), 1);
         return newEventsCollection;
       }),
     [currentEvent, eventsCollection]

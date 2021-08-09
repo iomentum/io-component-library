@@ -29,7 +29,7 @@ export const DayzWrapper = () => {
       setCurrentEvent(findEvent(layout.attributes, eventsCollection));
       setEventManagementOpened(true);
     },
-    [dayzEventsCollection]
+    [eventsCollection]
   );
 
   const handleDayEventClick = useMemo(
