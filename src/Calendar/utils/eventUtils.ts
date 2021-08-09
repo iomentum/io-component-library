@@ -43,7 +43,7 @@ export const createEvent = (event: EventModel): MyCalendarEvent => {
   const [startDate, endDate] = computeEventDate(event);
 
   return {
-    uuid: 'awdawd',
+    uuid: `awdaw1-${Math.floor(Math.random() * 1000)}`,
     title: event.content,
     startDate,
     endDate,

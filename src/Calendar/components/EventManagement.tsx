@@ -49,6 +49,8 @@ export function EventManagement() {
     [eventsCollection, currentEvent]
   );
 
+  console.log(isEventExisting, getMyCalendarEventIndex(currentEvent, eventsCollection));
+
   useEffect(
     () =>
       dispatchEvent({
