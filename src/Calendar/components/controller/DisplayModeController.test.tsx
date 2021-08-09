@@ -5,14 +5,13 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { CalendarContext } from '../../contexts/CalendarContext';
-import { DisplayMode } from '../../utils';
+import { DisplayMode } from '../../types';
 import { DisplayCheckbox, DisplayModeController } from './DisplayModeController';
 
 const calendarContextMock = (component, providerValue) =>
   render(<CalendarContext.Provider value={providerValue}>{component}</CalendarContext.Provider>);
 
 const providerValue = {
-  displayMode: DisplayMode,
   setDisplayMode: jest.fn(),
 };
 

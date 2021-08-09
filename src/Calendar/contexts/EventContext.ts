@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { MyCalendarEvent } from '../utils/eventUtils';
+import { MyCalendarEvent } from '../types';
 
 export interface EventContextInterface {
   eventsCollection: MyCalendarEvent[];

@@ -73,52 +73,24 @@ exports[`EventManagement component @snapshots should match with previous EventMa
           </div>
         </div>
         <div
-          class="sc-gtsrHT kIVTqI"
+          class="MuiFormControl-root MuiTextField-root WithStyles(ForwardRef(TextField))-root-2 MuiFormControl-fullWidth"
         >
-          <div
-            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+            data-shrink="true"
           >
-            <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-              data-shrink="true"
-            >
-              Start
-            </label>
-            <div
-              class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
-            >
-              <input
-                aria-invalid="false"
-                class="MuiInputBase-input MuiInput-input"
-                data-testid="startTime"
-                type="time"
-                value="02:00"
-              />
-            </div>
-          </div>
+            End day
+          </label>
           <div
-            class="sc-dlnjwi gjFHxI"
-          />
-          <div
-            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
           >
-            <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-              data-shrink="true"
-            >
-              End
-            </label>
-            <div
-              class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
-            >
-              <input
-                aria-invalid="false"
-                class="MuiInputBase-input MuiInput-input"
-                data-testid="endTime"
-                type="time"
-                value="02:00"
-              />
-            </div>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              data-testid="endDate"
+              type="date"
+              value="2021-08-03"
+            />
           </div>
         </div>
         <label
@@ -126,12 +98,13 @@ exports[`EventManagement component @snapshots should match with previous EventMa
         >
           <span
             aria-disabled="false"
-            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-4 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-4 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-5 Mui-checked MuiIconButton-colorPrimary"
           >
             <span
               class="MuiIconButton-label"
             >
               <input
+                checked=""
                 class="PrivateSwitchBase-input-7"
                 data-indeterminate="false"
                 name="isFullDayEvent"
@@ -145,7 +118,7 @@ exports[`EventManagement component @snapshots should match with previous EventMa
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
                 />
               </svg>
             </span>

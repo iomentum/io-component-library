@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import { CalendarHeader } from './components/CalendarHeader';
 import { EventManagement } from './components/EventManagement';
-import { DisplayMode, WeekStartsOn } from './utils';
+import { DisplayMode, WeekStartsOn, MyCalendarEvent } from './types';
 
 import 'dayz/dist/dayz.css';
 import './MyCalendar.css';
 import { CalendarContext, CalendarContextInterface } from './contexts/CalendarContext';
 import { EventContext, EventContextInterface } from './contexts/EventContext';
 import { DayzWrapper } from './components/DayzWrapper';
-import { createDefaultMyCalendarEvent, MyCalendarEvent } from './utils/eventUtils';
+import { createDefaultMyCalendarEvent } from './utils/eventUtils';
 
 interface MyCalendarOptions {
   displayMode: DisplayMode;
@@ -21,9 +21,9 @@ interface MyCalendarOptions {
 export interface MyCalendarProps {
   displayedDate: Date;
   events: MyCalendarEvent[];
-  onCreate: (event: Event) => MyCalendarEvent[];
-  onUpdate: (event: Event) => MyCalendarEvent[];
-  onDelete: (event: Event) => MyCalendarEvent[];
+  onCreate: (event: MyCalendarEvent) => MyCalendarEvent[];
+  onUpdate: (event: MyCalendarEvent) => MyCalendarEvent[];
+  onDelete: (event: MyCalendarEvent) => MyCalendarEvent[];
   options: MyCalendarOptions;
 }
 

@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useCallback, useContext, useMemo } from 'react';
 import { Button } from '@material-ui/core';
 import { CalendarContext } from '../../contexts/CalendarContext';
-import { DisplayMode } from '../../utils';
+import { DisplayMode } from '../../types';
 
 export enum MathOperation {
   Addition,

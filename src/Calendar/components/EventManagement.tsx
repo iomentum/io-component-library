@@ -1,26 +1,18 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import { TextField } from './EventManagement.style';
-import { formatDateAndHour } from '../utils';
+import { formatDateAndHour } from '../utils/dateUtils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagementContext } from '../contexts/EventManagementContext';
 import { DateSelector, DateType } from './selector/DateSelector';
-import {
-  createEvent,
-  currentEventIndex,
-  isEventExisting as isEventExistingFunction,
-  updateEvent,
-} from '../utils/eventUtils';
+import { createEvent, getMyCalendarEventIndex, updateEvent } from '../utils/eventUtils';
 
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
-  const [isFullDayEvent, setIsFullDayEvent] = useState(
-    true
-    // computeIsFullDayEvent(currentEvent.dateRange)
-  );
+  const [isFullDayEvent, setIsFullDayEvent] = useState(true);
 
   const [displayStartDate, startHour] = useCallback(
     () => formatDateAndHour(currentEvent.startDate),
@@ -53,7 +45,7 @@ export function EventManagement() {
   );
 
   const isEventExisting = useMemo(
-    () => isEventExistingFunction(eventsCollection, currentEvent),
+    () => getMyCalendarEventIndex(eventsCollection, currentEvent) !== -1,
     [eventsCollection, currentEvent]
   );
 
@@ -77,7 +69,7 @@ export function EventManagement() {
       const updatedEvent = updateEvent(event, currentEvent);
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection[currentEventIndex(prevEvents, updatedEvent)] = updatedEvent;
+        newEventsCollection[getMyCalendarEventIndex(prevEvents, updatedEvent)] = updatedEvent;
         return newEventsCollection;
       });
     } else {
@@ -89,7 +81,7 @@ export function EventManagement() {
     () =>
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection.splice(currentEventIndex(prevEvents, currentEvent), 1);
+        newEventsCollection.splice(getMyCalendarEventIndex(prevEvents, currentEvent), 1);
         return newEventsCollection;
       }),
     [currentEvent, eventsCollection]

@@ -1,6 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DayzWrapper component @snapshots should match with previous DayzWrapper: DayzWrapper snapshot 1`] = `
+exports[`DayzWrapper component @snapshots should match with previous DayzWrapper displayMode Day: DayzWrapper snapshot displayMode Day 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdnxRM jtQfqv"
+  >
+    <div
+      class="dayz day"
+    >
+      <div
+        class="x-labels"
+      >
+        <div
+          class="day-label"
+        >
+          Tue, Aug 3rd
+        </div>
+      </div>
+      <div
+        class="body"
+      >
+        <div>
+          <div
+            class="y-labels"
+          >
+            <div
+              class="all-day"
+              style="display: none;"
+            >
+              All Day
+            </div>
+            <div
+              class="hour"
+            >
+              00:00
+            </div>
+            <div
+              class="hour"
+            >
+              01:00
+            </div>
+            <div
+              class="hour"
+            >
+              02:00
+            </div>
+            <div
+              class="hour"
+            >
+              03:00
+            </div>
+            <div
+              class="hour"
+            >
+              04:00
+            </div>
+            <div
+              class="hour"
+            >
+              05:00
+            </div>
+            <div
+              class="hour"
+            >
+              06:00
+            </div>
+            <div
+              class="hour"
+            >
+              07:00
+            </div>
+            <div
+              class="hour"
+            >
+              08:00
+            </div>
+            <div
+              class="hour"
+            >
+              09:00
+            </div>
+            <div
+              class="hour"
+            >
+              10:00
+            </div>
+            <div
+              class="hour"
+            >
+              11:00
+            </div>
+            <div
+              class="hour"
+            >
+              12:00
+            </div>
+            <div
+              class="hour"
+            >
+              13:00
+            </div>
+            <div
+              class="hour"
+            >
+              14:00
+            </div>
+            <div
+              class="hour"
+            >
+              15:00
+            </div>
+            <div
+              class="hour"
+            >
+              16:00
+            </div>
+            <div
+              class="hour"
+            >
+              17:00
+            </div>
+            <div
+              class="hour"
+            >
+              18:00
+            </div>
+            <div
+              class="hour"
+            >
+              19:00
+            </div>
+            <div
+              class="hour"
+            >
+              20:00
+            </div>
+            <div
+              class="hour"
+            >
+              21:00
+            </div>
+            <div
+              class="hour"
+            >
+              22:00
+            </div>
+            <div
+              class="hour"
+            >
+              23:00
+            </div>
+          </div>
+        </div>
+        <div
+          class="days"
+        >
+          <div
+            class="day before"
+            data-date="20210803"
+            style="order: 0;"
+          >
+            <div
+              class="label"
+            >
+              3
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DayzWrapper component @snapshots should match with previous DayzWrapper displayMode Month: DayzWrapper snapshot displayMode Month 1`] = `
 <DocumentFragment>
   <div
     class="sc-bdnxRM jtQfqv"
@@ -437,6 +614,303 @@ exports[`DayzWrapper component @snapshots should match with previous DayzWrapper
             >
               4
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DayzWrapper component @snapshots should match with previous DayzWrapper displayMode Week: DayzWrapper snapshot displayMode Week 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdnxRM jtQfqv"
+  >
+    <div
+      class="dayz week"
+    >
+      <div
+        class="x-labels"
+      >
+        <div
+          class="day-label"
+        >
+          Sun, Aug 1st
+        </div>
+        <div
+          class="day-label"
+        >
+          Mon, Aug 2nd
+        </div>
+        <div
+          class="day-label"
+        >
+          Tue, Aug 3rd
+        </div>
+        <div
+          class="day-label"
+        >
+          Wed, Aug 4th
+        </div>
+        <div
+          class="day-label"
+        >
+          Thu, Aug 5th
+        </div>
+        <div
+          class="day-label"
+        >
+          Fri, Aug 6th
+        </div>
+        <div
+          class="day-label"
+        >
+          Sat, Aug 7th
+        </div>
+      </div>
+      <div
+        class="body"
+      >
+        <div>
+          <div
+            class="y-labels"
+          >
+            <div
+              class="all-day"
+              style="display: none;"
+            >
+              All Day
+            </div>
+            <div
+              class="hour"
+            >
+              00:00
+            </div>
+            <div
+              class="hour"
+            >
+              01:00
+            </div>
+            <div
+              class="hour"
+            >
+              02:00
+            </div>
+            <div
+              class="hour"
+            >
+              03:00
+            </div>
+            <div
+              class="hour"
+            >
+              04:00
+            </div>
+            <div
+              class="hour"
+            >
+              05:00
+            </div>
+            <div
+              class="hour"
+            >
+              06:00
+            </div>
+            <div
+              class="hour"
+            >
+              07:00
+            </div>
+            <div
+              class="hour"
+            >
+              08:00
+            </div>
+            <div
+              class="hour"
+            >
+              09:00
+            </div>
+            <div
+              class="hour"
+            >
+              10:00
+            </div>
+            <div
+              class="hour"
+            >
+              11:00
+            </div>
+            <div
+              class="hour"
+            >
+              12:00
+            </div>
+            <div
+              class="hour"
+            >
+              13:00
+            </div>
+            <div
+              class="hour"
+            >
+              14:00
+            </div>
+            <div
+              class="hour"
+            >
+              15:00
+            </div>
+            <div
+              class="hour"
+            >
+              16:00
+            </div>
+            <div
+              class="hour"
+            >
+              17:00
+            </div>
+            <div
+              class="hour"
+            >
+              18:00
+            </div>
+            <div
+              class="hour"
+            >
+              19:00
+            </div>
+            <div
+              class="hour"
+            >
+              20:00
+            </div>
+            <div
+              class="hour"
+            >
+              21:00
+            </div>
+            <div
+              class="hour"
+            >
+              22:00
+            </div>
+            <div
+              class="hour"
+            >
+              23:00
+            </div>
+          </div>
+        </div>
+        <div
+          class="days"
+        >
+          <div
+            class="day before"
+            data-date="20210801"
+            style="order: 0;"
+          >
+            <div
+              class="label"
+            >
+              1
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+          <div
+            class="day before"
+            data-date="20210802"
+            style="order: 1;"
+          >
+            <div
+              class="label"
+            >
+              2
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+          <div
+            class="day before"
+            data-date="20210803"
+            style="order: 2;"
+          >
+            <div
+              class="label"
+            >
+              3
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+          <div
+            class="day after"
+            data-date="20210804"
+            style="order: 3;"
+          >
+            <div
+              class="label"
+            >
+              4
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+          <div
+            class="day after"
+            data-date="20210805"
+            style="order: 4;"
+          >
+            <div
+              class="label"
+            >
+              5
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+          <div
+            class="day after"
+            data-date="20210806"
+            style="order: 5;"
+          >
+            <div
+              class="label"
+            >
+              6
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+          <div
+            class="day after"
+            data-date="20210807"
+            style="order: 6;"
+          >
+            <div
+              class="label"
+            >
+              7
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
         </div>
       </div>

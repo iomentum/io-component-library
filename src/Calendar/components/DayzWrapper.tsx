@@ -1,15 +1,14 @@
 import React, { useCallback, useContext, useMemo } from 'react';
 import Dayz from 'dayz';
-import moment from 'moment';
 import { DayzBox } from './DayzWrapper.style';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext } from '../contexts/EventContext';
-import { createExtendedMomentFromDate } from '../utils';
 import {
   findEvent,
   convertMyCalendarEventsIntoDayzEventsCollection,
   createDefaultMyCalendarEvent,
 } from '../utils/eventUtils';
+import { createExtendedMomentFromDate, createDateFromMoment } from '../utils/momentUtils';
 
 export const DayzWrapper = () => {
   const { displayedDate, displayMode } = useContext(CalendarContext);
@@ -36,9 +35,8 @@ export const DayzWrapper = () => {
   const handleDayEventClick = useMemo(
     () => ({
       onClick: (_, eventDate) => {
+        setCurrentEvent(createDefaultMyCalendarEvent(createDateFromMoment(eventDate)));
         setEventManagementOpened(true);
-        // eslint-disable-next-line no-underscore-dangle
-        setCurrentEvent(createDefaultMyCalendarEvent(moment(eventDate).toDate()));
       },
     }),
     []

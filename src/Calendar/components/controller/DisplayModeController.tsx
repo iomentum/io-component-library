@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { CalendarContext } from '../../contexts/CalendarContext';
-import { DisplayMode } from '../../utils';
+import { DisplayMode } from '../../types';
 
 interface DisplayCheckboxProps {
   displayMode: DisplayMode;

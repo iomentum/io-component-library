@@ -1,8 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MyCalendar, MyCalendarProps } from './MyCalendar';
-import { DisplayMode, WeekStartsOn } from './utils';
-import { MyCalendarEvent } from './utils/eventUtils';
+import { DisplayMode, WeekStartsOn, MyCalendarEvent } from './types';
 
 export default {
   title: 'C&C/MyCalendar',
@@ -50,9 +49,9 @@ export const Primary = Template.bind({});
 Primary.args = {
   displayedDate: date,
   events: myCalendarEvents,
-  onCreate: (event: Event) => myCalendarEvents,
-  onUpdate: (event: Event) => myCalendarEvents,
-  onDelete: (event: Event) => myCalendarEvents,
+  onCreate: (event: MyCalendarEvent) => myCalendarEvents,
+  onUpdate: (event: MyCalendarEvent) => myCalendarEvents,
+  onDelete: (event: MyCalendarEvent) => myCalendarEvents,
   options: {
     displayMode: DisplayMode.Week,
     displayedHours: [0, 24],

@@ -1,15 +1,8 @@
 import { DateRange } from 'moment-range';
 import Dayz from 'dayz';
 import { EventModel } from '../reducers/EventReducer';
-import { Event, extendedMoment } from '../utils';
-
-export interface MyCalendarEvent {
-  uuid: string;
-  title: string;
-  startDate: Date;
-  endDate: Date;
-  metadata: Record<string, unknown>;
-}
+import { MyCalendarEvent } from '../types';
+import { createMomentRange } from './momentUtils';
 
 export interface DayzEvent {
   content: string;
@@ -28,24 +21,10 @@ export interface DayzEventsCollection {
   ) => void;
 }
 
-export const currentEventIndex = (
+export const getMyCalendarEventIndex = (
   myCalendarEvents: MyCalendarEvent[],
   myCalendarEvent: MyCalendarEvent
 ) => myCalendarEvents.findIndex((event) => event.uuid === myCalendarEvent.uuid);
-
-export const deleteEvent = (
-  myCalendarEvents: MyCalendarEvent[],
-  myCalendarEvent: MyCalendarEvent
-) => {
-  const eventToDeleteIndex = currentEventIndex(myCalendarEvents, myCalendarEvent);
-
-  myCalendarEvents.splice(eventToDeleteIndex, 1);
-};
-
-export const isEventExisting = (
-  eventsCollection: MyCalendarEvent[],
-  myCalendarEvent: MyCalendarEvent
-) => currentEventIndex(eventsCollection, myCalendarEvent) !== -1;
 
 const computeEventDate = (event: EventModel): [Date, Date] => {
   const [newEventStartHour, newEventStartMinutes] = event.startHour.split(':');
@@ -84,12 +63,14 @@ export const updateEvent = (event: EventModel, eventToUpdate: MyCalendarEvent): 
   };
 };
 
+export const deleteEvent = (
+  myCalendarEvents: MyCalendarEvent[],
+  myCalendarEvent: MyCalendarEvent
+) => myCalendarEvents.splice(getMyCalendarEventIndex(myCalendarEvents, myCalendarEvent), 1);
+
 const convertMyCalendarEventIntoDayzEvent = (myCalendarEvent: MyCalendarEvent): DayzEvent => ({
   content: myCalendarEvent.title,
-  range: extendedMoment.range(
-    extendedMoment(new Date(myCalendarEvent.startDate)),
-    extendedMoment(new Date(myCalendarEvent.endDate))
-  ),
+  range: createMomentRange(myCalendarEvent.startDate, myCalendarEvent.endDate),
   uuid: myCalendarEvent.uuid,
 });
 

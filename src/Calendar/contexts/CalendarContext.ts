@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { DisplayMode } from '../utils';
+import { DisplayMode } from '../types';
 
 export interface CalendarContextInterface {
   displayMode: DisplayMode;
