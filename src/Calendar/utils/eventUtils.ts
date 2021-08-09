@@ -84,7 +84,7 @@ export const createDefaultMyCalendarEvent = (startDate: Date): MyCalendarEvent =
   endDate.setHours(endDate.getHours() + 1);
 
   return {
-    uuid: `awdawd`,
+    uuid: `awdaw1-${Math.floor(Math.random() * 1000)}`,
     title: '',
     startDate,
     endDate,
