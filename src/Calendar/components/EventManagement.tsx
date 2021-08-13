@@ -64,7 +64,15 @@ export function EventManagement() {
       onSave={handleSaveEvent}
       onDelete={handleDeleteEvent}
       isEventExisting={isEventExisting}>
-      <TextField fullWidth label="Add a title" value={event.title} onChange={handleTitleChange} />
+      <TextField
+        fullWidth
+        label="Add a title"
+        value={event.title}
+        onChange={handleTitleChange}
+        inputProps={{
+          'data-testid': 'addTitle',
+        }}
+      />
       <EventManagementContext.Provider value={eventManagementContextValue}>
         <DateSelector dateType={DateType.Start} />
         <DurationSelector />

@@ -3,45 +3,21 @@
  */
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagement } from './EventManagement';
 import { MockEvents } from '../utils/testUtils';
-import { formatDateAndHour } from '../utils/dateUtils';
-import { Event } from '../reducers/EventReducer';
 import { createDefaultEvent } from '../utils/eventUtils';
-
-jest.mock('../utils/momentUtils', () => ({
-  createExtendedMomentFromDate: () => new Date('2021-08-03'),
-}));
+import { EventType } from '../reducers/EventReducer';
 
 const eventContextMock = (component, providerValue) =>
   render(<EventContext.Provider value={providerValue}>{component}</EventContext.Provider>);
-
-const generateEvent = (startDate: Date): Event => {
-  const { uuid, title, endDate, metadata } = createDefaultEvent(startDate);
-
-  const [displayStartDate, startHour] = formatDateAndHour(startDate);
-  const [displayEndDate, endHour] = formatDateAndHour(endDate);
-
-  return {
-    uuid,
-    title,
-    startDate,
-    endDate,
-    startHour,
-    endHour,
-    displayStartDate,
-    displayEndDate,
-    metadata,
-  };
-};
 
 describe('EventManagement component', () => {
   describe('@snapshots', () => {
     it('should match with previous EventManagement modal closed', () => {
       const eventProviderValue = {
-        event: generateEvent(new Date('2021-08-03')),
+        event: createDefaultEvent(new Date('2021-08-03')),
         eventsCollection: MockEvents,
         eventManagementOpened: false,
       };
@@ -52,7 +28,7 @@ describe('EventManagement component', () => {
 
     it('should match with previous EventManagement modal opened', () => {
       const eventProviderValue = {
-        event: generateEvent(new Date('2021-08-03')),
+        event: createDefaultEvent(new Date('2021-08-03')),
         eventsCollection: MockEvents,
         eventManagementOpened: true,
       };
@@ -65,7 +41,7 @@ describe('EventManagement component', () => {
   describe('@events', () => {
     it('should trigger handleSaveEvent', () => {
       const eventProviderValue = {
-        event: generateEvent(new Date('2021-08-03')),
+        event: createDefaultEvent(new Date('2021-08-03')),
         eventsCollection: MockEvents,
         setEventsCollection: jest.fn(),
         eventManagementOpened: true,
@@ -77,6 +53,24 @@ describe('EventManagement component', () => {
 
       expect(eventProviderValue.setEventManagementOpened).toHaveBeenLastCalledWith(false);
       expect(eventProviderValue.setEventsCollection).toHaveBeenCalledTimes(1);
+    });
+
+    it('should trigger handleTitleChange', () => {
+      const eventProviderValue = {
+        event: createDefaultEvent(new Date('2021-08-03')),
+        eventsCollection: MockEvents,
+        eventManagementOpened: true,
+        dispatchEvent: jest.fn(),
+      };
+      eventContextMock(<EventManagement />, eventProviderValue);
+
+      const input = screen.getByTestId('addTitle') as HTMLInputElement;
+      fireEvent.change(input, { target: { value: 'test' } });
+
+      expect(eventProviderValue.dispatchEvent).toHaveBeenLastCalledWith({
+        type: EventType.UpdateTitle,
+        title: 'test',
+      });
     });
   });
 });

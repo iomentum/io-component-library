@@ -46,6 +46,7 @@ exports[`EventManagement component @snapshots should match with previous EventMa
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiInput-input"
+              data-testid="addTitle"
               type="text"
               value=""
             />
