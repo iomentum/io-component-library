@@ -7,42 +7,23 @@ import { render, screen } from '@testing-library/react';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext, EventContextInterface } from '../contexts/EventContext';
 import { DisplayMode } from '../types';
-import { Event, EventType } from '../reducers/EventReducer';
+import { EventType } from '../reducers/EventReducer';
 import { DayzWrapper } from './DayzWrapper';
 import { MockEvents } from '../utils/testUtils';
-
-import { formatDateAndHour } from '../utils/dateUtils';
+import { createDefaultEvent } from '../__mocks__/eventUtils.mock';
 
 jest.mock('../utils/momentUtils', () => ({
   createExtendedMomentFromDate: () => new Date('2021-08-03'),
   createDateFromMoment: jest.fn(),
 }));
 
-const createDefaultEvent = (startDate: Date): Event => {
-  const endDate = new Date(startDate);
-  endDate.setHours(endDate.getHours() + 1);
-
-  const [displayStartDate, startHour] = formatDateAndHour(startDate);
-  const [displayEndDate, endHour] = formatDateAndHour(endDate);
-
-  return {
-    uuid: `default-event`,
-    title: '',
-    startDate,
-    endDate,
-    displayStartDate,
-    startHour,
-    displayEndDate,
-    endHour,
-    metadata: {},
-  };
-};
-
 jest.mock('../utils/eventUtils', () => {
   const Dayz = jest.requireActual('dayz');
+  const eventUtilsMock = jest.requireActual('../__mocks__/eventUtils.mock');
+
   return {
     convertEventIntoDayzEvent: jest.fn(),
-    createDefaultEvent: () => createDefaultEvent(new Date('2021-08-03')),
+    createDefaultEvent: () => eventUtilsMock.createDefaultEvent(new Date('2021-08-03')),
     convertEventsIntoDayzEventsCollection: () => new Dayz.EventsCollection([]),
   };
 });

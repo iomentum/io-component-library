@@ -9,8 +9,7 @@ import {
   createDefaultEvent,
 } from '../utils/eventUtils';
 import { createExtendedMomentFromDate, createDateFromMoment } from '../utils/momentUtils';
-import { EventType } from '../reducers/EventReducer';
-import { formatDateAndHour } from '../utils/dateUtils';
+import { Event, EventType } from '../reducers/EventReducer';
 
 export const DayzWrapper = () => {
   const { displayedDate, displayMode } = useContext(CalendarContext);
@@ -26,51 +25,31 @@ export const DayzWrapper = () => {
     [eventsCollection]
   );
 
-  const handleEventClick = useCallback(
-    (_, layout) => {
-      const { uuid, title, startDate, endDate, metadata } = findEvent(
-        layout.attributes,
-        eventsCollection
-      );
-      const [, startHour] = formatDateAndHour(startDate);
-      const [, endHour] = formatDateAndHour(endDate);
+  const handleCommonBehavior = useCallback((event: Event) => {
+    const { uuid, title, startDate, endDate, startHour, endHour, metadata } = event;
 
-      dispatchEvent({
-        type: EventType.UpdateEvent,
-        uuid,
-        title,
-        startDate,
-        endDate,
-        startHour,
-        endHour,
-        metadata,
-      });
-      setEventManagementOpened(true);
-    },
+    dispatchEvent({
+      type: EventType.UpdateEvent,
+      uuid,
+      title,
+      startDate,
+      endDate,
+      startHour,
+      endHour,
+      metadata,
+    });
+    setEventManagementOpened(true);
+  }, []);
+
+  const handleEventClick = useCallback(
+    (_, layout) => handleCommonBehavior(findEvent(layout.attributes, eventsCollection)),
     [eventsCollection]
   );
 
   const handleDayEventClick = useMemo(
     () => ({
-      onClick: (_, eventDate) => {
-        const { uuid, title, startDate, endDate, metadata } = createDefaultEvent(
-          createDateFromMoment(eventDate)
-        );
-        const [, startHour] = formatDateAndHour(startDate);
-        const [, endHour] = formatDateAndHour(endDate);
-
-        dispatchEvent({
-          type: EventType.UpdateEvent,
-          uuid,
-          title,
-          startDate,
-          endDate,
-          startHour,
-          endHour,
-          metadata,
-        });
-        setEventManagementOpened(true);
-      },
+      onClick: (_, eventDate) =>
+        handleCommonBehavior(createDefaultEvent(createDateFromMoment(eventDate))),
     }),
     []
   );

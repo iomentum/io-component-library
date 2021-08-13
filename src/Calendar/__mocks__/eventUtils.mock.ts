@@ -9,7 +9,7 @@ export const createDefaultEvent = (startDate: Date): Event => {
   const [displayEndDate, endHour] = formatDateAndHour(endDate);
 
   return {
-    uuid: `default-event-${Math.floor(Math.random() * 1000)}`,
+    uuid: `default-event`,
     title: '',
     startDate,
     endDate,
