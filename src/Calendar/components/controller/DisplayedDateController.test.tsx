@@ -77,6 +77,14 @@ describe('computeNewDate function', () => {
       date.setDate(date.getDate() + 7);
       expect(computedDate).toEqual(new Date(date));
     });
+
+    it('30 days', () => {
+      const date = new Date();
+      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 30);
+
+      date.setDate(date.getDate() + 30);
+      expect(computedDate).toEqual(new Date(date));
+    });
   });
 
   describe('should substract', () => {
@@ -93,6 +101,14 @@ describe('computeNewDate function', () => {
       const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 7);
 
       date.setDate(date.getDate() - 7);
+      expect(computedDate).toEqual(new Date(date));
+    });
+
+    it('30 days', () => {
+      const date = new Date();
+      const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 30);
+
+      date.setDate(date.getDate() - 30);
       expect(computedDate).toEqual(new Date(date));
     });
   });

@@ -1,46 +1,34 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
-import Dayz from 'dayz';
 import { TextField } from './EventManagement.style';
-import {
-  DayzEventsCollection,
-  formatDateAndHour,
-  computeIsFullDayEvent,
-  convertEventIntoDayzEvent,
-} from '../utils';
+import { formatDateAndHour } from '../utils/dateUtils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { eventReducer, EventType } from '../reducers/EventReducer';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagementContext } from '../contexts/EventManagementContext';
 import { DateSelector, DateType } from './selector/DateSelector';
-import {
-  createEvent,
-  deleteEvent,
-  isEventExisting as isEventExistingFunction,
-} from '../utils/eventUtils';
+import { createEvent, getMyCalendarEventIndex, updateEvent } from '../utils/eventUtils';
 
 export function EventManagement() {
   const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
 
-  const [isFullDayEvent, setIsFullDayEvent] = useState(
-    computeIsFullDayEvent(currentEvent.dateRange)
-  );
+  const [isFullDayEvent, setIsFullDayEvent] = useState(true);
 
   const [displayStartDate, startHour] = useCallback(
-    () => formatDateAndHour(currentEvent.dateRange.eventStart),
+    () => formatDateAndHour(currentEvent.startDate),
     [currentEvent]
   )();
 
   const [displayEndDate, endHour] = useCallback(
-    () => formatDateAndHour(currentEvent.dateRange.eventEnd),
+    () => formatDateAndHour(currentEvent.endDate),
     [currentEvent]
   )();
 
   const [event, dispatchEvent] = useReducer(eventReducer, {
-    content: currentEvent.content,
-    startDate: currentEvent.dateRange.eventStart,
+    content: currentEvent.title,
+    startDate: currentEvent.startDate,
     displayStartDate,
-    endDate: currentEvent.dateRange.eventEnd,
+    endDate: currentEvent.endDate,
     displayEndDate,
     startHour,
     endHour,
@@ -57,7 +45,7 @@ export function EventManagement() {
   );
 
   const isEventExisting = useMemo(
-    () => isEventExistingFunction(eventsCollection, currentEvent),
+    () => getMyCalendarEventIndex(currentEvent, eventsCollection) !== -1,
     [eventsCollection, currentEvent]
   );
 
@@ -65,10 +53,10 @@ export function EventManagement() {
     () =>
       dispatchEvent({
         type: EventType.Reset,
-        content: currentEvent.content || '',
-        startDate: currentEvent.dateRange.eventStart,
+        content: currentEvent.title || '',
+        startDate: currentEvent.startDate,
         displayStartDate,
-        endDate: currentEvent.dateRange.eventEnd,
+        endDate: currentEvent.endDate,
         displayEndDate,
         startHour,
         endHour,
@@ -78,18 +66,24 @@ export function EventManagement() {
 
   const handleSaveEvent = useCallback(() => {
     if (isEventExisting) {
-      deleteEvent(eventsCollection, currentEvent);
+      const updatedEvent = updateEvent(event, currentEvent);
+      setEventsCollection((prevEvents) => {
+        const newEventsCollection = [...prevEvents];
+        newEventsCollection[getMyCalendarEventIndex(updatedEvent, prevEvents)] = updatedEvent;
+        return newEventsCollection;
+      });
+    } else {
+      setEventsCollection((prevEvents) => [...prevEvents, createEvent(event)]);
     }
-
-    const newEvents: DayzEventsCollection = new Dayz.EventsCollection([...eventsCollection.events]);
-    const newDayzEvent = convertEventIntoDayzEvent(createEvent(event, isFullDayEvent));
-
-    newEvents.add({ content: newDayzEvent.content, range: newDayzEvent.range() });
-    setEventsCollection(newEvents);
-  }, [eventsCollection, currentEvent, isEventExisting, event, isFullDayEvent]);
+  }, [currentEvent, isEventExisting, event]);
 
   const handleDeleteEvent = useCallback(
-    () => deleteEvent(eventsCollection, currentEvent),
+    () =>
+      setEventsCollection((prevEvents) => {
+        const newEventsCollection = [...prevEvents];
+        newEventsCollection.splice(getMyCalendarEventIndex(currentEvent, prevEvents), 1);
+        return newEventsCollection;
+      }),
     [currentEvent, eventsCollection]
   );
 

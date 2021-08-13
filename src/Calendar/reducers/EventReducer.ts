@@ -1,4 +1,4 @@
-import { getFormattedDate } from '../utils';
+import { getFormattedDate } from '../utils/dateUtils';
 
 export enum EventType {
   UpdateContent,

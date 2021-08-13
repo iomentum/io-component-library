@@ -5,7 +5,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { EventManagementContext } from '../../contexts/EventManagementContext';
-import { formatDateAndHour } from '../../utils';
+import { formatDateAndHour } from '../../utils/dateUtils';
 import { DurationSelector } from './DurationSelector';
 
 const eventManagementContextMock = (component, providerValue) =>

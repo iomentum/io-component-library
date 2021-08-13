@@ -10,13 +10,13 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-8"
+            class="PrivateSwitchBase-input-12"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -39,7 +39,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        W
+        Month
       </span>
     </label>
     <label
@@ -47,13 +47,13 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-8"
+            class="PrivateSwitchBase-input-12"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -76,7 +76,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        E
+        Week
       </span>
     </label>
     <label
@@ -84,13 +84,14 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-10 Mui-checked MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-8"
+            checked=""
+            class="PrivateSwitchBase-input-12"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -102,7 +103,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
             viewBox="0 0 24 24"
           >
             <path
-              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
             />
           </svg>
         </span>
@@ -113,7 +114,268 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        E
+        Day
+      </span>
+    </label>
+  </div>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      &lt;
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Today
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      &gt;
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <div
+    class="sc-hKFxyN jkHVfS"
+  >
+    <div
+      class="dayz day"
+    >
+      <div
+        class="x-labels"
+      >
+        <div
+          class="day-label"
+        >
+          Tue, Aug 3rd
+        </div>
+      </div>
+      <div
+        class="body"
+      >
+        <div>
+          <div
+            class="y-labels"
+          >
+            <div
+              class="all-day"
+              style="display: none;"
+            >
+              All Day
+            </div>
+            <div
+              class="hour"
+            >
+              00:00
+            </div>
+            <div
+              class="hour"
+            >
+              01:00
+            </div>
+            <div
+              class="hour"
+            >
+              02:00
+            </div>
+            <div
+              class="hour"
+            >
+              03:00
+            </div>
+            <div
+              class="hour"
+            >
+              04:00
+            </div>
+            <div
+              class="hour"
+            >
+              05:00
+            </div>
+            <div
+              class="hour"
+            >
+              06:00
+            </div>
+            <div
+              class="hour"
+            >
+              07:00
+            </div>
+            <div
+              class="hour"
+            >
+              08:00
+            </div>
+            <div
+              class="hour"
+            >
+              09:00
+            </div>
+            <div
+              class="hour"
+            >
+              10:00
+            </div>
+            <div
+              class="hour"
+            >
+              11:00
+            </div>
+            <div
+              class="hour"
+            >
+              12:00
+            </div>
+            <div
+              class="hour"
+            >
+              13:00
+            </div>
+            <div
+              class="hour"
+            >
+              14:00
+            </div>
+            <div
+              class="hour"
+            >
+              15:00
+            </div>
+            <div
+              class="hour"
+            >
+              16:00
+            </div>
+            <div
+              class="hour"
+            >
+              17:00
+            </div>
+            <div
+              class="hour"
+            >
+              18:00
+            </div>
+            <div
+              class="hour"
+            >
+              19:00
+            </div>
+            <div
+              class="hour"
+            >
+              20:00
+            </div>
+            <div
+              class="hour"
+            >
+              21:00
+            </div>
+            <div
+              class="hour"
+            >
+              22:00
+            </div>
+            <div
+              class="hour"
+            >
+              23:00
+            </div>
+          </div>
+        </div>
+        <div
+          class="days"
+        >
+          <div
+            class="day before"
+            data-date="20210803"
+            style="order: 0;"
+          >
+            <div
+              class="label"
+            >
+              3
+            </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MyCalendar component @snapshots should match with previous MyCalendar Month: MyCalendar snapshot Month 1`] = `
+<DocumentFragment>
+  <div
+    class="tools"
+  >
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-2 Mui-checked MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            checked=""
+            class="PrivateSwitchBase-input-4"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        Month
       </span>
     </label>
     <label
@@ -121,13 +383,13 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-8"
+            class="PrivateSwitchBase-input-4"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -150,7 +412,44 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        K
+        Week
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-4"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        Day
       </span>
     </label>
   </div>
@@ -649,13 +948,13 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-4"
+            class="PrivateSwitchBase-input-8"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -678,7 +977,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        W
+        Month
       </span>
     </label>
     <label
@@ -686,13 +985,14 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-6 Mui-checked MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-4"
+            checked=""
+            class="PrivateSwitchBase-input-8"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -704,7 +1004,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             viewBox="0 0 24 24"
           >
             <path
-              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
             />
           </svg>
         </span>
@@ -715,7 +1015,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        E
+        Week
       </span>
     </label>
     <label
@@ -723,13 +1023,13 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-4"
+            class="PrivateSwitchBase-input-8"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -752,44 +1052,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        E
-      </span>
-    </label>
-    <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
-    >
-      <span
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
-      >
-        <span
-          class="MuiIconButton-label"
-        >
-          <input
-            class="PrivateSwitchBase-input-4"
-            data-indeterminate="false"
-            type="checkbox"
-            value=""
-          />
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </span>
-      <span
-        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
-      >
-        K
+        Day
       </span>
     </label>
   </div>
@@ -839,7 +1102,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
     class="sc-hKFxyN jkHVfS"
   >
     <div
-      class="dayz month"
+      class="dayz week"
     >
       <div
         class="x-labels"
@@ -847,42 +1110,174 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
         <div
           class="day-label"
         >
-          Sunday
+          Sun, Aug 1st
         </div>
         <div
           class="day-label"
         >
-          Monday
+          Mon, Aug 2nd
         </div>
         <div
           class="day-label"
         >
-          Tuesday
+          Tue, Aug 3rd
         </div>
         <div
           class="day-label"
         >
-          Wednesday
+          Wed, Aug 4th
         </div>
         <div
           class="day-label"
         >
-          Thursday
+          Thu, Aug 5th
         </div>
         <div
           class="day-label"
         >
-          Friday
+          Fri, Aug 6th
         </div>
         <div
           class="day-label"
         >
-          Saturday
+          Sat, Aug 7th
         </div>
       </div>
       <div
         class="body"
       >
+        <div>
+          <div
+            class="y-labels"
+          >
+            <div
+              class="all-day"
+              style="display: none;"
+            >
+              All Day
+            </div>
+            <div
+              class="hour"
+            >
+              00:00
+            </div>
+            <div
+              class="hour"
+            >
+              01:00
+            </div>
+            <div
+              class="hour"
+            >
+              02:00
+            </div>
+            <div
+              class="hour"
+            >
+              03:00
+            </div>
+            <div
+              class="hour"
+            >
+              04:00
+            </div>
+            <div
+              class="hour"
+            >
+              05:00
+            </div>
+            <div
+              class="hour"
+            >
+              06:00
+            </div>
+            <div
+              class="hour"
+            >
+              07:00
+            </div>
+            <div
+              class="hour"
+            >
+              08:00
+            </div>
+            <div
+              class="hour"
+            >
+              09:00
+            </div>
+            <div
+              class="hour"
+            >
+              10:00
+            </div>
+            <div
+              class="hour"
+            >
+              11:00
+            </div>
+            <div
+              class="hour"
+            >
+              12:00
+            </div>
+            <div
+              class="hour"
+            >
+              13:00
+            </div>
+            <div
+              class="hour"
+            >
+              14:00
+            </div>
+            <div
+              class="hour"
+            >
+              15:00
+            </div>
+            <div
+              class="hour"
+            >
+              16:00
+            </div>
+            <div
+              class="hour"
+            >
+              17:00
+            </div>
+            <div
+              class="hour"
+            >
+              18:00
+            </div>
+            <div
+              class="hour"
+            >
+              19:00
+            </div>
+            <div
+              class="hour"
+            >
+              20:00
+            </div>
+            <div
+              class="hour"
+            >
+              21:00
+            </div>
+            <div
+              class="hour"
+            >
+              22:00
+            </div>
+            <div
+              class="hour"
+            >
+              23:00
+            </div>
+          </div>
+        </div>
         <div
           class="days"
         >
@@ -896,6 +1291,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               1
             </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
           <div
             class="day before"
@@ -907,6 +1306,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               2
             </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
           <div
             class="day before"
@@ -918,6 +1321,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               3
             </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
           <div
             class="day after"
@@ -929,6 +1336,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               4
             </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
           <div
             class="day after"
@@ -940,6 +1351,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               5
             </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
           <div
             class="day after"
@@ -951,6 +1366,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               6
             </div>
+            <div
+              class="all-day"
+              style="display: none;"
+            />
           </div>
           <div
             class="day after"
@@ -962,314 +1381,10 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
             >
               7
             </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210808"
-            style="order: 7;"
-          >
             <div
-              class="label"
-            >
-              8
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210809"
-            style="order: 8;"
-          >
-            <div
-              class="label"
-            >
-              9
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210810"
-            style="order: 9;"
-          >
-            <div
-              class="label"
-            >
-              10
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210811"
-            style="order: 10;"
-          >
-            <div
-              class="label"
-            >
-              11
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210812"
-            style="order: 11;"
-          >
-            <div
-              class="label"
-            >
-              12
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210813"
-            style="order: 12;"
-          >
-            <div
-              class="label"
-            >
-              13
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210814"
-            style="order: 13;"
-          >
-            <div
-              class="label"
-            >
-              14
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210815"
-            style="order: 14;"
-          >
-            <div
-              class="label"
-            >
-              15
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210816"
-            style="order: 15;"
-          >
-            <div
-              class="label"
-            >
-              16
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210817"
-            style="order: 16;"
-          >
-            <div
-              class="label"
-            >
-              17
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210818"
-            style="order: 17;"
-          >
-            <div
-              class="label"
-            >
-              18
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210819"
-            style="order: 18;"
-          >
-            <div
-              class="label"
-            >
-              19
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210820"
-            style="order: 19;"
-          >
-            <div
-              class="label"
-            >
-              20
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210821"
-            style="order: 20;"
-          >
-            <div
-              class="label"
-            >
-              21
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210822"
-            style="order: 21;"
-          >
-            <div
-              class="label"
-            >
-              22
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210823"
-            style="order: 22;"
-          >
-            <div
-              class="label"
-            >
-              23
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210824"
-            style="order: 23;"
-          >
-            <div
-              class="label"
-            >
-              24
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210825"
-            style="order: 24;"
-          >
-            <div
-              class="label"
-            >
-              25
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210826"
-            style="order: 25;"
-          >
-            <div
-              class="label"
-            >
-              26
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210827"
-            style="order: 26;"
-          >
-            <div
-              class="label"
-            >
-              27
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210828"
-            style="order: 27;"
-          >
-            <div
-              class="label"
-            >
-              28
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210829"
-            style="order: 28;"
-          >
-            <div
-              class="label"
-            >
-              29
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210830"
-            style="order: 29;"
-          >
-            <div
-              class="label"
-            >
-              30
-            </div>
-          </div>
-          <div
-            class="day after"
-            data-date="20210831"
-            style="order: 30;"
-          >
-            <div
-              class="label"
-            >
-              31
-            </div>
-          </div>
-          <div
-            class="day after outside"
-            data-date="20210901"
-            style="order: 31;"
-          >
-            <div
-              class="label"
-            >
-              1
-            </div>
-          </div>
-          <div
-            class="day after outside"
-            data-date="20210902"
-            style="order: 32;"
-          >
-            <div
-              class="label"
-            >
-              2
-            </div>
-          </div>
-          <div
-            class="day after outside"
-            data-date="20210903"
-            style="order: 33;"
-          >
-            <div
-              class="label"
-            >
-              3
-            </div>
-          </div>
-          <div
-            class="day after outside"
-            data-date="20210904"
-            style="order: 34;"
-          >
-            <div
-              class="label"
-            >
-              4
-            </div>
+              class="all-day"
+              style="display: none;"
+            />
           </div>
         </div>
       </div>
