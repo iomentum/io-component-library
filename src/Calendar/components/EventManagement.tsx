@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { Button } from '@material-ui/core';
-import { TextField } from './EventManagement.style';
+import { TextField, PrimaryButton } from './EventManagement.style';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
 import { EventType } from '../reducers/EventReducer';
@@ -8,7 +8,6 @@ import { EventContext } from '../contexts/EventContext';
 import { EventManagementContext } from '../contexts/EventManagementContext';
 import { DateSelector, DateType } from './selector/DateSelector';
 import { getEventIndex } from '../utils/eventUtils';
-import { PrimaryButton } from './SideModal.style';
 import { Gap, Row } from './common.style';
 
 export function EventManagement() {
