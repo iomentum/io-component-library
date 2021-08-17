@@ -3,17 +3,17 @@
 exports[`DisplayCheckbox component @snapshots should match with previous Day checkbox: DisplayCheckbox Day snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-11 MuiFormControlLabel-labelPlacementStart"
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-12 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
     >
       <span
         class="MuiIconButton-label"
       >
         <input
-          class="PrivateSwitchBase-input-12"
+          class="PrivateSwitchBase-input-15"
           data-indeterminate="false"
           type="checkbox"
           value=""
@@ -36,7 +36,7 @@ exports[`DisplayCheckbox component @snapshots should match with previous Day che
     <span
       class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
     >
-      Day
+      day
     </span>
   </label>
 </DocumentFragment>
@@ -45,17 +45,17 @@ exports[`DisplayCheckbox component @snapshots should match with previous Day che
 exports[`DisplayCheckbox component @snapshots should match with previous Month checkbox: DisplayCheckbox Month snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-1 MuiFormControlLabel-labelPlacementStart"
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-2 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
     >
       <span
         class="MuiIconButton-label"
       >
         <input
-          class="PrivateSwitchBase-input-4"
+          class="PrivateSwitchBase-input-5"
           data-indeterminate="false"
           type="checkbox"
           value=""
@@ -78,7 +78,7 @@ exports[`DisplayCheckbox component @snapshots should match with previous Month c
     <span
       class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
     >
-      Month
+      month
     </span>
   </label>
 </DocumentFragment>
@@ -87,17 +87,17 @@ exports[`DisplayCheckbox component @snapshots should match with previous Month c
 exports[`DisplayCheckbox component @snapshots should match with previous Week checkbox: DisplayCheckbox Week snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+    class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-6 MuiFormControlLabel-labelPlacementStart"
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-7 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
     >
       <span
         class="MuiIconButton-label"
       >
         <input
-          class="PrivateSwitchBase-input-8"
+          class="PrivateSwitchBase-input-10"
           data-indeterminate="false"
           type="checkbox"
           value=""
@@ -120,7 +120,7 @@ exports[`DisplayCheckbox component @snapshots should match with previous Week ch
     <span
       class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
     >
-      Week
+      week
     </span>
   </label>
 </DocumentFragment>
@@ -132,17 +132,17 @@ exports[`DisplayModeController component @snapshots should match with previous D
     class="tools"
   >
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-31 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-32 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-28"
+            class="PrivateSwitchBase-input-35"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -165,21 +165,21 @@ exports[`DisplayModeController component @snapshots should match with previous D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Month
+        month
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-31 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-32 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-28"
+            class="PrivateSwitchBase-input-35"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -202,21 +202,21 @@ exports[`DisplayModeController component @snapshots should match with previous D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Week
+        week
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-31 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-32 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-28"
+            class="PrivateSwitchBase-input-35"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -239,7 +239,7 @@ exports[`DisplayModeController component @snapshots should match with previous D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Day
+        day
       </span>
     </label>
   </div>
