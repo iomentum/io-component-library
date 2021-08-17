@@ -4,6 +4,7 @@ export enum EventType {
   UpdateTitle,
   UpdateStartDate,
   UpdateEndDate,
+  UpdateHours,
   UpdateStartHour,
   UpdateEndHour,
   UpdateEvent,
@@ -22,6 +23,11 @@ export type EventAction =
   | {
       type: EventType.UpdateEndDate;
       endDate: Date;
+    }
+  | {
+      type: EventType.UpdateHours;
+      startHour: string;
+      endHour: string;
     }
   | {
       type: EventType.UpdateStartHour;
@@ -70,6 +76,8 @@ export const eventReducer = (state: Event, action: EventAction): Event => {
         endDate: action.endDate,
         displayEndDate: getFormattedDate(action.endDate),
       };
+    case EventType.UpdateHours:
+      return { ...state, startHour: action.startHour, endHour: action.endHour };
     case EventType.UpdateStartHour:
       return { ...state, startHour: action.startHour };
     case EventType.UpdateEndHour:

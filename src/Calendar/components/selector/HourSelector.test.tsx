@@ -5,7 +5,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { EventContext } from '../../contexts/EventContext';
-import { HourSelector, computeStartHourChanges, computeEndHourChanges } from './HourSelector';
+import { HourSelector, computeNewHours, EventHourType } from './HourSelector';
 import { EventType } from '../../reducers/EventReducer';
 
 const eventManagementContextMock = (component, providerValue) =>
@@ -36,8 +36,9 @@ describe('HourSelector component', () => {
       fireEvent.change(input, { target: { value: '01:10' } });
 
       expect(providerValue.dispatchEvent).toHaveBeenCalledWith({
-        type: EventType.UpdateStartHour,
+        type: EventType.UpdateHours,
         startHour: '01:10',
+        endHour: '02:10',
       });
     });
 
@@ -48,83 +49,90 @@ describe('HourSelector component', () => {
       fireEvent.change(input, { target: { value: '01:10' } });
 
       expect(providerValue.dispatchEvent).toHaveBeenCalledWith({
-        type: EventType.UpdateEndHour,
+        type: EventType.UpdateHours,
+        startHour: '00:00',
         endHour: '01:10',
       });
     });
   });
 });
 
-describe('computeHourChanges functions', () => {
-  describe('computeStartHourChanges function', () => {
-    it('should not trigger dispatchEvent, 1st case', () => {
-      const dispatchEvent = jest.fn();
-      computeStartHourChanges('00:00', '00:50', dispatchEvent);
+describe('computeNewHours functions', () => {
+  it('should not change startHour and endHour, EventHourType.Start', () => {
+    const startHour = '00:00';
+    const endHour = '00:50';
+    const [computedStartHour, computedEndHour] = computeNewHours(
+      startHour,
+      endHour,
+      EventHourType.Start
+    );
 
-      expect(dispatchEvent).not.toHaveBeenCalled();
-    });
-
-    it('should not trigger dispatchEvent, 2nd case', () => {
-      const dispatchEvent = jest.fn();
-      computeStartHourChanges('23:15', '23:16', dispatchEvent);
-
-      expect(dispatchEvent).not.toHaveBeenCalled();
-    });
-
-    it('should update endHour with +1 hour', () => {
-      const dispatchEvent = jest.fn();
-      computeStartHourChanges('01:00', '00:50', dispatchEvent);
-
-      expect(dispatchEvent).toHaveBeenCalledWith({
-        type: EventType.UpdateEndHour,
-        endHour: '02:00',
-      });
-    });
-
-    it('should update endHour with 23:59', () => {
-      const dispatchEvent = jest.fn();
-      computeStartHourChanges('23:10', '00:50', dispatchEvent);
-
-      expect(dispatchEvent).toHaveBeenCalledWith({
-        type: EventType.UpdateEndHour,
-        endHour: '23:59',
-      });
-    });
+    expect(computedStartHour).toEqual(startHour);
+    expect(computedEndHour).toEqual(endHour);
   });
 
-  describe('computeEndHourChanges function', () => {
-    it('should not trigger dispatchEvent, 1st case', () => {
-      const dispatchEvent = jest.fn();
-      computeEndHourChanges('00:00', '00:50', dispatchEvent);
+  it('should not change startHour and endHour, EventHourType.End', () => {
+    const startHour = '00:00';
+    const endHour = '00:50';
+    const [computedStartHour, computedEndHour] = computeNewHours(
+      startHour,
+      endHour,
+      EventHourType.End
+    );
 
-      expect(dispatchEvent).not.toHaveBeenCalled();
-    });
+    expect(computedStartHour).toEqual(startHour);
+    expect(computedEndHour).toEqual(endHour);
+  });
 
-    it('should not trigger dispatchEvent, 2nd case', () => {
-      const dispatchEvent = jest.fn();
-      computeEndHourChanges('23:15', '23:16', dispatchEvent);
+  it('should change startHour, EventHourType.End', () => {
+    const startHour = '03:00';
+    const endHour = '01:50';
+    const [computedStartHour, computedEndHour] = computeNewHours(
+      startHour,
+      endHour,
+      EventHourType.End
+    );
 
-      expect(dispatchEvent).not.toHaveBeenCalled();
-    });
+    expect(computedStartHour).toEqual('00:50');
+    expect(computedEndHour).toEqual(endHour);
+  });
 
-    it('should update startHour with +1 hour', () => {
-      const dispatchEvent = jest.fn();
-      computeEndHourChanges('02:50', '02:00', dispatchEvent);
+  it('should change endHour, EventHourType.Start', () => {
+    const startHour = '03:00';
+    const endHour = '01:50';
+    const [computedStartHour, computedEndHour] = computeNewHours(
+      startHour,
+      endHour,
+      EventHourType.Start
+    );
 
-      expect(dispatchEvent).toHaveBeenCalledWith({
-        type: EventType.UpdateStartHour,
-        startHour: '01:00',
-      });
-    });
+    expect(computedStartHour).toEqual(startHour);
+    expect(computedEndHour).toEqual('04:00');
+  });
 
-    it('should update startHour with 00:00', () => {
-      const dispatchEvent = jest.fn();
-      computeEndHourChanges('23:10', '00:50', dispatchEvent);
+  it('should change startHour to 00:00, EventHourType.End', () => {
+    const startHour = '03:00';
+    const endHour = '00:50';
+    const [computedStartHour, computedEndHour] = computeNewHours(
+      startHour,
+      endHour,
+      EventHourType.End
+    );
 
-      expect(dispatchEvent).toHaveBeenCalledWith({
-        type: EventType.UpdateStartHour,
-        startHour: '00:00',
-      });
-    });
+    expect(computedStartHour).toEqual('00:00');
+    expect(computedEndHour).toEqual(endHour);
+  });
+
+  it('should change endHour to 23:59, EventHourType.Start', () => {
+    const startHour = '23:23';
+    const endHour = '00:50';
+    const [computedStartHour, computedEndHour] = computeNewHours(
+      startHour,
+      endHour,
+      EventHourType.Start
+    );
+
+    expect(computedStartHour).toEqual(startHour);
+    expect(computedEndHour).toEqual('23:59');
   });
 });
