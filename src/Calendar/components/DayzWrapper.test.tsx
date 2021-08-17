@@ -9,7 +9,7 @@ import { EventContext, EventContextInterface } from '../contexts/EventContext';
 import { DisplayMode } from '../types';
 import { EventType } from '../reducers/EventReducer';
 import { DayzWrapper } from './DayzWrapper';
-import { createMockedEvents } from '../utils/testUtils';
+import { mockedEvents } from '../utils/testUtils';
 import { createDefaultEvent } from '../__mocks__/eventUtils.mock';
 
 jest.mock('../utils/momentUtils', () => ({
@@ -29,7 +29,7 @@ jest.mock('../utils/eventUtils', () => {
 });
 
 const eventProviderValue: Partial<EventContextInterface> = {
-  eventsCollection: createMockedEvents,
+  eventsCollection: mockedEvents,
   dispatchEvent: jest.fn(),
   setEventManagementOpened: jest.fn(),
 };

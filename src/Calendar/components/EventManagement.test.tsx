@@ -6,7 +6,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagement } from './EventManagement';
-import { createMockedEvents, getMockedEvent } from '../utils/testUtils';
+import { mockedEvents, getMockedEvent } from '../utils/testUtils';
 import { createDefaultEvent } from '../utils/eventUtils';
 import { EventType } from '../reducers/EventReducer';
 
@@ -18,7 +18,7 @@ describe('EventManagement component', () => {
     it('should match with previous EventManagement modal closed', () => {
       const eventProviderValue = {
         event: createDefaultEvent(new Date('2021-08-03')),
-        eventsCollection: createMockedEvents,
+        eventsCollection: mockedEvents,
         eventManagementOpened: false,
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
@@ -29,7 +29,7 @@ describe('EventManagement component', () => {
     it('should match with previous EventManagement modal opened', () => {
       const eventProviderValue = {
         event: createDefaultEvent(new Date('2021-08-03')),
-        eventsCollection: createMockedEvents,
+        eventsCollection: mockedEvents,
         eventManagementOpened: true,
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
@@ -40,7 +40,7 @@ describe('EventManagement component', () => {
     it('should match with previous EventManagement modal opened for updating event', () => {
       const eventProviderValue = {
         event: getMockedEvent(),
-        eventsCollection: createMockedEvents,
+        eventsCollection: mockedEvents,
         eventManagementOpened: true,
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
@@ -53,7 +53,7 @@ describe('EventManagement component', () => {
     it('should trigger handleSaveEvent', () => {
       const eventProviderValue = {
         event: createDefaultEvent(new Date('2021-08-03')),
-        eventsCollection: createMockedEvents,
+        eventsCollection: mockedEvents,
         setEventsCollection: jest.fn(),
         eventManagementOpened: true,
         setEventManagementOpened: jest.fn(),
@@ -69,7 +69,7 @@ describe('EventManagement component', () => {
     it('should trigger handleTitleChange', () => {
       const eventProviderValue = {
         event: createDefaultEvent(new Date('2021-08-03')),
-        eventsCollection: createMockedEvents,
+        eventsCollection: mockedEvents,
         eventManagementOpened: true,
         dispatchEvent: jest.fn(),
       };
