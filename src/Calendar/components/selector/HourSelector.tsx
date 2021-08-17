@@ -22,12 +22,12 @@ export const computeNewHours = (
       return ['00:00', endHour];
     }
     if (hourChanged === EventHourType.Start) {
-      const [tensHour, unitHour, separator, tensMinut, unitMinute] = startHour.split('');
-      return [startHour, `${tensHour}${+unitHour + 1}${separator}${tensMinut}${unitMinute}`];
+      const [tensHours, unitHours, separator, tensMinutes, unitMinutes] = startHour.split('');
+      return [startHour, `${tensHours}${+unitHours + 1}${separator}${tensMinutes}${unitMinutes}`];
     }
     if (hourChanged === EventHourType.End) {
-      const [tensHour, unitHour, separator, tensMinut, unitMinute] = endHour.split('');
-      return [`${tensHour}${+unitHour - 1}${separator}${tensMinut}${unitMinute}`, endHour];
+      const [tensHours, unitHours, separator, tensMinutes, unitMinutes] = endHour.split('');
+      return [`${tensHours}${+unitHours - 1}${separator}${tensMinutes}${unitMinutes}`, endHour];
     }
   }
   return [startHour, endHour];
