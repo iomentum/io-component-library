@@ -1,12 +1,10 @@
-import { getFormattedDate } from '../utils/dateUtils';
+import { getFormattedDate, mergeDateAndHour } from '../utils/dateUtils';
 
 export enum EventType {
   UpdateTitle,
   UpdateStartDate,
   UpdateEndDate,
   UpdateHours,
-  UpdateStartHour,
-  UpdateEndHour,
   UpdateEvent,
   Reset,
 }
@@ -27,14 +25,6 @@ export type EventAction =
   | {
       type: EventType.UpdateHours;
       startHour: string;
-      endHour: string;
-    }
-  | {
-      type: EventType.UpdateStartHour;
-      startHour: string;
-    }
-  | {
-      type: EventType.UpdateEndHour;
       endHour: string;
     }
   | {
@@ -77,11 +67,13 @@ export const eventReducer = (state: Event, action: EventAction): Event => {
         displayEndDate: getFormattedDate(action.endDate),
       };
     case EventType.UpdateHours:
-      return { ...state, startHour: action.startHour, endHour: action.endHour };
-    case EventType.UpdateStartHour:
-      return { ...state, startHour: action.startHour };
-    case EventType.UpdateEndHour:
-      return { ...state, endHour: action.endHour };
+      return {
+        ...state,
+        startHour: action.startHour,
+        startDate: mergeDateAndHour(state.startDate, action.startHour),
+        endHour: action.endHour,
+        endDate: mergeDateAndHour(state.endDate, action.endHour),
+      };
     case EventType.UpdateEvent:
       return {
         uuid: action.uuid,

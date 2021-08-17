@@ -32,11 +32,9 @@ export function EventManagement() {
 
   const handleSaveEvent = useCallback(() => {
     if (hasEvent) {
-      const updatedEvent = event;
-
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection[getEventIndex(updatedEvent, prevEvents)] = updatedEvent;
+        newEventsCollection[getEventIndex(event, prevEvents)] = event;
         return newEventsCollection;
       });
     } else {
