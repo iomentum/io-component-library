@@ -4,16 +4,12 @@
 
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { EventManagementContext } from '../../contexts/EventManagementContext';
+import { EventContext } from '../../contexts/EventContext';
 import { HourSelector, computeStartHourChanges, computeEndHourChanges } from './HourSelector';
 import { EventType } from '../../reducers/EventReducer';
 
 const eventManagementContextMock = (component, providerValue) =>
-  render(
-    <EventManagementContext.Provider value={providerValue}>
-      {component}
-    </EventManagementContext.Provider>
-  );
+  render(<EventContext.Provider value={providerValue}>{component}</EventContext.Provider>);
 
 const providerValue = {
   event: {

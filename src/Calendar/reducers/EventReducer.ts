@@ -1,18 +1,19 @@
 import { getFormattedDate } from '../utils/dateUtils';
 
 export enum EventType {
-  UpdateContent,
+  UpdateTitle,
   UpdateStartDate,
   UpdateEndDate,
   UpdateStartHour,
   UpdateEndHour,
+  UpdateEvent,
   Reset,
 }
 
 export type EventAction =
   | {
-      type: EventType.UpdateContent;
-      content: string;
+      type: EventType.UpdateTitle;
+      title: string;
     }
   | {
       type: EventType.UpdateStartDate;
@@ -31,30 +32,32 @@ export type EventAction =
       endHour: string;
     }
   | {
-      type: EventType.Reset;
-      content: string;
+      type: EventType.UpdateEvent;
+      uuid: string;
+      title: string;
       startDate: Date;
-      displayStartDate: string;
       endDate: Date;
-      displayEndDate: string;
       startHour: string;
       endHour: string;
+      metadata: Record<string, unknown>;
     };
 
-export interface EventModel {
-  content: string;
+export interface Event {
+  uuid: string;
+  title: string;
   startDate: Date;
   displayStartDate: string;
   endDate: Date;
   displayEndDate: string;
   startHour: string;
   endHour: string;
+  metadata: Record<string, unknown>;
 }
 
-export const eventReducer = (state: EventModel, action: EventAction): EventModel => {
+export const eventReducer = (state: Event, action: EventAction): Event => {
   switch (action.type) {
-    case EventType.UpdateContent:
-      return { ...state, content: action.content };
+    case EventType.UpdateTitle:
+      return { ...state, title: action.title };
     case EventType.UpdateStartDate:
       return {
         ...state,
@@ -71,15 +74,17 @@ export const eventReducer = (state: EventModel, action: EventAction): EventModel
       return { ...state, startHour: action.startHour };
     case EventType.UpdateEndHour:
       return { ...state, endHour: action.endHour };
-    case EventType.Reset:
+    case EventType.UpdateEvent:
       return {
-        content: action.content,
+        uuid: action.uuid,
+        title: action.title,
         startDate: action.startDate,
-        displayStartDate: action.displayStartDate,
+        displayStartDate: getFormattedDate(action.startDate),
         endDate: action.endDate,
-        displayEndDate: action.displayEndDate,
+        displayEndDate: getFormattedDate(action.endDate),
         startHour: action.startHour,
         endHour: action.endHour,
+        metadata: action.metadata,
       };
     default:
       throw Error('Unknow EventType');

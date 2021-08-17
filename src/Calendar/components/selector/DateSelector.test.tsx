@@ -4,17 +4,13 @@
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { EventManagementContext } from '../../contexts/EventManagementContext';
+import { EventContext } from '../../contexts/EventContext';
 import { EventType } from '../../reducers/EventReducer';
 import { formatDateAndHour } from '../../utils/dateUtils';
 import { DateSelector, DateType } from './DateSelector';
 
-const eventManagementContextMock = (component, providerValue) =>
-  render(
-    <EventManagementContext.Provider value={providerValue}>
-      {component}
-    </EventManagementContext.Provider>
-  );
+const eventContextMock = (component, providerValue) =>
+  render(<EventContext.Provider value={providerValue}>{component}</EventContext.Provider>);
 
 const providerValue = (dateType: DateType) => {
   const date = new Date('2021-07-30');
@@ -43,7 +39,7 @@ const providerValue = (dateType: DateType) => {
 describe('DateSelector component', () => {
   describe('@snapshots', () => {
     it('should match with previous DateType.Start DateSelector', () => {
-      const { asFragment } = eventManagementContextMock(
+      const { asFragment } = eventContextMock(
         <DateSelector dateType={DateType.Start} />,
         providerValue(DateType.Start)
       );
@@ -52,7 +48,7 @@ describe('DateSelector component', () => {
     });
 
     it('should match with previous DateType.End DateSelector', () => {
-      const { asFragment } = eventManagementContextMock(
+      const { asFragment } = eventContextMock(
         <DateSelector dateType={DateType.End} />,
         providerValue(DateType.End)
       );
@@ -64,19 +60,13 @@ describe('DateSelector component', () => {
   describe('@props', () => {
     describe('should match the expected dateType', () => {
       it('dateType: Start', () => {
-        eventManagementContextMock(
-          <DateSelector dateType={DateType.Start} />,
-          providerValue(DateType.Start)
-        );
+        eventContextMock(<DateSelector dateType={DateType.Start} />, providerValue(DateType.Start));
 
         expect(screen.getByDisplayValue('2021-07-30')).not.toBeNull();
       });
 
       it('dateType: End', () => {
-        eventManagementContextMock(
-          <DateSelector dateType={DateType.End} />,
-          providerValue(DateType.End)
-        );
+        eventContextMock(<DateSelector dateType={DateType.End} />, providerValue(DateType.End));
 
         expect(screen.getByDisplayValue('2021-07-30')).not.toBeNull();
       });
@@ -86,10 +76,7 @@ describe('DateSelector component', () => {
   describe('@events', () => {
     it('should be dispatched with the right startDate', () => {
       const providedValue = providerValue(DateType.Start);
-      const component = eventManagementContextMock(
-        <DateSelector dateType={DateType.Start} />,
-        providedValue
-      );
+      const component = eventContextMock(<DateSelector dateType={DateType.Start} />, providedValue);
 
       const input = component.getByTestId('startDate') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '2021-07-26' } });
@@ -102,10 +89,7 @@ describe('DateSelector component', () => {
 
     it('should be dispatched with the right endDate', () => {
       const valueProvided = providerValue(DateType.End);
-      const component = eventManagementContextMock(
-        <DateSelector dateType={DateType.End} />,
-        valueProvided
-      );
+      const component = eventContextMock(<DateSelector dateType={DateType.End} />, valueProvided);
 
       const input = component.getByTestId('endDate') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '2021-07-26' } });

@@ -3,15 +3,12 @@
  */
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagement } from './EventManagement';
-import { MockMyCalendarEvents } from '../utils/testUtils';
-import { createDefaultMyCalendarEvent } from '../utils/eventUtils';
-
-jest.mock('../utils/momentUtils', () => ({
-  createExtendedMomentFromDate: () => new Date('2021-08-03'),
-}));
+import { MockEvents } from '../utils/testUtils';
+import { createDefaultEvent } from '../utils/eventUtils';
+import { EventType } from '../reducers/EventReducer';
 
 const eventContextMock = (component, providerValue) =>
   render(<EventContext.Provider value={providerValue}>{component}</EventContext.Provider>);
@@ -20,8 +17,8 @@ describe('EventManagement component', () => {
   describe('@snapshots', () => {
     it('should match with previous EventManagement modal closed', () => {
       const eventProviderValue = {
-        currentEvent: createDefaultMyCalendarEvent(new Date('2021-08-03')),
-        eventsCollection: MockMyCalendarEvents,
+        event: createDefaultEvent(new Date('2021-08-03')),
+        eventsCollection: MockEvents,
         eventManagementOpened: false,
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
@@ -31,8 +28,8 @@ describe('EventManagement component', () => {
 
     it('should match with previous EventManagement modal opened', () => {
       const eventProviderValue = {
-        currentEvent: createDefaultMyCalendarEvent(new Date('2021-08-03')),
-        eventsCollection: MockMyCalendarEvents,
+        event: createDefaultEvent(new Date('2021-08-03')),
+        eventsCollection: MockEvents,
         eventManagementOpened: true,
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
@@ -44,8 +41,8 @@ describe('EventManagement component', () => {
   describe('@events', () => {
     it('should trigger handleSaveEvent', () => {
       const eventProviderValue = {
-        currentEvent: createDefaultMyCalendarEvent(new Date('2021-08-03')),
-        eventsCollection: MockMyCalendarEvents,
+        event: createDefaultEvent(new Date('2021-08-03')),
+        eventsCollection: MockEvents,
         setEventsCollection: jest.fn(),
         eventManagementOpened: true,
         setEventManagementOpened: jest.fn(),
@@ -56,6 +53,24 @@ describe('EventManagement component', () => {
 
       expect(eventProviderValue.setEventManagementOpened).toHaveBeenLastCalledWith(false);
       expect(eventProviderValue.setEventsCollection).toHaveBeenCalledTimes(1);
+    });
+
+    it('should trigger handleTitleChange', () => {
+      const eventProviderValue = {
+        event: createDefaultEvent(new Date('2021-08-03')),
+        eventsCollection: MockEvents,
+        eventManagementOpened: true,
+        dispatchEvent: jest.fn(),
+      };
+      eventContextMock(<EventManagement />, eventProviderValue);
+
+      const input = screen.getByTestId('addTitle') as HTMLInputElement;
+      fireEvent.change(input, { target: { value: 'test' } });
+
+      expect(eventProviderValue.dispatchEvent).toHaveBeenLastCalledWith({
+        type: EventType.UpdateTitle,
+        title: 'test',
+      });
     });
   });
 });

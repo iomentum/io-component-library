@@ -6,40 +6,31 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { CalendarContext } from '../contexts/CalendarContext';
 import { EventContext, EventContextInterface } from '../contexts/EventContext';
-import { DisplayMode, MyCalendarEvent } from '../types';
+import { DisplayMode } from '../types';
+import { EventType } from '../reducers/EventReducer';
 import { DayzWrapper } from './DayzWrapper';
-import { MockMyCalendarEvents } from '../utils/testUtils';
+import { MockEvents } from '../utils/testUtils';
+import { createDefaultEvent } from '../__mocks__/eventUtils.mock';
 
 jest.mock('../utils/momentUtils', () => ({
   createExtendedMomentFromDate: () => new Date('2021-08-03'),
   createDateFromMoment: jest.fn(),
 }));
 
-const createDefaultMyCalendarEvent = (startDate: Date): MyCalendarEvent => {
-  const endDate = new Date(startDate);
-  endDate.setHours(endDate.getHours() + 1);
-
-  return {
-    uuid: `awdawd`,
-    title: '',
-    startDate,
-    endDate,
-    metadata: {},
-  };
-};
-
 jest.mock('../utils/eventUtils', () => {
   const Dayz = jest.requireActual('dayz');
+  const eventUtilsMock = jest.requireActual('../__mocks__/eventUtils.mock');
+
   return {
-    convertMyCalendarEventIntoDayzEvent: jest.fn(),
-    createDefaultMyCalendarEvent: () => createDefaultMyCalendarEvent(new Date('2021-08-03')),
-    convertMyCalendarEventsIntoDayzEventsCollection: () => new Dayz.EventsCollection([]),
+    convertEventIntoDayzEvent: jest.fn(),
+    createDefaultEvent: () => eventUtilsMock.createDefaultEvent(new Date('2021-08-03')),
+    convertEventsIntoDayzEventsCollection: () => new Dayz.EventsCollection([]),
   };
 });
 
 const eventProviderValue: Partial<EventContextInterface> = {
-  eventsCollection: MockMyCalendarEvents,
-  setCurrentEvent: jest.fn(),
+  eventsCollection: MockEvents,
+  dispatchEvent: jest.fn(),
   setEventManagementOpened: jest.fn(),
 };
 
@@ -86,6 +77,11 @@ describe('DayzWrapper component', () => {
 
   describe('@events', () => {
     it('should trigger handleDayEventClick', () => {
+      const startDate = new Date('2021-08-03');
+      const event = createDefaultEvent(startDate);
+      delete event.displayStartDate;
+      delete event.displayEndDate;
+
       calendarContextMock(
         <DayzWrapper data-testid="dayz" />,
         calendarProviderValue(DisplayMode.Week)
@@ -93,7 +89,10 @@ describe('DayzWrapper component', () => {
 
       screen.getAllByText(3)[0].click();
 
-      expect(eventProviderValue.setCurrentEvent).toBeCalledTimes(1);
+      expect(eventProviderValue.dispatchEvent).toBeCalledWith({
+        type: EventType.UpdateEvent,
+        ...event,
+      });
       expect(eventProviderValue.setEventManagementOpened).toBeCalledWith(true);
     });
   });

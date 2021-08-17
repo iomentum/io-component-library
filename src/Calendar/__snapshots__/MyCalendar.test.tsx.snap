@@ -161,7 +161,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
     />
   </button>
   <div
-    class="sc-hKFxyN jkHVfS"
+    class="sc-bdnxRM jtQfqv"
   >
     <div
       class="dayz day"
@@ -496,7 +496,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar M
     />
   </button>
   <div
-    class="sc-hKFxyN jkHVfS"
+    class="sc-bdnxRM jtQfqv"
   >
     <div
       class="dayz month"
@@ -1099,7 +1099,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
     />
   </button>
   <div
-    class="sc-hKFxyN jkHVfS"
+    class="sc-bdnxRM jtQfqv"
   >
     <div
       class="dayz week"

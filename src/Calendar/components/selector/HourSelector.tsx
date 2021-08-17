@@ -1,6 +1,6 @@
 import React, { Dispatch, useContext, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
-import { EventManagementContext } from '../../contexts/EventManagementContext';
+import { EventContext } from '../../contexts/EventContext';
 import { EventAction, EventType } from '../../reducers/EventReducer';
 import { Row, Gap } from '../common.style';
 
@@ -47,7 +47,7 @@ export const computeEndHourChanges = (
 };
 
 export const HourSelector = () => {
-  const { event, dispatchEvent } = useContext(EventManagementContext);
+  const { event, dispatchEvent } = useContext(EventContext);
 
   useEffect(() => {
     computeEndHourChanges(event.startHour, event.endHour, dispatchEvent);

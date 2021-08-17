@@ -1,97 +1,60 @@
-import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { TextField } from './EventManagement.style';
-import { formatDateAndHour } from '../utils/dateUtils';
 import { SideModal } from './SideModal';
 import { DurationSelector } from './selector/DurationSelector';
-import { eventReducer, EventType } from '../reducers/EventReducer';
+import { EventType } from '../reducers/EventReducer';
 import { EventContext } from '../contexts/EventContext';
 import { EventManagementContext } from '../contexts/EventManagementContext';
 import { DateSelector, DateType } from './selector/DateSelector';
-import { createEvent, getMyCalendarEventIndex, updateEvent } from '../utils/eventUtils';
+import { getEventIndex } from '../utils/eventUtils';
 
 export function EventManagement() {
-  const { eventsCollection, setEventsCollection, currentEvent } = useContext(EventContext);
+  const { eventsCollection, setEventsCollection, event, dispatchEvent } = useContext(EventContext);
 
   const [isFullDayEvent, setIsFullDayEvent] = useState(true);
-
-  const [displayStartDate, startHour] = useCallback(
-    () => formatDateAndHour(currentEvent.startDate),
-    [currentEvent]
-  )();
-
-  const [displayEndDate, endHour] = useCallback(
-    () => formatDateAndHour(currentEvent.endDate),
-    [currentEvent]
-  )();
-
-  const [event, dispatchEvent] = useReducer(eventReducer, {
-    content: currentEvent.title,
-    startDate: currentEvent.startDate,
-    displayStartDate,
-    endDate: currentEvent.endDate,
-    displayEndDate,
-    startHour,
-    endHour,
-  });
 
   const eventManagementContextValue = useMemo<EventManagementContext>(
     () => ({
       isFullDayEvent,
       setIsFullDayEvent,
-      event,
-      dispatchEvent,
     }),
-    [isFullDayEvent, event]
+    [isFullDayEvent]
   );
 
   const isEventExisting = useMemo(
-    () => getMyCalendarEventIndex(currentEvent, eventsCollection) !== -1,
-    [eventsCollection, currentEvent]
-  );
-
-  useEffect(
-    () =>
-      dispatchEvent({
-        type: EventType.Reset,
-        content: currentEvent.title || '',
-        startDate: currentEvent.startDate,
-        displayStartDate,
-        endDate: currentEvent.endDate,
-        displayEndDate,
-        startHour,
-        endHour,
-      }),
-    [currentEvent]
+    () => getEventIndex(event, eventsCollection) !== -1,
+    [eventsCollection, event]
   );
 
   const handleSaveEvent = useCallback(() => {
     if (isEventExisting) {
-      const updatedEvent = updateEvent(event, currentEvent);
+      const updatedEvent = event;
+
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection[getMyCalendarEventIndex(updatedEvent, prevEvents)] = updatedEvent;
+        newEventsCollection[getEventIndex(updatedEvent, prevEvents)] = updatedEvent;
         return newEventsCollection;
       });
     } else {
-      setEventsCollection((prevEvents) => [...prevEvents, createEvent(event)]);
+      setEventsCollection((prevEvents) => [...prevEvents, event]);
     }
-  }, [currentEvent, isEventExisting, event]);
+  }, [isEventExisting, event]);
 
   const handleDeleteEvent = useCallback(
     () =>
       setEventsCollection((prevEvents) => {
         const newEventsCollection = [...prevEvents];
-        newEventsCollection.splice(getMyCalendarEventIndex(currentEvent, prevEvents), 1);
+        newEventsCollection.splice(getEventIndex(event, prevEvents), 1);
         return newEventsCollection;
       }),
-    [currentEvent, eventsCollection]
+    [event]
   );
 
   const handleTitleChange = useCallback(
     (nativeEvent) =>
       dispatchEvent({
-        type: EventType.UpdateContent,
-        content: nativeEvent.target.value,
+        type: EventType.UpdateTitle,
+        title: nativeEvent.target.value,
       }),
     []
   );
@@ -101,7 +64,15 @@ export function EventManagement() {
       onSave={handleSaveEvent}
       onDelete={handleDeleteEvent}
       isEventExisting={isEventExisting}>
-      <TextField fullWidth label="Add a title" value={event.content} onChange={handleTitleChange} />
+      <TextField
+        fullWidth
+        label="Add a title"
+        value={event.title}
+        onChange={handleTitleChange}
+        inputProps={{
+          'data-testid': 'addTitle',
+        }}
+      />
       <EventManagementContext.Provider value={eventManagementContextValue}>
         <DateSelector dateType={DateType.Start} />
         <DurationSelector />

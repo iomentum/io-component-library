@@ -1,14 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useReducer, useState } from 'react';
 import { CalendarHeader } from './components/CalendarHeader';
+import { DayzWrapper } from './components/DayzWrapper';
 import { EventManagement } from './components/EventManagement';
-import { DisplayMode, WeekStartsOn, MyCalendarEvent } from './types';
+import { CalendarContext, CalendarContextInterface } from './contexts/CalendarContext';
+import { EventContext, EventContextInterface } from './contexts/EventContext';
+import { Event, eventReducer } from './reducers/EventReducer';
+import { createDefaultEvent } from './utils/eventUtils';
+import { DisplayMode, WeekStartsOn } from './types';
 
 import 'dayz/dist/dayz.css';
 import './MyCalendar.css';
-import { CalendarContext, CalendarContextInterface } from './contexts/CalendarContext';
-import { EventContext, EventContextInterface } from './contexts/EventContext';
-import { DayzWrapper } from './components/DayzWrapper';
-import { createDefaultMyCalendarEvent } from './utils/eventUtils';
+
+type HandleEvent = (event: Event) => Event[];
 
 interface MyCalendarOptions {
   displayMode: DisplayMode;
@@ -20,10 +23,10 @@ interface MyCalendarOptions {
 
 export interface MyCalendarProps {
   displayedDate: Date;
-  events: MyCalendarEvent[];
-  onCreate: (event: MyCalendarEvent) => MyCalendarEvent[];
-  onUpdate: (event: MyCalendarEvent) => MyCalendarEvent[];
-  onDelete: (event: MyCalendarEvent) => MyCalendarEvent[];
+  events: Event[];
+  onCreate: HandleEvent;
+  onUpdate: HandleEvent;
+  onDelete: HandleEvent;
   options: MyCalendarOptions;
 }
 
@@ -32,7 +35,10 @@ export function MyCalendar(props: MyCalendarProps) {
   const [displayMode, setDisplayMode] = useState(props.options.displayMode);
   const [eventsCollection, setEventsCollection] = useState(props.events);
   const [eventManagementOpened, setEventManagementOpened] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(createDefaultMyCalendarEvent(displayedDate));
+
+  const defaultEvent = useMemo(() => createDefaultEvent(displayedDate), [displayedDate]);
+
+  const [event, dispatchEvent] = useReducer(eventReducer, defaultEvent);
 
   const calendarContextValue = useMemo<CalendarContextInterface>(
     () => ({
@@ -43,17 +49,16 @@ export function MyCalendar(props: MyCalendarProps) {
     }),
     [displayMode, displayedDate]
   );
-
   const eventContextValue = useMemo<EventContextInterface>(
     () => ({
       eventsCollection,
       setEventsCollection,
-      currentEvent,
-      setCurrentEvent,
       eventManagementOpened,
       setEventManagementOpened,
+      event,
+      dispatchEvent,
     }),
-    [eventsCollection, currentEvent, eventManagementOpened]
+    [eventsCollection, eventManagementOpened, event]
   );
 
   return (

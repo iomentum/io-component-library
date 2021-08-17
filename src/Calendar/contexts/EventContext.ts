@@ -1,13 +1,13 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { MyCalendarEvent } from '../types';
+import { EventAction, Event } from '../reducers/EventReducer';
 
 export interface EventContextInterface {
-  eventsCollection: MyCalendarEvent[];
-  currentEvent: MyCalendarEvent;
+  eventsCollection: Event[];
+  setEventsCollection: Dispatch<SetStateAction<Event[]>>;
   eventManagementOpened: boolean;
-  setEventsCollection: Dispatch<SetStateAction<MyCalendarEvent[]>>;
-  setCurrentEvent: Dispatch<SetStateAction<MyCalendarEvent>>;
   setEventManagementOpened: Dispatch<SetStateAction<boolean>>;
+  event: Event;
+  dispatchEvent: Dispatch<EventAction>;
 }
 
 export const EventContext = createContext<EventContextInterface>(null);
