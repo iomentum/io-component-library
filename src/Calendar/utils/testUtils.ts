@@ -7,7 +7,7 @@ const dates = [
   { start: new Date('2021-08-05T18:00:00'), end: new Date('2021-08-05T19:00:00') },
 ];
 
-export const MockEvents: Event[] = dates.map((date, index) => {
+export const createMockedEvents: Event[] = dates.map((date, index) => {
   const [displayStartDate, startHour] = formatDateAndHour(date.start);
   const [displayEndDate, endHour] = formatDateAndHour(date.end);
 
@@ -23,3 +23,6 @@ export const MockEvents: Event[] = dates.map((date, index) => {
     metadata: {},
   };
 });
+
+export const getMockedEvent = () =>
+  createMockedEvents.find((event) => event.uuid === `awdaw1-1231`);
