@@ -5,6 +5,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { CalendarContext } from '../../contexts/CalendarContext';
+import { DisplayMode } from '../../types';
 import {
   computeNewDate,
   ControlButton,
@@ -64,7 +65,7 @@ describe('computeNewDate function', () => {
   describe('should add', () => {
     it('1 day', () => {
       const date = new Date();
-      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 1);
+      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, DisplayMode.Day);
 
       date.setDate(date.getDate() + 1);
       expect(computedDate).toEqual(new Date(date));
@@ -72,7 +73,7 @@ describe('computeNewDate function', () => {
 
     it('7 days', () => {
       const date = new Date();
-      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 7);
+      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, DisplayMode.Week);
 
       date.setDate(date.getDate() + 7);
       expect(computedDate).toEqual(new Date(date));
@@ -80,9 +81,13 @@ describe('computeNewDate function', () => {
 
     it('30 days', () => {
       const date = new Date();
-      const computedDate = computeNewDate(new Date(date), MathOperation.Addition, 30);
+      const computedDate = computeNewDate(
+        new Date(date),
+        MathOperation.Addition,
+        DisplayMode.Month
+      );
 
-      date.setDate(date.getDate() + 30);
+      date.setMonth(date.getMonth() + 1);
       expect(computedDate).toEqual(new Date(date));
     });
   });
@@ -90,7 +95,11 @@ describe('computeNewDate function', () => {
   describe('should substract', () => {
     it('1 day', () => {
       const date = new Date();
-      const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 1);
+      const computedDate = computeNewDate(
+        new Date(date),
+        MathOperation.Substraction,
+        DisplayMode.Day
+      );
 
       date.setDate(date.getDate() - 1);
       expect(computedDate).toEqual(new Date(date));
@@ -98,7 +107,11 @@ describe('computeNewDate function', () => {
 
     it('7 days', () => {
       const date = new Date();
-      const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 7);
+      const computedDate = computeNewDate(
+        new Date(date),
+        MathOperation.Substraction,
+        DisplayMode.Week
+      );
 
       date.setDate(date.getDate() - 7);
       expect(computedDate).toEqual(new Date(date));
@@ -106,9 +119,13 @@ describe('computeNewDate function', () => {
 
     it('30 days', () => {
       const date = new Date();
-      const computedDate = computeNewDate(new Date(date), MathOperation.Substraction, 30);
+      const computedDate = computeNewDate(
+        new Date(date),
+        MathOperation.Substraction,
+        DisplayMode.Month
+      );
 
-      date.setDate(date.getDate() - 30);
+      date.setMonth(date.getMonth() - 1);
       expect(computedDate).toEqual(new Date(date));
     });
   });
