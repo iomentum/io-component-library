@@ -27,6 +27,7 @@ describe('EventManagement component', () => {
         event: createDefaultEvent(new Date('2021-08-03')),
         eventsCollection: mockedEvents,
         eventManagementOpened: true,
+        dispatchEvent: jest.fn(),
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
 
@@ -38,6 +39,7 @@ describe('EventManagement component', () => {
         event: getMockedEvent(),
         eventsCollection: mockedEvents,
         eventManagementOpened: true,
+        dispatchEvent: jest.fn(),
       };
       const { baseElement } = eventContextMock(<EventManagement />, eventProviderValue);
 
@@ -53,6 +55,7 @@ describe('EventManagement component', () => {
         setEventsCollection: jest.fn(),
         eventManagementOpened: true,
         setEventManagementOpened: jest.fn(),
+        dispatchEvent: jest.fn(),
       };
       eventContextMock(<EventManagement />, eventProviderValue);
 

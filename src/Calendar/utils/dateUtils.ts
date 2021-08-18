@@ -1,4 +1,7 @@
-export const getFormattedDate = (date: Date) => date.toISOString().replace(/T.*/, '');
+export const getFormattedDate = (date: Date) => {
+  const timeZoneOffset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - timeZoneOffset).toISOString().replace(/T.*/, '');
+};
 
 export const formatDateAndHour = (dateToFormat: Date): [string, string] => {
   const timeZoneOffset = dateToFormat.getTimezoneOffset() * 60000;

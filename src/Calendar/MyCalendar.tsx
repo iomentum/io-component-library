@@ -49,6 +49,7 @@ export function MyCalendar(props: MyCalendarProps) {
     }),
     [displayMode, displayedDate]
   );
+
   const eventContextValue = useMemo<EventContextInterface>(
     () => ({
       eventsCollection,
