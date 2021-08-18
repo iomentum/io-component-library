@@ -10,7 +10,7 @@ export const DurationSelector = () => {
 
   const handleCheckboxChange = useCallback(
     () => setIsFullDayEvent(!isFullDayEvent),
-    [isFullDayEvent, setIsFullDayEvent]
+    [isFullDayEvent]
   );
 
   return (

@@ -1,61 +1,40 @@
-import React, { Dispatch, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { TextField } from '@material-ui/core';
 import { EventContext } from '../../contexts/EventContext';
-import { EventAction, EventType } from '../../reducers/EventReducer';
+import { EventType } from '../../reducers/EventReducer';
 import { Row, Gap } from '../common.style';
 
-export const computeStartHourChanges = (
+export enum EventHourType {
+  Start,
+  End,
+}
+
+export const computeNewHours = (
   startHour: string,
   endHour: string,
-  dispatchEvent: Dispatch<EventAction>
-) => {
+  hourChanged: EventHourType
+): [string, string] => {
   if (startHour > endHour) {
     if (startHour > '23:00') {
-      dispatchEvent({
-        type: EventType.UpdateEndHour,
-        endHour: '23:59',
-      });
-    } else {
-      const [tensHour, unitHour, separator, tensMinut, unitMinute] = startHour.split('');
-      dispatchEvent({
-        type: EventType.UpdateEndHour,
-        endHour: `${tensHour}${+unitHour + 1}${separator}${tensMinut}${unitMinute}`,
-      });
+      return [startHour, '23:59'];
     }
-  }
-};
-
-export const computeEndHourChanges = (
-  startHour: string,
-  endHour: string,
-  dispatchEvent: Dispatch<EventAction>
-) => {
-  if (startHour > endHour) {
     if (endHour < '01:00') {
-      dispatchEvent({
-        type: EventType.UpdateStartHour,
-        startHour: '00:00',
-      });
-    } else {
-      const [tensHour, unitHour, separator, tensMinut, unitMinute] = endHour.split('');
-      dispatchEvent({
-        type: EventType.UpdateStartHour,
-        startHour: `${tensHour}${+unitHour - 1}${separator}${tensMinut}${unitMinute}`,
-      });
+      return ['00:00', endHour];
+    }
+    if (hourChanged === EventHourType.Start) {
+      const [tensHours, unitHours, separator, tensMinutes, unitMinutes] = startHour.split('');
+      return [startHour, `${tensHours}${+unitHours + 1}${separator}${tensMinutes}${unitMinutes}`];
+    }
+    if (hourChanged === EventHourType.End) {
+      const [tensHours, unitHours, separator, tensMinutes, unitMinutes] = endHour.split('');
+      return [`${tensHours}${+unitHours - 1}${separator}${tensMinutes}${unitMinutes}`, endHour];
     }
   }
+  return [startHour, endHour];
 };
 
 export const HourSelector = () => {
   const { event, dispatchEvent } = useContext(EventContext);
-
-  useEffect(() => {
-    computeEndHourChanges(event.startHour, event.endHour, dispatchEvent);
-  }, [event.endHour]);
-
-  useEffect(() => {
-    computeStartHourChanges(event.startHour, event.endHour, dispatchEvent);
-  }, [event.startHour]);
 
   return (
     <Row>
@@ -67,12 +46,18 @@ export const HourSelector = () => {
         inputProps={{
           'data-testid': 'startTime',
         }}
-        onChange={(onChangeEvent) =>
+        onChange={(onChangeEvent) => {
+          const [startHour, endHour] = computeNewHours(
+            onChangeEvent.target.value,
+            event.endHour,
+            EventHourType.Start
+          );
           dispatchEvent({
-            type: EventType.UpdateStartHour,
-            startHour: onChangeEvent.target.value as string,
-          })
-        }
+            type: EventType.UpdateHours,
+            startHour,
+            endHour,
+          });
+        }}
       />
       <Gap />
       <TextField
@@ -83,12 +68,18 @@ export const HourSelector = () => {
         inputProps={{
           'data-testid': 'endTime',
         }}
-        onChange={(onChangeEvent) =>
+        onChange={(onChangeEvent) => {
+          const [startHour, endHour] = computeNewHours(
+            event.startHour,
+            onChangeEvent.target.value,
+            EventHourType.End
+          );
           dispatchEvent({
-            type: EventType.UpdateEndHour,
-            endHour: onChangeEvent.target.value as string,
-          })
-        }
+            type: EventType.UpdateHours,
+            startHour,
+            endHour,
+          });
+        }}
       />
     </Row>
   );

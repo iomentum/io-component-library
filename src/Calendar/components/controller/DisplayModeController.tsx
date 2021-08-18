@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core';
 import { CalendarContext } from '../../contexts/CalendarContext';
 import { DisplayMode } from '../../types';
+import { FormControlLabel } from './DisplayModeController.style';
 
 interface DisplayCheckboxProps {
   displayMode: DisplayMode;
@@ -19,7 +20,7 @@ export const DisplayCheckbox = (props: DisplayCheckboxProps) => {
           checked={currentDisplayMode === props.displayMode}
         />
       }
-      label={props.displayMode.charAt(0).toUpperCase() + props.displayMode.slice(1)}
+      label={props.displayMode}
       labelPlacement="start"
     />
   );

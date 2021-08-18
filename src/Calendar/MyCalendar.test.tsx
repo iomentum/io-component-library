@@ -1,11 +1,7 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MyCalendar } from './MyCalendar';
-import { MockEvents } from './utils/testUtils';
+import { mockedEvents } from './utils/testUtils';
 import { DisplayMode, WeekStartsOn } from './types';
 
 jest.mock('./utils/momentUtils', () => ({
@@ -26,7 +22,7 @@ jest.mock('./utils/eventUtils', () => {
 const myCalendarMock = (displayMode: DisplayMode) =>
   render(
     <MyCalendar
-      events={MockEvents}
+      events={mockedEvents}
       displayedDate={new Date('2021-08-03')}
       onCreate={() => []}
       onUpdate={() => []}

@@ -6,17 +6,17 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
     class="tools"
   >
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-11 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-12 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-12"
+            class="PrivateSwitchBase-input-15"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -39,21 +39,21 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Month
+        month
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-11 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-12 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-12"
+            class="PrivateSwitchBase-input-15"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -76,22 +76,22 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Week
+        week
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-11 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-10 Mui-checked MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-12 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-13 Mui-checked MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
             checked=""
-            class="PrivateSwitchBase-input-12"
+            class="PrivateSwitchBase-input-15"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -114,7 +114,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar D
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Day
+        day
       </span>
     </label>
   </div>
@@ -341,18 +341,18 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar M
     class="tools"
   >
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-1 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-2 Mui-checked MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-2 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-3 Mui-checked MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
             checked=""
-            class="PrivateSwitchBase-input-4"
+            class="PrivateSwitchBase-input-5"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -375,21 +375,21 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar M
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Month
+        month
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-1 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-2 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-4"
+            class="PrivateSwitchBase-input-5"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -412,21 +412,21 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar M
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Week
+        week
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-1 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-2 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-4"
+            class="PrivateSwitchBase-input-5"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -449,7 +449,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar M
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Day
+        day
       </span>
     </label>
   </div>
@@ -944,17 +944,17 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
     class="tools"
   >
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-6 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-7 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-8"
+            class="PrivateSwitchBase-input-10"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -977,22 +977,22 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Month
+        month
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-6 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-6 Mui-checked MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-7 MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-checked-8 Mui-checked MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
             checked=""
-            class="PrivateSwitchBase-input-8"
+            class="PrivateSwitchBase-input-10"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -1015,21 +1015,21 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Week
+        week
       </span>
     </label>
     <label
-      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementStart"
+      class="MuiFormControlLabel-root WithStyles(ForwardRef(FormControlLabel))-root-6 MuiFormControlLabel-labelPlacementStart"
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-7 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
       >
         <span
           class="MuiIconButton-label"
         >
           <input
-            class="PrivateSwitchBase-input-8"
+            class="PrivateSwitchBase-input-10"
             data-indeterminate="false"
             type="checkbox"
             value=""
@@ -1052,7 +1052,7 @@ exports[`MyCalendar component @snapshots should match with previous MyCalendar W
       <span
         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
       >
-        Day
+        day
       </span>
     </label>
   </div>

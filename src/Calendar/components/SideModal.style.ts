@@ -1,4 +1,4 @@
-import { Paper, withStyles, Button as MuiButton } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const SideModalContent = styled(Paper)`
@@ -10,9 +10,3 @@ export const SideModalContent = styled(Paper)`
   flex-direction: column;
   justify-content: space-between;
 `;
-
-export const PrimaryButton = withStyles({
-  root: {
-    width: '100%',
-  },
-})(MuiButton);
