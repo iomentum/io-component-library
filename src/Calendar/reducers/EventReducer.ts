@@ -57,13 +57,13 @@ export const eventReducer = (state: Event, action: EventAction): Event => {
     case EventType.UpdateStartDate:
       return {
         ...state,
-        startDate: action.startDate,
+        startDate: mergeDateAndHour(action.startDate, state.startHour),
         displayStartDate: getFormattedDate(action.startDate),
       };
     case EventType.UpdateEndDate:
       return {
         ...state,
-        endDate: action.endDate,
+        endDate: mergeDateAndHour(action.endDate, state.endHour),
         displayEndDate: getFormattedDate(action.endDate),
       };
     case EventType.UpdateHours:
@@ -78,9 +78,9 @@ export const eventReducer = (state: Event, action: EventAction): Event => {
       return {
         uuid: action.uuid,
         title: action.title,
-        startDate: action.startDate,
+        startDate: mergeDateAndHour(action.startDate, action.startHour),
         displayStartDate: getFormattedDate(action.startDate),
-        endDate: action.endDate,
+        endDate: mergeDateAndHour(action.endDate, action.endHour),
         displayEndDate: getFormattedDate(action.endDate),
         startHour: action.startHour,
         endHour: action.endHour,
